@@ -183,7 +183,7 @@ module.exports = {
         background_color: `#f7f0eb`,
         theme_color: `#303030`,
         display: `standalone`,
-        icon: `src/images/favicon2.svg`,
+        icon: `src/images/React-icon.svg`,
         cache_busting_mode: "none",
         // sizes: "any",
         //type: "image/svg+xml",

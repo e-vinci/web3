@@ -15,6 +15,7 @@ import { withFrontmatter } from '../components/hoc/hoc.js';
 import CodeBlock from '../components/codeblock/codeblock.js';
 import LinkFile from '../components/file/link-file.js';
 import ScrollableImage from '../components/image/scrollable-image';
+import PublicProjectsView from '../components/public-projects/public-projects-view';
 import {
   AuthenticatedTemplate,
   UnauthenticatedTemplate,
@@ -36,11 +37,13 @@ const shortcodes = {
   CodeBlock,
   LinkFile,
   ScrollableImage,
+  PublicProjectsView,
   AuthenticatedBlock,
   UnAuthenticatedBlock,
   NestedMdxBlock,
   YoutubeImage,
 };
+
 
 export default function PageTemplate({ data: { mdx, allImages } }) {
   shortcodes.PageHeader = withFrontmatter(PageHeader, mdx?.frontmatter);

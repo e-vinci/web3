@@ -50,6 +50,10 @@ module.exports = {
             name: "Module 8 : REST API & middleware",
             link: "/modules/8",
           },         
+          {
+            name: "Introduction à Git",
+            link: "/git",
+          },         
         ],
       },
       {

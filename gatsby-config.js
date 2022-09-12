@@ -6,7 +6,7 @@ const authorEmail = "raphael.baroni@vinci.be";
 const facebookUrl = "";
 const instagramUrl = "";
 const defaultLanguage = "fr";
-const defaultAssociatedProjectGroupName = "Web2 2021";
+const defaultAssociatedProjectGroupName = "Web3 2022";
 
 module.exports = {
   pathPrefix: `/web3`,

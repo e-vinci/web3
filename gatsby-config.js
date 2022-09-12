@@ -6,7 +6,7 @@ const authorEmail = "raphael.baroni@vinci.be";
 const facebookUrl = "";
 const instagramUrl = "";
 const defaultLanguage = "fr";
-const defaultAssociatedProjectGroupName = "Web3 2022";
+const defaultAssociatedProjectGroupName = "Web2 2021";
 
 module.exports = {
   pathPrefix: `/web3`,
@@ -37,7 +37,7 @@ module.exports = {
             name: "Module 1 : Introduction à React",
             link: "/modules/1",
           },
-          { name: "Module 2 : React state", link: "/modules/2" },
+          { name: "Module 2 : React state", link: "/modules/2" },/*
           {
             name: "Module 3 : Rendering collections",
             link: "/modules/3",
@@ -49,7 +49,7 @@ module.exports = {
           {
             name: "Module 8 : REST API & middleware",
             link: "/modules/8",
-          },         
+          },*/         
           {
             name: "Introduction à Git",
             link: "/git",

@@ -5,62 +5,91 @@ description: "TBD"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 # Module 2 : React state
-Ce module vous offre principalement TBD.
+Ce module vous offre principalement la découverte de la gestion des événements en React, ainsi que la gestion des états.
 
-Voici les sujets traités :
-- a) [TITRE 1](#a)
-  - a.1) [TITRE](#a1)
-  - a.2) [TITRE](#a2)
-  - a.3) [TITRE](#a3)
-- b) [TITRE](#b)
-  - b.1) [TITRE](#b1)
-  - b.2) [TITRE](#b2)
-  - b.3) [TITRE](#b3)
-- c) [TITRE](#c)
-  - c.1) [TITRE](#c1)
-  - c.2) [TITRE](#c2)
-  - c.3) [TITRE](#c3)
-- d) [TITRE](#d)
-- e) [TITRE](#e)
-- f) [TITRE](#f)
+**Voici les sujets traités :**
+- a) [Préparation de l'exercice](#a)
+  - a.1) [Depuis le cours en ligne](#a1)
+  - a.2) [Remarques générales](#a2)
+- b) [Utiliser les événements](#b)
+- c) [Sauvegarder le compteur !](#c)
+- d) [Votre premier Hook custom !](#d)
+- e) [A retenir](#e)
+
+**Voici les lectures indispensables pour suivre ce module :**
+- Prérequis, à revoir attentivement : [https://fullstackopen.com/en/part1/java_script](https://fullstackopen.com/en/part1/java_script)
+- Nouvelle matière : [https://fullstackopen.com/en/part1/component_state_event_handlers](https://fullstackopen.com/en/part1/component_state_event_handlers)
 
 
-# <a id="a"></a>a) TITRE
-## <a id="a1"></a>a.1) TITRE
+# <a id="a"></a>a) Préparation de l'exercice
+
+## <a id="a1"></a>a.1) Depuis le cours en ligne
+
+* Dans votre dossier `/web3/exercices` Lancez la commande : `npx create-react-app module2`
+* Supprimez tout le contenu du dossier `src/`
+* Comme pour la semaine précédente, n'oubliez pas de supprimer le dossier `.git`
+* Copiez le fichier `jsconfig.json` et `src/index.js` depuis le dossier de l'exercice du module précédent
+* Introduisez les composants App, Display, et Button en copiant le contenu du cours en ligne. N'oubliez pas que chacun d'entre eux doit être dans un dossier qui porte le même nom que le composant : `src/components/[componentName]/[componentName].jsx`
+* Vérifiez que les 3 boutons fonctionnent correctement : increase, decrease, reset
+
+## <a id="a2"></a> a.2) Remarques générales
+
+* Gardez la partie jsx la plus simple possible, définissez toujours des "helper functions" et "helper variables" avant le jsx.
+* Nommez vos "event handlers" avec des préfixes, par exemple : handleXXX ou onXXX. Ceci va vous permettre de vous souvenir que ces méthodes reçoivent un unique paramètre "event" (ou e). N'utilisez pas ces préfixes pour vos méthodes "business" qui reçoivent des paramètres "normaux".
 
 
-## <a id="a2"></a> a.2) TITRE
+# <a id="b"></a>b) Utiliser les événements
+
+Dans cet exercice, l'objectif va être de supprimer les méthodes `increaseByOne()`... et les remplacer par une unique méthode `changeCount(delta)` qui va prendre un "delta" en paramètre. Ce delta va être ajouté au compteur, et donnera la nouvelle valeur. Par exemple, un appel `changeCount(1)` va ajouter 1 au compteur, un appel à `changeCount(-10)` va ajouter -10 au compteur ce qui équivaut à supprimer 10 du compteur.
+
+Pour cela, commencez par ajouter une prop "delta" dans le composant "Button". Utilisez ce delta que vous recevez dans votre composant pour remplir l'attribut HTML "data-delta" du bouton. N'hésitez pas à aller lire la documentation dur les "data attributes" sur le MDN : [https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes).
+
+Supprimez les méthodes `increaseByOne()`, `decreaseByOne()`, et `setToZero()` du composant App. Et écrivez cette méthode `changeCount(delta)`. Elle prend un nombre en paramètre, et met à jour le compteur en fonction du delta passé en paramètre.
+
+Jusqu'ici, les Button recevaient en props un texte à afficher (très bien, c'est à garder), mais également une fonction `onClick` qui permettait de réagir au clic sur le bouton. Supprimez cette prop, et passez plutôt en paramètre la fonction changeCount que vous avez créée, et le delta qui doit être associé au bouton :
+* Incrémenter : +1
+* Décrémenter : -1
+* Reset : -counter
+
+Récupérez la prop changeCount dans le component Button et écrivez une "helper function" handleClick(e) qui va extraire la valeur de l'élément cliqué (e.target.dataset.delta) et appeller changeCount avec le bon delta.
+
+**Remarques/consignes :**
+* N'UTILISEZ PAS la prop delta dans handleClick, utilisez uniquement l'événement que vous recevez en paramètre
+* N'oubliez pas d'utiliser parseInt() pour parser la valeur que vous recevez. L'opérateur + sur une chaîne de caractères fait une concaténation en JS.
+* Les props React ne sont pas des attributs HTML, elles conservent leur types, alors que les attributs HTML sont sérialisés dans le HTML et sont donc toujours des string. Dans notre cas ici, le data-attribute "delta" qu'on a écrit sur notre "button" HTML a donc été sérialisé sous forme de string. Quand on le récupère avec e.target.dataset.delta, il est donc bien au format string. Il faut donc le parser.
+
+Maintenant que vous avez terminé cet exercice, remarquez qu'on aurait pu faire mieux, et beaucoup plus propre ! Pourquoi passer par un data-attribute pour transmettre le delta, alors qu'on peut ré-utiliser directement la prop delta dans le handleClick ? La réponse ici est simple, juste pour l'exercice ;-) Grâce à ça, vous avez appris qu'utiliser des attributs HTML directement nous fait perdre le type, qu'il faut parser le résultat, et que ce n'est pas une bonne manière de faire ;-)
+
+# <a id="c"></a>c) Sauvegarder le compteur
+
+Dans le composant App, appelez `localStorage.setItem("counter", JSON.stringify(counter))` à chaque fois qu'on change le compteur. Dans notre cas ici, c'est juste après l'appel à la méthode `setCounter`.
+
+Ensuite, dans le `useState(0)`, au lieu de donner 0 comme valeur initiale au compteur, essayez de lire la valeur du compteur depuis le localStorage `JSON.parse(localStorage.getItem("counter"))` et passez la au `useState` comme valeur par défaut. Rafraichissez votre page après le changement du compteur, et constatez qu'il à été persisté.
+
+Vous remarquerez cependant qu'il y a un souci avec la valeur du compteur qui est persistée. Il y a bien une persistance qui est faite, mais la valeur n'est pas correcte... Essayez de réfléchir à la question, éventuellement en lisant la documentation officielle de React sur le hook UseState : [https://reactjs.org/docs/hooks-state.html](https://reactjs.org/docs/hooks-state.html) ou sur le Render des composants : [https://reactjs.org/docs/rendering-elements.html](https://reactjs.org/docs/rendering-elements.html).
+
+Vous avez réfléchi à la question ? Vérifiez ci-dessous si vous avez trouvé la "bonne" réponse...
+
+======= SPOILER =======
+
+Au cas ou vous ne l'auriez pas compris, lorsque l'état défini grâce au useState vient à changer, React re-render les composants qui sont impactés par ce changement. La seule manière pour nous de changer la valeur du compteur, s'est d'utiliser le `setCounter()` que le useState nous à donné. L'appeler en donnant une nouvelle valeur va relancer un render. Mais React ne fait pas un render à chaque changement d'un état dans notre application. Il va optimiser les render pour éviter d'en faire à tout bout de champ. Le render sera fait quant il veut, sans que vous sachiez exactement quand... Du coup, à la ligne juste après votre appel à `setCounter`, vous utilisez la valeur du counter en pensant qu'elle a été changée, mais en fait, React ne la changera qu'au prochain render... Donc pas tout de suite ! Il faut donc trouver une petite parade ;-)
+
+======= FIN SPOILER =======
 
 
-## <a id="a3"></a> a.3) TITRE
+# <a id="d"></a>d) Votre premier Hook custom ! *(Exercice facultatif, pour les plus motivés)*
 
+Vous aurez remarqué que ce code n'est pas très propre... A chaque appel de `setCounter()`, il ne faudra surtout pas oublier d'écrire dans le localStorage... Et il faudra faire ça, pour chaque variable qu'on veut persister... Autant dire que c'est copier/coller du code partout, et le risque d'erreur est énorme...
 
-# <a id="b"></a>b) TITRE
-## <a id="b1"></a>b.1) TITRE
+Et pourquoi ne pas faire notre propre "useState", mais qui écrit dans le localStorage au passage ?
 
+Ecrivez un fichier src/hooks/useLocalStorage.js (notez l'extension .js et pas .jsx). Ce fichier doit déclarer et exporter une fonction useLocalStorage(key, initialValue). Cette fonction utilisera en son coeur la fonction useState et comme elle, renverra une valeur et un setter. En plus de cela , elle stockera la valeur actuelle dans le localStorage à l'indice de la clef donnée et chargera la valeur stockée initialement. Si la clef n'existe pas dans le localStorage, cette fonction initialisera la clef avec la valeur passée en second paramètre.
 
-## <a id="b2"></a>b.2) TITRE
+# <a id="e"></a>e) A retenir
 
-
-## <a id="b3"></a>b.3) TITRE
-
-
-# <a id="c"></a>c) TITRE
-## <a id="c1"></a>c.1) TITRE
-
-## <a id="c2"></a>c.2) TITRE
-
-
-## <a id="c3"></a>c.3) TITRE
-
-
-
-
-# <a id="d"></a> d) TITRE
-
-
-# <a id="e"></a> e) TITRE
-
-
-# <a id="f"></a> f) TITRE
-
+* useState permet de stocker un état et de "rerender" les composants automatiquement quand c'est nécessaire.
+* Les props sont la principale manière de passer des données ET des fonctions.
+* Chaque Component doit être dans son dossier.
+* Les fonctions de gestion d'événements recoivent un unique paramètre "e" qui représente l'événement. Elles portent un nom qui commence par "handle" ou "on" afin de les identifier facilement.
+* Les fonctions de gestion d'événement sont dans le composant qui génère l'événement. Mais elles sont souvent de simples wrapper vers des fonctions "métiers" reçue via les props.
+* Les fonctions métiers viennent du composant App

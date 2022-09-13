@@ -7,7 +7,7 @@ description: "Découverte du JS côté browser & du DOM"
 
 Ce module vous offre principalement une découverte de React.
 
-Voici les sujets traités :
+**Voici les sujets traités :**
 
 - a) [Revue des concepts connus des web apps](#a)
 - b) [Préparation de votre environnement](#b)
@@ -20,6 +20,10 @@ Voici les sujets traités :
   - c.4) [Refactoring : Structure des fichiers et composants](#c4)
   - c.5) [Refactoring : Chemins absolus dans les imports](#c5)
   - c.6) [Imports d'assets au sein de vos scripts & styling](#c6)
+
+**Voici les lectures qui sont référencées dans ce module :**
+- Prérequis : [Full Stack open - Fundamentals of Web apps](https://fullstackopen.com/en/part0/fundamentals_of_web_apps) [[R.1]](/references/#r1)
+- Nouvelle matière : [Full Stack open - Introduction to React](https://fullstackopen.com/en/part1/introduction_to_react) [[R.1]](/references/#r1)
 
 # <a id="a"></a> a) Revue des concepts connus des web apps
 
@@ -45,18 +49,20 @@ Pour créer un local repo, vous pouvez visualiser la vidéo "Git & VS Code - Par
 
 Ce repository doit reprendre la structure de répertoires que vous allez mettre en place pour couvrir les 8 modules de ce cours.
 
-Voici comment nous souhaitons que vous organisiez cette structure de répertoires :
-- **`/web3`**
-  - **`/web3/exercises/module1`**
-  - **`/web3/exercises/module2`**
-  - **`/web3/exercises/module3`**
-  - **`/web3/exercises/module4`**
-  - **`/web3/exercises/module5`**
-  - **`/web3/exercises/module6`**
-  - **`/web3/exercises/module7`**
-  - **`/web3/exercises/module8`**
-
 Veuillez créer un web repo portant le nom **web3**.
+
+Au sein de ce repository, voici comment nous souhaitons que vous organisiez votre structure de répertoires :
+- **`/exercises`**
+  - **`/exercises/module1`**
+  - **`/exercises/module2`**
+  - **`/exercises/module3`**
+  - **`/exercises/module4`**
+  - **`/exercises/module5`**
+  - **`/exercises/module6`**
+  - **`/exercises/module7`**
+  - **`/exercises/module8`**
+
+Pour les exercices, nous considérons que tous les chemins absolus démarrent de votre repo local ;  **/exercises/module1** serait en fait **/web3/exercises/module1** si vous veniez à considérer le nom **web3** de votre repo local.
 
 N'oubliez pas d'ajouter un fichier **`.gitignore`** à votre repo :
 
@@ -94,7 +100,7 @@ Pour trouver le lien vers votre repo :
 - dans GitHub : cliquez sur le bouton **Code** dans votre web repo, et copiez l'info associée à l'onglet **HTTPS**.
 - dans Gitlab : il vous suffit de cliquer sur **Clone** dans votre projet, et de prendre l'info associée à **Clone with HTTPS**. 
 
-NB : Lorsque vous allez ajouter une remote pour vous synchroniser avec votre web repository, nous vous conseillons d'utiliser l'URL associée à **HTTPS**. Si vous souhaitez malgré tout vous connecter en SSH, vous pouvez consulter [cet article pour GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) ou [cet article pour GitLab](https://dev.to/sndrx/how-to-set-up-an-ssh-key-and-use-it-in-gitlab--42p1).
+NB : Lorsque vous allez ajouter une remote pour vous synchroniser avec votre web repository, nous vous conseillons d'utiliser l'URL associée à **HTTPS**. Si vous souhaitez malgré tout vous connecter en SSH, vous pouvez consulter [cet article pour GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) [[R.2]](/references/#r2) ou [cet article pour GitLab](https://dev.to/sndrx/how-to-set-up-an-ssh-key-and-use-it-in-gitlab--42p1) [[R.3]](/references/#r3).
 
 </AuthenticatedBlock>
 
@@ -103,20 +109,20 @@ NB : Lorsque vous allez ajouter une remote pour vous synchroniser avec votre web
 N'hésitez pas à créer votre web repo sur le site qui vous convient (GitHub, Gitlab...). Si vous n'avez jamais créé de web repo, nous vous recommandons d'en créer un sur GitHub. Pour ce faire, vous pouvez utiliser un compte existant ou en créer un nouveau sur https://github.com/.  
 Pour créer un web repo sous GitHub, vous pouvez visualiser la vidéo "Git & VS Code - Partie 03 : Création d'un web repo sur GitHub à partir d'un local repo" dans l'[Introduction à Git](/git).
 
-NB : Lorsque vous allez ajouter une remote pour vous synchroniser avec votre web repository, nous vous conseillons d'utiliser l'URL associée à **HTTPS**. Si vous souhaitez malgré tout vous connecter en SSH, vous pouvez consulter [cet article pour GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+NB : Lorsque vous allez ajouter une remote pour vous synchroniser avec votre web repository, nous vous conseillons d'utiliser l'URL associée à **HTTPS**. Si vous souhaitez malgré tout vous connecter en SSH, vous pouvez consulter [cet article pour GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) [[R.2]](/references/#r2).
 
 </UnAuthenticatedBlock>
 
 # <a id="c"></a> c) Introduction à React et aux components
 
 ## <a id="c1"></a> c.1) Découverte de React et des Components
-Veuillez lire et réaliser les tutoriels : [Full Stack open - Introduction to React](https://fullstackopen.com/en/part1/introduction_to_react).
+Veuillez lire et réaliser les tutoriels : [Full Stack open - Introduction to React](https://fullstackopen.com/en/part1/introduction_to_react) [[R.1]](/references/#r1).
 
 Nous ferons les exercices par la suite.
 
 ## <a id="c2"></a> c.2) Exercice 1.1-1.2 : Components de base
 
-Veuillez faire les exercices 1.1 et 1.2 de [Full Stack open - Exercises 1.1. -1.2.](https://fullstackopen.com/en/part1/introduction_to_react#exercises-1-1-1-2).
+Veuillez faire les exercices 1.1 et 1.2 de [Full Stack open - Exercises 1.1. -1.2.](https://fullstackopen.com/en/part1/introduction_to_react#exercises-1-1-1-2) [[R.1]](/references/#r1).
 
 Le code de votre application doit se trouver dans votre repository local et votre web repository (normalement appelé **web3**) dans le répertoire nommé **/exercises/1.1-1.2**.
 
@@ -153,7 +159,7 @@ Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 
 
 Nous vous recommandons d'utiliser des chemins absolus pour les imports. Par exemple, pour importer **A**, nous souhaiterions pouvoir faire : **`import App from 'components/App/App'`**.
 
-[Create Reac App - Absolute Imports](https://create-react-app.dev/docs/importing-a-component/#absolute-imports) indique la marche à suivre :
+[Create Reac App - Absolute Imports](https://create-react-app.dev/docs/importing-a-component/#absolute-imports) [[R.4]](/references/#r4) indique la marche à suivre :
 - Ajoutez un fichier **jsconfig.json** à la racine de votre projet s'il n'existe pas déjà ;
 - Complétez ce fichier avec :
 ``` json
@@ -215,7 +221,7 @@ Avec **React Create App**, on importe très facilement une image.
 
 Il est important de savoir que **React Create App** utilise un module bundler, Webpack, pour gérer de manière moderne les dépendances et les assets de l'application. On ne sait pas où Webpack, lors du build, va mettre les images, ni sous quels noms, et c'est OK ainsi.
 Ainsi, dans nos scripts, nous devons récupérer le chemin d'une image via un import.  
-Pour plus d'infos : [Create React App - Adding Images, Fonts and Fils](https://create-react-app.dev/docs/adding-images-fonts-and-files/).
+Pour plus d'infos : [Create React App - Adding Images, Fonts and Fils](https://create-react-app.dev/docs/adding-images-fonts-and-files/) [[R.4]](/references/#r4).
 
 <AuthenticatedBlock>
 

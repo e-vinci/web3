@@ -37,11 +37,11 @@ module.exports = {
             name: "Module 1 : Introduction à React",
             link: "/modules/1",
           },
-          { name: "Module 2 : React state", link: "/modules/2" },/*
+          { name: "Module 2 : React state", link: "/modules/2" },
           {
-            name: "Module 3 : Rendering collections",
+            name: "Module 3 : Complex state & collections",
             link: "/modules/3",
-          },
+          },/*
           { name: "Module 4 : Forms", link: "/modules/4" },
           { name: "Module 5 : State & Context", link: "/modules/5" },
           { name: "Module 6 : REST API", link: "/modules/6" },

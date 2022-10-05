@@ -41,7 +41,8 @@ module.exports = {
           {
             name: "Module 3 : Complex state & collections",
             link: "/modules/3",
-          },/*
+          },
+          { name: "Module 5 : React Context", link: "/modules/5" },/*
           { name: "Module 4 : Forms", link: "/modules/4" },
           { name: "Module 5 : State & Context", link: "/modules/5" },
           { name: "Module 6 : REST API", link: "/modules/6" },

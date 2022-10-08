@@ -12,11 +12,10 @@ Voici les sujets traités :
   - a.2) [Fonctionnement de React Context](#a2)
   - a.3) [Exemple de React Context](#a3)
   - a.4) [State management & Redux](#a4)
-- b) [Exercice 1 : Votes prédéfinis](#b)
+- b) [Exercice 5.1 : Votes prédéfinis](#b)
 - c) [Exercice 5.2 : Votes d'opinions](#c)
 - d) [Résumé](#d)
 - e) [🍬 Exercice 5.3 : pour s'entraîner encore](#e)
-- f) [TITRE](#f)
 
 
 # <a id="a"></a>a) React Context
@@ -142,11 +141,16 @@ Par contre, pour la première fois, on utilise une balise ouvrante séparée de 
 Lorsqu'on fait cela, tout ce qu'on place entre les balises ouvrantes et fermantes sera passé au composant sous la forme d'un tableau qui s'appelle **props.children**.  
 Le composant qui reçoit cette prop (notre **ProviderWrapper**) peut donc décider de ce qu'il fait de ce tableau. Dans notre cas on l'affiche simplement, mais on pourrait l'afficher conditionnellement, ou n'en afficher qu'une partie par exemple.
 
+Attention, à cette étape-ci, vous devez vous assurer que le point d'entrée de votre programme, `index.js`, fait bien appel à **AppLoader** et plus à **App**. Votre `index.js` ressemblera à cela :
+``` js
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<AppLoader />);
+```
+
 ### a.3.4) Etape 4 : Consommer le contexte dans un composant
 On peut maintenant utiliser le hook **useContext** dans n'importe quel composant sous l'**AppLoader**, par exemple dans un fichier **/src/components/FoobarButton** : 
 ``` js
-import LanguageContext
-from "contexts/LanguageContext";
+import { Context as LanguageContext } from "contexts/LanguageContext";
 
 const FoobarButton = () => {
    const { language, pickLanguage } = useContext(LanguageContext )
@@ -233,5 +237,3 @@ Lorsqu'on appelle **getCurrentThemeDetails()**, on recoit un objet avec les prop
 - **linkColor**
 
 Placez dans le footer de votre application un bouton pour changer de thème et ajoutez dans tous les composant de votre application un **useContext** afin d'utiliser les couleurs du thème actuellement choisi.
-
-# <a id="f"></a> f) TITRE

@@ -1,0 +1,88 @@
+---
+title: "Module 4 : Forms, useEffect, Axios..."
+description: "Module 4 : Gestion des formulaires, useEffect(), Axios..."
+---
+
+# Module 4 : Gestion des formulaires, useEffect(), Axios...
+
+Voici les sujets traités :
+- a) [Création de votre premier formulaire](#a)
+- b) [🍬 Pour s’entraîner un peu plus (pas obligatoire, et pas évalué)](#b)
+- c) [UseEffect, chargement de données depuis un serveur](#c)
+- d) [A retenir jusqu'à présent](#d)
+- e) [Insertion avec l'API](#e)
+- f) [Module de communication avec l'API](#f)
+- g) [🍬 Pour aller plus loin : suppression et mise à jour avec l'API (pas obligatoire)](#g)
+- h) [🍬 Pour aller plus loin : Optimistic Update (pas obligatoire)](#h)
+- i) [A retenir](#d)
+
+**Voici les lectures qui sont référencées dans ce module :**
+- [Forms](https://fullstackopen.com/en/part2/forms) [[R.1]](/references/#r1)
+- [Getting data from server](https://fullstackopen.com/en/part2/getting_data_from_server) [[R.1]](/references/#r1)
+- [Altering data in server](https://fullstackopen.com/en/part2/altering_data_in_server) [[R.1]](/references/#r1)
+
+# <a id="a"></a>a) Création de votre premier formulaire
+
+Veuillez lire le chapitre sur la gestion des formulaires en React : [Forms](https://fullstackopen.com/en/part2/forms) [[R.1]](/references/#r1)
+
+Faites les exercices 2.6, 2.7 et 2.8 de la séance lue précédemment : [Exercise 2.6-2.10](https://fullstackopen.com/en/part2/forms#exercises-2-6-2-10) [[R.1]](/references/#r1).
+
+Lisez bien chaque exercice en entier avant de commencer, il y a notamment quelques astuces parfois à la fin des exercices.
+
+N'oubliez pas de respecter les "bonnes pratiques" vues précédemment.
+
+# <a id="b"></a>b) 🍬 Pour s’entraîner un peu plus (pas obligatoire, et pas évalué)
+
+Faites les exercices 2.9 et 2.10 de la séance lue précédemment : [Exercise 2.6-2.10](https://fullstackopen.com/en/part2/forms#exercises-2-6-2-10) [[R.1]](/references/#r1).
+
+# <a id="c"></a>c) UseEffect, chargement de données depuis un serveur
+
+Veuillez lire le chapitre sur la gestion des appels à une API REST depuis une application React : [Getting data from server](https://fullstackopen.com/en/part2/getting_data_from_server) [[R.1]](/references/#r1)
+
+Faites l'exercice 2.11 de la séance lue précédemment : [Exercises 2.11.-2.14.](https://fullstackopen.com/en/part2/getting_data_from_server#exercises-2-11-2-14) [[R.1]](/references/#r1).
+
+Vous devrez mettre en place le serveur local comme dans le cours en ligne.
+
+N'hésitez pas à vous inspirer des morceaux de code qui sont dans la théorie. Il y a finalement beaucoup de copier/coller, mais à adapter évidemment.
+
+# <a id="d"></a>d) A retenir jusqu'à présent
+- N'hésitez pas à utiliser des **console.log** (log + TAB pour utiliser le snippet VSCode) pour afficher les props à débugger.
+- Dans un formulaire, on peut mettre **onSubmit** sur le "form" pour intercepter l'envoi. Il faut faire **`event.preventDefault()`** pour, entres-autres, éviter le rechargement de la page.
+- On peut mettre un **onChange** sur un input pour récupérer la valeur entrée dans l'input.
+- Nous simulons pour l'instant un serveur web intégré avec "json-server", mais il s'agit bien d'une application distincte de notre application web en React.
+- Axios va nous permettre de faire des requêtes à l'API. Vous pouvez utiliser "fetch" également si vous le souhaitez.
+- **useEffect** permet d'éxécuter du code, notamment après le premier "render" du composant dans lequel il est défini.
+- par défaut, **useEffect** est exécuté après CHAQUE "render" du composant.
+- le 2e argument de **useEffect** permet de "choisir" le moment où il sera exécuté. Mettre "[]" permet de sélectionner, "uniquement après le premier "render".
+
+# <a id="e"></a>e) Insertion avec l'API
+
+Veuillez lire le chapitre sur l'utilisation plus avancée d'une API REST en React : [Altering data in server](https://fullstackopen.com/en/part2/altering_data_in_server) [[R.1]](/references/#r1)
+
+Faites l'exercice 2.15 de la séance lue précédemment : [Exercises 2.15.-2.18.](https://fullstackopen.com/en/part2/altering_data_in_server#exercises-2-15-2-18) [[R.1]](/references/#r1).
+
+# <a id="f"></a>f) Module de communication avec l'API
+
+Faites l'exercice 2.16 de la séance lue précédemment : [Exercises 2.15.-2.18.](https://fullstackopen.com/en/part2/altering_data_in_server#exercises-2-15-2-18) [[R.1]](/references/#r1).
+
+# <a id="g"></a>g) 🍬 Pour aller plus loin : suppression et mise à jour avec l'API (pas obligatoire)
+
+Faites l'exercice 2.17 et 2.18 de la séance lue précédemment : [Exercises 2.15.-2.18.](https://fullstackopen.com/en/part2/altering_data_in_server#exercises-2-15-2-18) [[R.1]](/references/#r1).
+
+# <a id="h"></a>h) 🍬 Pour aller plus loin : Optimistic Update (pas obligatoire)
+
+Lorsqu'on écrit une interface, il est important que celle-ci donne une impression de vitesse, malheureusement parfois le backend n'est pas assez performant pour créer cette impression. Dans ces cas-là on peut créer une confusion chez l'utilisateur lorsque par exemple il clique sur un bouton "ajouter" mais qu'il ne voit son ajout sur la page qu'au bout de plusieurs secondes, le temps que le backend effectue l'opération.
+
+Pour mitiger cette mauvaise UX, nous pouvons mettre en place un "Optimistic Update" : effectuer le changement en frontend avant d'avoir eu la confirmation du backend que tout s'est bien passé. Et effectuer une seconde mise à jour une fois la réponse reçue du serveur (car celle-ci contient la plupart du temps des données additionnelles, comme par exemple l'id )
+
+Nous vous proposons donc de mettre en place un optimistic update pour l'ajout d'un élément dans le carnet d'adresse : 
+- Dans le service, simulez un délai de 1 seconde en renvoyant dans le **then()** une promesse qui sera **resolve()** à l'aide d'un **setTimeout**.
+- Ajoutez dans les objets **person** un nouvel attribut "**status**" qui vaudra : "**pending**" ou "**persisted**". Le statut d'une **person** sera affiché dans la liste.
+- Lorsque l'utilisateur clique sur le bouton "**add**", placez immédiatement un objet **person** dans la liste avec un statut **pending**. 
+- Lorsque la réponse est reçue du serveur, remplacez l'objet **pending** par celui **persisted**.
+
+Attention : vous aurez besoin du hook "**useRef**" afin de pouvoir accéder à la version "fraiche" de votre state depuis le **then()** créé précédemment. Consultez pour cela la documentation officielle de chaque hook [Hooks API Reference](https://reactjs.org/docs/hooks-reference.html) [[R.6]](/references/#r6). Gardez en tête que vous pourriez avoir plusieurs personnes "**pending**" en même temps !
+
+# <a id="i"></a>i) A retenir
+- Contrairement à ce qu'on pourrait imaginer, POST permet d'ajouter, PUT de remplacer, PATCH de modifier. N'utilisons pas PATCH pour l'instant.
+- **`{ getAll }`** est la notation simplifiée de **`{ getAll: getAll }`**.

@@ -42,10 +42,10 @@ module.exports = {
             name: "Module 3 : Complex state & collections",
             link: "/modules/3",
           },
-          { name: "Module 4 : Forms, useEffect, Axios...", link: "/modules/4" },/*
+          { name: "Module 4 : Forms, useEffect, Axios...", link: "/modules/4" },
           { name: "Module 5 : State & Context", link: "/modules/5" },
-          { name: "Module 6 : REST API", link: "/modules/6" },
-          { name: "Module 7 : Exercice récapitulatif", link: "/modules/7" },
+          { name: "Module 6 : API REST avec MongoDB", link: "/modules/6" },
+          /*{ name: "Module 7 : Exercice récapitulatif", link: "/modules/7" },
           {
             name: "Module 8 : REST API & middleware",
             link: "/modules/8",

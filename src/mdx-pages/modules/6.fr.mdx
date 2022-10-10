@@ -3,62 +3,50 @@ title: 'Module 6 : TBD'
 description: 'TBD'
 ---
 
-# Module 6 : SPA & comms
-Ce module vous offre principalement TBD.
+# Module 6 : API REST avec MongoDB
+Dans ce module, nous alons revoir comment faire une API REST, mais surtout comment utiliser une base de données MongoDB pour persister nos données.
 
 Voici les sujets traités :
-- a) [TITRE 1](#a)
-  - a.1) [TITRE](#a1)
-  - a.2) [TITRE](#a2)
-  - a.3) [TITRE](#a3)
-- b) [TITRE](#b)
-  - b.1) [TITRE](#b1)
-  - b.2) [TITRE](#b2)
-  - b.3) [TITRE](#b3)
-- c) [TITRE](#c)
-  - c.1) [TITRE](#c1)
-  - c.2) [TITRE](#c2)
-  - c.3) [TITRE](#c3)
-- d) [TITRE](#d)
-- e) [TITRE](#e)
-- f) [TITRE](#f)
+- a) [Rappel : création d'une API REST](#a)
+- b) [Premier accès à la DB](#b)
+- c) [Création d'une API REST avec MongoDB](#c)
+- d) [🍬 Pour aller plus loin : Update dans la DB](#d)
+- e) [A retenir](#e)
 
+**Voici les lectures qui sont référencées dans ce module :**
+- [Node.js and Express](https://fullstackopen.com/en/part3/node_js_and_express) [[R.1]](/references/#r1)
+- [Saving data to MongoDB](https://fullstackopen.com/en/part3/saving_data_to_mongo_db) [[R.1]](/references/#r1)
 
-# <a id="a"></a>a) TITRE
-## <a id="a1"></a>a.1) TITRE
+# <a id="a"></a>a) Rappel : création d'une API REST
 
+Dans le cours de Web 2, vous avez appris comment faire une API REST avec Node.js. Nous vous invitons à lire [Node.js and Express](https://fullstackopen.com/en/part3/node_js_and_express) [[R.1]](/references/#r1) pour vous raffraichir la mémoire. Si vous souhaitez faire les exercices également, libre à vous, mais attention que la vraie matière de cette séance est plutôt portée sur MongoDB. Ces exercices sont considérés comme connus.
 
-## <a id="a2"></a> a.2) TITRE
+Pour les exercices 3.1 à 3.8, ils peuvent tous être faits dans le même projet de manière itérative. La solution vous sera fournie, car elle servira de base pour un exercice futur.
 
+**Remarque :** lorsqu'il y a un souci de validation (comme dans l'exercice 3.6), nous vous invitons à utiliser le status code 422 au lieu d'un code 400 trop générique.
 
-## <a id="a3"></a> a.3) TITRE
+# <a id="b"></a>b) Premier accès à la DB
 
+Nous vous invitons à lire la fiche [Saving data to MongoDB](https://fullstackopen.com/en/part3/saving_data_to_mongo_db) [[R.1]](/references/#r1) et faire l'exercice 3.12.
 
-# <a id="b"></a>b) TITRE
-## <a id="b1"></a>b.1) TITRE
+# <a id="c"></a>c) Création d'une API REST avec MongoDB
 
+Maintenant que vous avez mis votre DB en place, et que vous avez pu y accéder une première fois, nous allons faire une API complète.
 
-## <a id="b2"></a>b.2) TITRE
+Lisez la suite de la fiche [Saving data to MongoDB](https://fullstackopen.com/en/part3/saving_data_to_mongo_db) [[R.1]](/references/#r1) et faites les exercices 3.13 à 3.15.
 
+Repartez de la solution de la partie a) disponible sur Gitlab ici : [Solution module 6 rappels](https://gitlab.vinci.be/6i3-web3/2022-2023/module6-rappels). Veillez à refactorer le code pour utiliser une structure adéquate et maintenable.
 
-## <a id="b3"></a>b.3) TITRE
+N'oubliez pas de faire un module séparé pour l'accès à la DB, et utilisez les variables d'environnement pour donner l'URL de la DB à votre application.
 
+# <a id="d"></a>d) 🍬 Pour aller plus loin : Update dans la DB (Pas évalué)
 
-# <a id="c"></a>c) TITRE
-## <a id="c1"></a>c.1) TITRE
+Faites les exercices 3.16, 3.17 et 3.18 de la séance lue précédemment : [Saving data to MongoDB](https://fullstackopen.com/en/part3/saving_data_to_mongo_db#exercises-3-15-3-18)
 
-## <a id="c2"></a>c.2) TITRE
+# <a id="e"></a>e) A retenir
 
-
-## <a id="c3"></a>c.3) TITRE
-
-
-
-
-# <a id="d"></a> d) TITRE
-
-
-# <a id="e"></a> e) TITRE
-
-
-# <a id="f"></a> f) TITRE
+* MongoDB est une base de donnée NoSQL qui permet de stocker des objets JSON (BSON en réalité) dans les collections. Aucune vérification de schéma n'est effectuée par la DB, mais on peut faire des vérifications de schéma côté applicatif, ici avec Mongoose.
+* Mongoose va nous connecter à la DB, et nous proposer de créer des Modèles, sur base de Schémas. Ces modèles sont fonctions "constructeur", ce qui nous donne des objets JS qui ont des méthodes spécifiques, notamment une méthode "save" qui permet d'ajouter l'objet créé en DB.
+* On n'est pas obligés d'utiliser Mongoose et toutes les facilités associées. Il existe une driver Node.js officiel "de base" qui permet de faire toutes les opérations nécessaires sur la DB. Il ne fournit par constre pas les systèmes de schéma, de modèle... Lorsque ces éléments ne vous sont pas utiles, préférez le driver par défaut.
+* **ON NE MET JAMAIS LES INFORMATIONS DE CONNEXION A LA DB DANS SON CODE !!!** Ces informations sensibles (elles contiennent notamment le mot de passe) doivent être extraites dans des variables d'environnement, ou de manière plus simple, dans des fichiers ".env" qui ne sont pas versionnés.
+* Le code qui nous permet de nous connecter à la DB, les shémas, les modèles...  doivent être mis dans un module séparé.

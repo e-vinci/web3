@@ -201,6 +201,7 @@ Exemple de résultat :
 
 <ScrollableImage name="scores.png" minWidth="287px" maxWidth="287px" />
 
+Pour votre exercice, veuillez créer une nouvelle application React dans le dossier **/exercises/module5/5.1** de votre repo local.  
 Plutôt que de stocker le state dans un composant comme nous l'aurions fait précédemment, nous allons créer un contexte **/src/contexts/countersContext** dont le **ProviderWrapper** stockera le state et exposera les fonctions **increaseGood**, **increaseOk**, **increaseBad**, ainsi que les valeurs associées et une fonction **resetAll**.
 
 L'**AppLoader** s'occupera de placer le **ProviderWrapper** dans son return, autour du composant **App**.
@@ -209,17 +210,24 @@ Chacun d'entre eux devra aller chercher la fonction dont il a besoin dans le con
 
 Pour cet exercice, nous vous demandons explicitement de créer les 4 composants **Button** cités ci-dessus. Ne faites pas de composant abstrait recevant des props **text** et **onClick**, écrivez des composants spécialisés, même si cela introduit de la duplication. Le but est d'illustrer le fonctionnement des contextes !
 
+Veuillez faire un **commit** de votre code avec le message suivant : "**module5 : ex 5.1**".
+
 # <a id="c"></a>c) Exercice 5.2 : Votes d'opinions
 Nous allons écrire une nouvelle application qui va permettre de donner son opinion et voter.
 
 Au lieu d'avoir 3 valeurs uniques parmi lesquelles choisir, comme à l'exercice précédent, nous allons maintenant proposer que chacun donne son opinion ou vote pour une opinion existante. 
 
 L'écran doit donc afficher une liste des opinions avec leur score actuel ainsi qu'un bouton vote.
-Après la liste, un champ texte et un bouton **Add** permet d'ajouter une opinion (avec un score initial de 1).
-Les opinions sont toujours triées dans l'ordre décroissant des votes. Le contexte propose une propriété **sortedOpinions** pour ce faire.
+Après la liste, un champ texte et un bouton permettent d'ajouter une opinion (avec un score initial de 1).
+Les opinions sont toujours triées dans l'ordre décroissant des votes. Le contexte propose une propriété **sortedOpinions** pour ce faire.  
+La liste des opinions doit se trouver dans un component, et le formulaire pour ajouter une nouvelle opinion doit se situer dans un autre component. Tous les identifiants doivent être générés à l'aide du package **uuid**.
 
 Exemple de résultat :
 <ScrollableImage name="opinions.png" minWidth="363px" maxWidth="363px" />
+
+Pour votre exercice, veuillez créer une nouvelle application React dans le dossier **/exercises/module5/5.2** de votre repo local. 
+
+Veuillez faire un **commit** de votre code avec le message suivant : "**module5 : ex 5.2**".
 
 # <a id="d"></a> d) Résumé
 - Nous utilisons le mécanisme des contextes pour stocker un state qui doit être largement accédé.
@@ -229,7 +237,7 @@ Exemple de résultat :
 
 
 # <a id="e"></a> e) 🍬 Exercice 5.3 : pour s'entraîner encore
-Créer un contexte **themeContext**, celui-ci permet de **setDarkTheme()**, et **setLightTheme()**, **toggleTheme()**, ainsi que **getCurrentThemeDetails()**.
+Créer un contexte **themeContext** qui doit permettre de **setDarkTheme()**, de **setLightTheme()**, de **toggleTheme()**, ainsi que **getCurrentThemeDetails()**.
 Lorsqu'on appelle **getCurrentThemeDetails()**, on recoit un objet avec les propriétés suivantes : 
 - **backgroundColor**
 - **primaryTextColor**
@@ -237,3 +245,5 @@ Lorsqu'on appelle **getCurrentThemeDetails()**, on recoit un objet avec les prop
 - **linkColor**
 
 Placez dans le footer de votre application un bouton pour changer de thème et ajoutez dans tous les composant de votre application un **useContext** afin d'utiliser les couleurs du thème actuellement choisi.
+
+Vous pouvez repartir du code de l'exercice 5.2.

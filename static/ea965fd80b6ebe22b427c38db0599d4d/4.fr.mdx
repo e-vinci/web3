@@ -7,14 +7,13 @@ description: "Module 4 : Gestion des formulaires, useEffect(), Axios..."
 
 Voici les sujets traités :
 - a) [Création de votre premier formulaire](#a)
-- b) [🍬 Pour s’entraîner un peu plus (pas obligatoire, et pas évalué)](#b)
+- b) [🍬 Pour s’entraîner un peu plus (pas obligatoire)](#b)
 - c) [UseEffect, chargement de données depuis un serveur](#c)
 - d) [A retenir jusqu'à présent](#d)
 - e) [Insertion avec l'API](#e)
 - f) [Module de communication avec l'API](#f)
 - g) [🍬 Pour aller plus loin : suppression et mise à jour avec l'API (pas obligatoire)](#g)
-- h) [🍬 Pour aller plus loin : Optimistic Update (pas obligatoire)](#h)
-- i) [A retenir](#d)
+- h) [A retenir](#h)
 
 **Voici les lectures qui sont référencées dans ce module :**
 - [Forms](https://fullstackopen.com/en/part2/forms) [[R.1]](/references/#r1)
@@ -31,7 +30,7 @@ Lisez bien chaque exercice en entier avant de commencer, il y a notamment quelqu
 
 N'oubliez pas de respecter les "bonnes pratiques" vues précédemment.
 
-# <a id="b"></a>b) 🍬 Pour s’entraîner un peu plus (pas obligatoire, et pas évalué)
+# <a id="b"></a>b) 🍬 Pour s’entraîner un peu plus (pas obligatoire)
 
 Faites les exercices 2.9 et 2.10 de la séance lue précédemment : [Exercise 2.6-2.10](https://fullstackopen.com/en/part2/forms#exercises-2-6-2-10) [[R.1]](/references/#r1).
 
@@ -69,20 +68,6 @@ Faites l'exercice 2.16 de la séance lue précédemment : [Exercises 2.15.-2.18.
 
 Faites l'exercice 2.17 et 2.18 de la séance lue précédemment : [Exercises 2.15.-2.18.](https://fullstackopen.com/en/part2/altering_data_in_server#exercises-2-15-2-18) [[R.1]](/references/#r1).
 
-# <a id="h"></a>h) 🍬 Pour aller plus loin : Optimistic Update (pas obligatoire)
-
-Lorsqu'on écrit une interface, il est important que celle-ci donne une impression de vitesse, malheureusement parfois le backend n'est pas assez performant pour créer cette impression. Dans ces cas-là on peut créer une confusion chez l'utilisateur lorsque par exemple il clique sur un bouton "ajouter" mais qu'il ne voit son ajout sur la page qu'au bout de plusieurs secondes, le temps que le backend effectue l'opération.
-
-Pour mitiger cette mauvaise UX, nous pouvons mettre en place un "Optimistic Update" : effectuer le changement en frontend avant d'avoir eu la confirmation du backend que tout s'est bien passé. Et effectuer une seconde mise à jour une fois la réponse reçue du serveur (car celle-ci contient la plupart du temps des données additionnelles, comme par exemple l'id )
-
-Nous vous proposons donc de mettre en place un optimistic update pour l'ajout d'un élément dans le carnet d'adresse : 
-- Dans le service, simulez un délai de 1 seconde en renvoyant dans le **then()** une promesse qui sera **resolve()** à l'aide d'un **setTimeout**.
-- Ajoutez dans les objets **person** un nouvel attribut "**status**" qui vaudra : "**pending**" ou "**persisted**". Le statut d'une **person** sera affiché dans la liste.
-- Lorsque l'utilisateur clique sur le bouton "**add**", placez immédiatement un objet **person** dans la liste avec un statut **pending**. 
-- Lorsque la réponse est reçue du serveur, remplacez l'objet **pending** par celui **persisted**.
-
-Attention : vous aurez besoin du hook "**useRef**" afin de pouvoir accéder à la version "fraiche" de votre state depuis le **then()** créé précédemment. Consultez pour cela la documentation officielle de chaque hook [Hooks API Reference](https://reactjs.org/docs/hooks-reference.html) [[R.6]](/references/#r6). Gardez en tête que vous pourriez avoir plusieurs personnes "**pending**" en même temps !
-
-# <a id="i"></a>i) A retenir
+# <a id="h"></a>h) A retenir
 - Contrairement à ce qu'on pourrait imaginer, POST permet d'ajouter, PUT de remplacer, PATCH de modifier. N'utilisons pas PATCH pour l'instant.
 - **`{ getAll }`** est la notation simplifiée de **`{ getAll: getAll }`**.

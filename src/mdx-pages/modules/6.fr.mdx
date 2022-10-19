@@ -1,6 +1,6 @@
 ---
-title: 'Module 6 : TBD'
-description: 'TBD'
+title: 'Module 6 : API REST avec MongoDB'
+description: 'API REST avec MongoDB'
 ---
 
 # Module 6 : API REST avec MongoDB
@@ -39,14 +39,14 @@ Repartez de la solution de la partie a) disponible sur Gitlab ici : [Solution mo
 
 N'oubliez pas de faire un module séparé pour l'accès à la DB, et utilisez les variables d'environnement pour donner l'URL de la DB à votre application.
 
-# <a id="d"></a>d) 🍬 Pour aller plus loin : Update dans la DB (Pas évalué)
+# <a id="d"></a>d) 🍬 Pour aller plus loin : Update dans la DB (optionnel)
 
 Faites les exercices 3.16, 3.17 et 3.18 de la séance lue précédemment : [Saving data to MongoDB](https://fullstackopen.com/en/part3/saving_data_to_mongo_db#exercises-3-15-3-18)
 
 # <a id="e"></a>e) A retenir
 
 * MongoDB est une base de donnée NoSQL qui permet de stocker des objets JSON (BSON en réalité) dans les collections. Aucune vérification de schéma n'est effectuée par la DB, mais on peut faire des vérifications de schéma côté applicatif, ici avec Mongoose.
-* Mongoose va nous connecter à la DB, et nous proposer de créer des Modèles, sur base de Schémas. Ces modèles sont fonctions "constructeur", ce qui nous donne des objets JS qui ont des méthodes spécifiques, notamment une méthode "save" qui permet d'ajouter l'objet créé en DB.
-* On n'est pas obligés d'utiliser Mongoose et toutes les facilités associées. Il existe une driver Node.js officiel "de base" qui permet de faire toutes les opérations nécessaires sur la DB. Il ne fournit par constre pas les systèmes de schéma, de modèle... Lorsque ces éléments ne vous sont pas utiles, préférez le driver par défaut.
+* Mongoose va nous connecter à la DB, et nous proposer de créer des Modèles, sur base de Schémas. Ces modèles sont des fonctions "constructeur", ce qui nous donne des objets JS qui ont des méthodes spécifiques, notamment une méthode "**save**" qui permet d'ajouter l'objet créé en DB.
+* On n'est pas obligés d'utiliser Mongoose et toutes les facilités associées. Il existe une driver Node.js officiel "de base" qui permet de faire toutes les opérations nécessaires sur la DB. Il ne fournit par contre pas les systèmes de schéma, de modèle... Lorsque ces éléments ne vous sont pas utiles, préférez le driver par défaut.
 * **ON NE MET JAMAIS LES INFORMATIONS DE CONNEXION A LA DB DANS SON CODE !!!** Ces informations sensibles (elles contiennent notamment le mot de passe) doivent être extraites dans des variables d'environnement, ou de manière plus simple, dans des fichiers ".env" qui ne sont pas versionnés.
-* Le code qui nous permet de nous connecter à la DB, les shémas, les modèles...  doivent être mis dans un module séparé.
+* Le code qui nous permet de nous connecter à la DB, les schémas, les modèles...  doivent être mis dans un module séparé.

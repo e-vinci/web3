@@ -46,10 +46,8 @@ module.exports = {
           { name: "Module 5 : React Context", link: "/modules/5" },
           /*{ name: "Module 6 : REST API", link: "/modules/6" },
           { name: "Module 7 : Exercice récapitulatif", link: "/modules/7" },
-          {
-            name: "Module 8 : REST API & middleware",
-            link: "/modules/8",
-          },*/
+          */
+          { name: "Module 8 : GraphQL", link: "/modules/8", },
           {
             name: "Introduction à Git",
             link: "/git",

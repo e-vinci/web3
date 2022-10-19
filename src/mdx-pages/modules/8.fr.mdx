@@ -6,14 +6,10 @@ description: "Module 8 : GraphQL"
 # Module 8 : GraphQL
 
 Voici les sujets traités :
-- a) [Création de votre premier formulaire](#a)
-- b) [🍬 Pour s’entraîner un peu plus (pas obligatoire)](#b)
-- c) [UseEffect, chargement de données depuis un serveur](#c)
-- d) [A retenir jusqu'à présent](#d)
-- e) [Insertion avec l'API](#e)
-- f) [Module de communication avec l'API](#f)
-- g) [🍬 Pour aller plus loin : suppression et mise à jour avec l'API (pas obligatoire)](#g)
-- h) [A retenir](#h)
+- a) [Serveur GraphQL](#a)
+- b) [Client GraphQL avec React](#b)
+- c) [🍬 Pour s’entraîner un peu plus (optionnel)](#c)
+- d) [🍬 Et si vous en voulez encore... (optionnel)](#d)
 
 **Voici les lectures qui sont référencées dans ce module :**
 - [GraphQL-server](https://fullstackopen.com/en/part8/graph_ql_server) [[R.1]](/references/#r1)
@@ -23,12 +19,46 @@ Voici les sujets traités :
 
 Veuillez lire le chapitre sur GraphQL et la création d'un serveur avec Appolo server : [GraphQL-server](ttps://fullstackopen.com/en/part8/graph_ql_server) [[R.1]](/references/#r1)
 
-Faites l'exercice 8.1 en n'oubliant pas de repartir du fichier de base donné : [Exercises 8.1](https://fullstackopen.com/en/part8/graph_ql_server#exercises-8-1-8-7) [[R.1]](/references/#r1).
+Créez un dossier `/exercises/module8/library-backend` de votre repo local. C'est dans ce projet que vous ferez tous les exercices de cette partie a).
 
-# <a id="b"></a>b) 🍬 Pour s’entraîner un peu plus (pas obligatoire)
+Faites les exercices 8.1 à 8.7 en n'oubliant pas de repartir du fichier de base donné (à copier dans le dossier créé précédemment) : [Exercises 8.1-8.7](https://fullstackopen.com/en/part8/graph_ql_server#exercises-8-1-8-7) [[R.1]](/references/#r1).
 
+Pour vous simplifier la vie lors du développement, nous allons installer un petit outil qui va redémarrer automatiquement notre server Node.js dès qu'on fait une modification dans notre code : [Nodemon](https://nodemon.io/). Dans votre projet, écrivez la commande `npm install --save-dev nodemon`. Et dans votre `package.json`, ajoutez/modifiez le script start pour qu'il ressemble à ceci : `"start": "nodemon library-backend.js",`
 
-# <a id="c"></a>c) Client GraphQL avec React
+Maintenant, lancez votre projet avec la commande : `npm start`, et observez que l'application est relancée automatiquement dès qu'un changement est effectué dans le code.
 
+# <a id="b"></a>b) Client GraphQL avec React
 
-# <a id="d"></a>d) 🍬 Pour s’entraîner un peu plus (pas obligatoire)
+Veuillez lire le chapitre sur l'intégration d'un client GraphQL dans une application React : [React and GraphQL](https://fullstackopen.com/en/part8/react_and_graph_ql) [[R.1]](/references/#r1)
+
+Faites les exercices 8.8 à 8.11 en n'oubliant pas de repartir du projet de base donné : [Exercises 8.1-8.7](https://fullstackopen.com/en/part8/graph_ql_server#exercises-8-1-8-7) [[R.1]](/references/#r1).
+
+Pour importer le projet, dans votre dossier `/exercises/module8/` de votre repo local, faites un git clone du projet dans le dossier. Vous aurez alors deux dossiers dans `/exercises/module8/` : un pour le front-end et un pour le back-end. N'oubliez pas de supprimer le dossier `.git` du projet cloné, sinon vous aurez un repo dans un repo.
+
+Nous vous invitons à extraire les querries GQL dans un fichier à part. Celui-ci pourrait ressembler à quelque-chose comme ça :
+
+```js
+import { gql } from '@apollo/client'
+
+const ALL_PERSONS = gql`
+  query {
+    allPersons {
+      name
+      phone
+      id
+    }
+  }
+`
+
+export { ALL_PERSONS }
+```
+
+Ceci nous permettra plus facilement de ré-utiliser des querries qui sont utilisées à plusieurs endroits.
+
+# <a id="c"></a>c) 🍬 Pour s’entraîner un peu plus (optionnel)
+
+Faites l'exercice 8.12 [Exercises 8.8-8.12](https://fullstackopen.com/en/part8/react_and_graph_ql#exercises-8-8-8-12) [[R.1]](/references/#r1).
+
+# <a id="d"></a>d) 🍬 Et si vous en voulez encore... (optionnel)
+
+N'hésitez pas à lire la fiche suivante et faire des exercices : [Database and user administration](https://fullstackopen.com/en/part8/database_and_user_administration) [[R.1]](/references/#r1).

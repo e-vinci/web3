@@ -1,0 +1,105 @@
+---
+title: "Module 7 : React router & Ant Design"
+description: "React router & Ant Design"
+---
+
+# Module 7 : React router & Ant Design
+Ce module vous offre principalement la gestion de React Router et l'utilisation d'Ant Design.
+
+Voici les sujets traités :
+- a) [React router](#a)
+  - a.1) [Introduction au router de React](#a1)
+  - a.2) [Root path & formulaire de création](#a2)
+  - a.3) [Show path avec un paramètre dans l'url](#a3)
+  - a.4) [Redirect & Notification](#a4)
+  - a.5) [Résumé](#a5)
+- b) [Ant Design](#b)
+  - b.1) [Introduction à Ant Design](#b1)
+  - b.2) [Intégration de Ant Design dans un projet](#b2)
+  - b.3) [Ant Design Forms](#b3)
+  - b.4) [🍬 Encore d'autres composants (optionnel)](#b4)
+
+**Voici les lectures qui sont référencées dans ce module :**
+- [React-router](https://fullstackopen.com/en/part7/react_router) [[R.1]](/references/#r1)
+
+# <a id="a"></a> a) React router
+## <a id="a1"></a> a.1) Introduction au router de React
+Veuillez découvrir le router offert par React en lisant [React-router](https://fullstackopen.com/en/part7/react_router) [[R.1]](/references/#r1).
+
+## <a id="a2"></a> a.2) Root path & formulaire de création
+Dans le répertoire **module7/7.1-7.3** de votre repo, veuillez faire l'exercice **7.1** se trouvant à la suite des explications sur le router : [Exercises 7.1.-7.3.](https://fullstackopen.com/en/part7/react_router#exercises-7-1-7-3) [[R.1]](/references/#r1).
+
+Pour réaliser cet exercice vous devrez cloner le repository git mentionné (hébergé sur github et pas sur gitlab) et ne pas oublier de supprimer le dossier **.git** (et ne garder donc que le working tree).
+
+## <a id="a3"></a> a.3) Show path avec un paramètre dans l'url
+Toujours dans le répertoire **module7/7.1-7.3** de votre repo, veuillez faire l'exercice **7.2** se trouvant à la suite des explications sur le router : [Exercises 7.1.-7.3.](https://fullstackopen.com/en/part7/react_router#exercises-7-1-7-3) [[R.1]](/references/#r1).
+
+## <a id="a4"></a> a.4) Redirect & Notification
+Toujours dans le répertoire **module7/7.1-7.3** de votre repo, veuillez faire l'exercice **7.3** se trouvant à la suite des explications sur le router : [Exercises 7.1.-7.3.](https://fullstackopen.com/en/part7/react_router#exercises-7-1-7-3) [[R.1]](/references/#r1).
+
+Pour la disparition de la notification après 5 secondes, vous aurez besoin d'un state **notification**,  de **setTimeout**, et de **useEffect**. Le state **notification** fait déjà partie du code de base fourni.
+
+## <a id="a5"></a> a.5) Résumé
+- Le router react permet d'interagir avec la barre d'adresse du navigateur et avec l'historique du bouton back sans réellement envoyer de nouvelles requête au serveur.
+- Le routeur s'utilise habituellement avec un composant **switch** qui s'arrêtera à la première route qui passe le test, sans se composant le routeur peut afficher plusieurs routes.
+- On ne peut plus utiliser de balise **`<a>`** pour les liens, on a besoin d'une balise **`<Link>`** qui va interagir avec le router.
+- Grâce au hook **useNavigate**, on peut facilement faire une redirection programmatique. On peut aussi utiliser le composant **`<Redirect>`** qui exécutera un redirect s'il est affiché.
+- Grâce au hook **useParam**, on peut facilement accéder aux params passés dans l'url.
+- Le **`<Router>`** introduit un contexte qui est utilisé par les différents hooks. On ne peut donc pas utiliser les hooks dans le même composant que celui où on a introduit le **Router** mais uniquement dans des composants plus bas dans l'arbre.
+- Lorsqu'un utilisateur clique sur un lien ou un bouton, il faut décider si l'action va changer la route ou changer le state, on ne fait pas les deux (peupler le state sur base de la route). Les endroits où l'on peut "trouver" des données sont donc : 
+  - les props
+  - le state
+  - les contextes
+  - les params de l'url
+  - d'autres sources comme le localStorage ou les API qui devront d'abord transiter par une des options précédentes.
+
+# <a id="b"></a> b) Ant Design
+## <a id="b1"></a>b.1) Introduction à Ant Design
+
+Nous allons à présent intégrer une bibliothèque de composants React qui va nous rendre un certain nombre de services pour la conception, ainsi que la création de notre interface utilisateur. Il en existe plusieurs, mais nous avons choisi ici de vous proposer : **Ant Design**.
+
+Dans un premier temps, "déambulez" sur le site internet https://ant.design/ [[R.9]](/references/#r9) pour vous faire une idée des "services" rendus par ce module (~5-10min). Vous remarquerez que **Ant Design** semble proposer plusieurs choses :
+
+- Un ensemble de "patterns", et "principes" à respecter pour la création d'interfaces graphiques efficaces : [Introduction] (https://ant.design/docs/spec/introduce) [[R.9]](/references/#r9).
+- Un ensemble d'outils pour vous aider dans la création d'interfaces (application de prototypage, des templates de sites web...).
+- Un ensemble de composants "prêts à l'emploi", pour la création d'interfaces graphiques : [Components Overview](https://ant.design/components/overview/) [[R.9]](/references/#r9).
+
+C'est sur ce dernier point que nous allons principalement travailler. 
+
+## <a id="b2"></a> b.2) Intégration de Ant Design dans un projet
+
+Veuillez créer un nouveau projet dans le répertoire **module7/7.4** de votre repo sur base d'un "copier / coller" du contenu de l'application développée aux exercices précédent.
+
+Commençons par intégrer **Ant Design** dans notre projet, au sein du répertoire associé aux exercices précédents.  
+Pour cela, consultez la documentation officielle [Use in create-react-app](https://ant.design/docs/react/use-with-create-react-app) [[R.9]](/references/#r9). 
+
+Attention, **Ant Design** conseille d'utiliser **yarn** au lieu de **npm**. Inutile ici d'installer **yarn**, **npm** fonctionnera très bien pour nous.  
+Veuillez faire attention à ne pas copier simplement les commandes, mais à bien réfléchir à leur utilité, tout en lisant attentivement la documentation.  
+Par exemple, inutile de faire la première commande **`npx create-react-app antd-demo`** car notre projet existe déjà...
+
+Ensuite, commençons par changer les "input" de notre composant "**CreateNew**", en utilisant les composants "**Input**" de **Ant Design** : [Input](https://ant.design/components/input/) [[R.9]](/references/#r9).  
+Pour cela, consultez la documentation officielle, en regardant plus en détail les exemples, et notamment le code source associé. Cliquez sur l'icone "**< >**" en dessous d'un exemple pour voir le code source associé à l'exemple. Pour avoir une vue complète des props que vous pouvez passer au composant, consultez la section API à la fin de la page. L'exemple "**Basic usage**" devrait nous suffire dans un premier temps.
+
+Faisons de même pour le bouton, en utilisant le composant "**Button**" de **Ant Design** : [Button](https://ant.design/components/button/) [[R.9]](/references/#r9).
+
+Si vous le souhaitez, n'hésitez pas à ajouter des petites icônes dans les boutons, des préfixes sur les inputs... pour vous rendre compte de la simplicité.
+
+## <a id="b3"></a> b.3) Ant Design Forms
+
+Nous avons maintenant utilisé nos premiers composants "externes" proposés par **Ant Design**. Nous allons maintenant remplacer notre balise "**form**" par le formulaire **Ant Design** qui va nous rendre beaucoup de services.
+
+Consultons la documentation officielle du composant [Form](https://ant.design/components/form/) [[R.9]](/references/#r9), et plus particulièrement le "**Basic Usage**", et adaptons notre code pour en faire usage. Nous constaterons que ce composant nous rend plusieurs services :
+- Validation des champs : veuillez faire en sorte que tous les champs soient requis pour l'ajout d'une anectdote.
+- Gestion de l'état du formulaire intégré : nous ne devons plus utiliser des "**useState()**" avec des "**onChange()**" pour contrôler le formulaire.
+- Gestion plus simple du submit du formulaire.
+- Gestion du "**layout**" du formulaire, avec alignement des labels...
+
+N'hésitez pas à consulter les autres options possibles sur les formulaires, il y en a pour tous les cas d'utilisation...
+
+## <a id="b4"></a> b.4) 🍬 Encore d'autres composants (optionnel)
+N'hésitez pas à continuer la modification de votre application en utilisant d'autres composants. 
+
+Nous vous conseillons :
+- [Layout](https://ant.design/components/layout/) [[R.9]](/references/#r9) : pour le layout de votre projet, avec un menu, un footer...
+- [Message](https://ant.design/components/message/) ou [Alert](https://ant.design/components/alert/) [[R.9]](/references/#r9) pour les notifications.
+- [List](https://ant.design/components/list/) ou [Table](https://ant.design/components/table/) [[R.9]](/references/#r9) pour la liste des anecdotes.

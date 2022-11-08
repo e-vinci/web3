@@ -8,8 +8,9 @@ description: "Module 8 : GraphQL"
 Voici les sujets traités :
 - a) [Serveur GraphQL](#a)
 - b) [Client GraphQL avec React](#b)
-- c) [🍬 Pour s’entraîner un peu plus (optionnel)](#c)
-- d) [🍬 Et si vous en voulez encore... (optionnel)](#d)
+- c) [Résumé](#c)
+- d) [🍬 Pour s’entraîner un peu plus (optionnel)](#d)
+- e) [🍬 Et si vous en voulez encore... (optionnel)](#e)
 
 **Voici les lectures qui sont référencées dans ce module :**
 - [GraphQL-server](https://fullstackopen.com/en/part8/graph_ql_server) [[R.1]](/references/#r1)
@@ -55,10 +56,17 @@ export { ALL_PERSONS }
 
 Ceci nous permettra plus facilement de ré-utiliser des querries qui sont utilisées à plusieurs endroits.
 
-# <a id="c"></a>c) 🍬 Pour s’entraîner un peu plus (optionnel)
+# <a id="c"></a>c) Résumé
+
+- La philosophie de GraphQL est fort différente du REST. Au lieu d'écrire une fonction JS qui sera exécutée pour chaque requête, on écrit plutôt des resolvers pour chaque field de chaque ressource, et des mutations. Ceci nous permet, du côté client de faire des requêtes "personnalisées" en fonction des besoins (on choisit ce qu'on récupère)
+- Lorsqu'on fait une QUery GraphQL, par défaut on ne reçoit rien, il faut explicitement demander ce qu'on veut reçevoir.
+- Les mutations ont un nom et un certain nombre de paramètres. Ceci permet une lisibilité de l'API, mais implique également la nécessité de réfléchir à une manière de structurer/nommer les requêtes.
+- Appolo Server nous propose un outil pour parcourir la structure de l'API et construire des requêtes facilement. Son usage est recommandé pour construire nos requêtes utilisées côté serveur.
+
+# <a id="d"></a>d) 🍬 Pour s’entraîner un peu plus (optionnel)
 
 Faites l'exercice 8.12 [Exercises 8.8-8.12](https://fullstackopen.com/en/part8/react_and_graph_ql#exercises-8-8-8-12) [[R.1]](/references/#r1).
 
-# <a id="d"></a>d) 🍬 Et si vous en voulez encore... (optionnel)
+# <a id="e"></a>e) 🍬 Et si vous en voulez encore... (optionnel)
 
 N'hésitez pas à lire la fiche suivante et faire des exercices : [Database and user administration](https://fullstackopen.com/en/part8/database_and_user_administration) [[R.1]](/references/#r1).

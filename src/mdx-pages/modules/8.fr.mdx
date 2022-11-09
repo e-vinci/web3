@@ -60,23 +60,23 @@ Ceci nous permettra plus facilement de ré-utiliser des querries qui sont utilis
 
 # <a id="c"></a>c) Résumé
 
-- La philosophie de GraphQL est fort différente du REST. En REST, on reçoit toute la ressource, même ce dont on a pas besoin, et si on veut des éléments "impriqués", il faut les demander séparément, ou faire une requête spécifique. En GraphQL, on reçoit uniquement ce qu'on demande, et on peut demander directement des éléments imbriqués.
-- Lorsqu'on fait une Query GraphQL, par défaut on ne reçoit rien, il faut explicitement demander ce qu'on veut reçevoir.
+- La philosophie de GraphQL est fort différente du REST. En REST, on reçoit toute la ressource, même ce dont on n'a pas besoin, et si on veut des éléments "imbriqués", il faut les demander séparément, ou faire une requête spécifique. En GraphQL, on reçoit uniquement ce qu'on demande, et on peut demander directement des éléments imbriqués.
+- Lorsqu'on fait une Query GraphQL, par défaut on ne reçoit rien, il faut explicitement demander ce qu'on veut recevoir.
 
 ## <a id="c1"></a> c.1) Appolo Server (back - Node.js)
 
-- En REST avec express, on écrit une fonction JS qui sera exécutée pour une requête (une fonction par requête). En GraphQL avec Appolo, on écrit plutôt des resolvers pour chaque field de chaque ressource, et des mutations. Ceci nous permet, du côté client de faire des requêtes "personnalisées" en fonction des besoins (on choisit ce qu'on récupère).
-- Les mutations ont un nom et un certain nombre de paramètres. Ceci permet une lisibilité de l'API, mais implique également la nécessité de réfléchir à une manière de structurer/nommer les requêtes.
+- En REST avec express, on écrit une fonction JS qui sera exécutée pour une requête (une fonction par requête). En GraphQL avec Appolo, on écrit plutôt des **resolvers** pour chaque **field** de chaque ressource, et des **mutations**. Ceci nous permet, du côté client de faire des requêtes "personnalisées" en fonction des besoins (on choisit ce qu'on récupère).
+- Les **mutations** ont un nom et un certain nombre de paramètres. Ceci permet une lisibilité de l'API, mais implique également la nécessité de réfléchir à une manière de structurer/nommer les requêtes.
 - Appolo Server nous propose un outil pour parcourir la structure de l'API et construire des requêtes facilement. Son usage est recommandé pour construire nos requêtes utilisées côté serveur.
-- Appolo Server s'occupe en grande partie de la gestion des erreurs, grâce aux schémas. Si le client ne restpecte pas le schéma, ou le format des mutations, Appolo est capable de le détecter seul. On ne doit donc s'occuper que de la gestion des erreurs "business".
+- Appolo Server s'occupe en grande partie de la gestion des erreurs, grâce aux **schémas**. Si le client ne restpecte pas le schéma, ou le format des mutations, Appolo est capable de le détecter seul. On ne doit donc s'occuper que de la gestion des erreurs "business".
 
 ## <a id="c1"></a> c.1) Appolo Client (front - React)
 
-- Appolo Client met à disposition un hook useQuery() qui permet d'exécuter une query à la première exécution du hook, et d'en récupérer le résultat (état de chargement, données...).
-- Un mécanisme de cache permet de partager le résultat des requêtes dans toute l'application, et donc d'éviter de refaire des requêtes inutiles.
-- Lors d'une mutation, on peut définir une requête à exécuter pour mettre à jour le cache, et donc rafraichir les composants qui en dépendent.
-- Attention, la mise à jour du cache est locale au client. Si plusieurs machines accèdent à l'application, et l'une d'elle fait une mutation, les autres ne seront pas au courant. Pour palier à cela (pour autant que ce soit nécessaire) on peut définir un "pollInterval" pour une Query, ce qui va l'exécuter à intervalle régulier, et donc mettre à jour le cache si les données ont changé sur le serveur.
-- L'état d'une application web est souvent composée d'éléments récupérés depuis le serveur. Appolo client s'occupant de cela, on ne doit plus utiliser useState() pour le stocker.
+- Appolo Client met à disposition un hook **useQuery()** qui permet d'exécuter une query à la première exécution du hook, et d'en récupérer le résultat (état de chargement, données...).
+- Un mécanisme de **cache** permet de partager le résultat des requêtes dans toute l'application, et donc d'éviter de refaire des requêtes inutiles.
+- Lors d'une **mutation**, on peut définir une requête à exécuter pour mettre à jour le cache, et donc rafraichir les composants qui en dépendent.
+- Attention, la mise à jour du cache est locale au client. Si plusieurs machines accèdent à l'application, et l'une d'elle fait une mutation, les autres ne seront pas au courant. Pour palier à cela (pour autant que ce soit nécessaire) on peut définir un "**pollInterval**" pour une **Query**, ce qui va l'exécuter à intervalle régulier, et donc mettre à jour le cache si les données ont changées sur le serveur.
+- L'état d'une application web est souvent composée d'éléments récupérés depuis le serveur. Appolo client s'occupant de cela, on ne doit plus utiliser **useState()** pour le stocker.
 
 # <a id="d"></a>d) 🍬 Pour s’entraîner un peu plus (optionnel)
 

@@ -1,25 +1,25 @@
 const emoji = require(`remark-emoji`);
-const siteURL = "https://e-vinci.github.io/web3"; // No trailing slash allowed!
-const siteTitle = "web3course";
-const youtubeUrl = ""; //"https://www.youtube.com/channel/UC_iU0pfrDaYFXd6X9mPlAJQ";
-const authorEmail = "raphael.baroni@vinci.be";
-const facebookUrl = "";
-const instagramUrl = "";
-const defaultLanguage = "fr";
-const defaultAssociatedProjectGroupName = "Web3 2022";
+const siteURL = 'https://e-vinci.github.io/web3'; // No trailing slash allowed!
+const siteTitle = 'web3course';
+const youtubeUrl = ''; //"https://www.youtube.com/channel/UC_iU0pfrDaYFXd6X9mPlAJQ";
+const authorEmail = 'raphael.baroni@vinci.be';
+const facebookUrl = '';
+const instagramUrl = '';
+const defaultLanguage = 'fr';
+const defaultAssociatedProjectGroupName = 'Web3 2022';
 
 module.exports = {
   pathPrefix: `/web3`,
   siteMetadata: {
     title: siteTitle,
-    description: "web3course : Apprendre React, Node.js & MongoDB",
+    description: 'web3course : Apprendre React, Node.js & MongoDB',
     url: siteURL,
     siteUrl: siteURL, // config for gatsby-plugin-robots-txt
     youtubeUrl: youtubeUrl,
     authorEmail: authorEmail,
     facebookUrl: facebookUrl,
     instagramUrl: instagramUrl,
-    languages: { langs: ["fr"], defaultLangKey: defaultLanguage },
+    languages: { langs: ['fr'], defaultLangKey: defaultLanguage },
     defaultAssociatedProjectGroupName: defaultAssociatedProjectGroupName,
     isAuthentication: true, // currently there is only Vinci MSAL
     //twitterUsername: "@whoever; )",
@@ -29,32 +29,29 @@ module.exports = {
         link: `/`,
       },
       {
-        name: "Contenu du cours",
-        link: "",
+        name: 'Contenu du cours',
+        link: '',
         subMenu: [
-          { name: "Introduction", link: "/intro" },
+          { name: 'Introduction', link: '/intro' },
           {
-            name: "Module 1 : Introduction à React",
-            link: "/modules/1",
+            name: 'Module 1 : Introduction à React',
+            link: '/modules/1',
           },
-          { name: "Module 2 : React state", link: "/modules/2" },
+          { name: 'Module 2 : React state', link: '/modules/2' },
           {
-            name: "Module 3 : Complex state & collections",
-            link: "/modules/3",
+            name: 'Module 3 : Complex state & collections',
+            link: '/modules/3',
           },
-          { name: "Module 4 : Forms, useEffect, Axios...", link: "/modules/4" },
-          { name: "Module 5 : React Context", link: "/modules/5" },
-          { name: "Module 6 : API REST avec MongoDB", link: "/modules/6" },
-          { name: "Module 7 : React router & Ant Design", link: "/modules/7" },
-          /*{
-            name: "Module 8 : REST API & middleware",
-            link: "/modules/8",
-          },*/
+          { name: 'Module 4 : Forms, useEffect, Axios...', link: '/modules/4' },
+          { name: 'Module 5 : React Context', link: '/modules/5' },
+          { name: 'Module 6 : API REST avec MongoDB', link: '/modules/6' },
+          { name: 'Module 7 : React router & Ant Design', link: '/modules/7' },
+          { name: 'Module 8 : GraphQL', link: '/modules/8' },
           {
-            name: "Introduction à Git",
-            link: "/git",
+            name: 'Introduction à Git',
+            link: '/git',
           },
-          { name: "Bibliographie", link: "/references" },
+          { name: 'Bibliographie', link: '/references' },
         ],
       },
       {
@@ -63,12 +60,12 @@ module.exports = {
         protected: true,
       },
       {
-        name: "Revues de projets",
-        link: "",
+        name: 'Revues de projets',
+        link: '',
         protected: true,
         subMenu: [
-          { name: "Mes revues", link: "/my-reviews-page" },
-          { name: "Toutes les revues", link: "/review-page" },
+          { name: 'Mes revues', link: '/my-reviews-page' },
+          { name: 'Toutes les revues', link: '/review-page' },
           { protected: true },
         ],
       },
@@ -81,37 +78,37 @@ module.exports = {
         projectGroupNames: [], // ["Web2 2020", "Web2 2021"],
       },
     },
-    "gatsby-plugin-react-helmet",
+    'gatsby-plugin-react-helmet',
     `gatsby-plugin-image`,
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: 'images',
+        path: './src/images/',
       },
-      __key: "images",
+      __key: 'images',
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "pages",
-        path: "./src/pages",
+        name: 'pages',
+        path: './src/pages',
       },
-      __key: "pages",
+      __key: 'pages',
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "slides",
+        name: 'slides',
         path: `./src/slides`,
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "texts",
+        name: 'texts',
         path: `./src/texts`,
       },
     },
@@ -120,34 +117,34 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `./src/data/`,
-        name: "texts",
+        name: 'texts',
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "mdx-pages",
+        name: 'mdx-pages',
         path: `./src/mdx-pages`,
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "other-ressources",
+        name: 'other-ressources',
         path: `./src/other-resources`,
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "sounds",
+        name: 'sounds',
         path: `./src/sounds`,
       },
     },
     {
-      resolve: "gatsby-plugin-remove-console",
+      resolve: 'gatsby-plugin-remove-console',
       options: {
-        exclude: ["error", "warn"], // <- will be removed all console calls except these
+        exclude: ['error', 'warn'], // <- will be removed all console calls except these
       },
     },
     `gatsby-remark-images`,
@@ -164,14 +161,14 @@ module.exports = {
             },
           },
         ],
-        extensions: [".mdx", ".md"],
+        extensions: ['.mdx', '.md'],
         remarkPlugins: [emoji],
       },
     },
     `gatsby-plugin-postcss`,
     `gatsby-plugin-sass`,
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
           include: /\.inline\.svg$/,
@@ -188,7 +185,7 @@ module.exports = {
         theme_color: `#303030`,
         display: `standalone`,
         icon: `src/images/React-icon.svg`,
-        cache_busting_mode: "none",
+        cache_busting_mode: 'none',
         // sizes: "any",
         //type: "image/svg+xml",
         include_favicon: true,
@@ -198,16 +195,16 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-i18n",
+      resolve: 'gatsby-plugin-i18n',
       options: {
-        langKeyForNull: "any",
+        langKeyForNull: 'any',
         langKeyDefault: defaultLanguage,
         useLangKeyLayout: true,
         prefixDefault: false,
-        pagesPaths: ["/src/mdx-pages/", "/src/pages"],
+        pagesPaths: ['/src/mdx-pages/', '/src/pages'],
       },
     },
     `gatsby-plugin-offline`,
-    "gatsby-plugin-robots-txt",
+    'gatsby-plugin-robots-txt',
   ],
 };

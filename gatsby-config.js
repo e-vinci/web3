@@ -6,7 +6,7 @@ const authorEmail = 'raphael.baroni@vinci.be';
 const facebookUrl = '';
 const instagramUrl = '';
 const defaultLanguage = 'fr';
-const defaultAssociatedProjectGroupName = 'Web3 2022';
+const defaultAssociatedProjectGroupName = 'Web3 2023';
 
 module.exports = {
   pathPrefix: `/web3`,
@@ -37,7 +37,7 @@ module.exports = {
             name: 'Module 1 : Introduction à React',
             link: '/modules/1',
           },
-          { name: 'Module 2 : React state', link: '/modules/2' },
+          /* { name: 'Module 2 : React state', link: '/modules/2' },
           {
             name: 'Module 3 : Complex state & collections',
             link: '/modules/3',
@@ -46,14 +46,14 @@ module.exports = {
           { name: 'Module 5 : React Context', link: '/modules/5' },
           { name: 'Module 6 : API REST avec MongoDB', link: '/modules/6' },
           { name: 'Module 7 : React router & Ant Design', link: '/modules/7' },
-          { name: 'Module 8 : GraphQL', link: '/modules/8' },
+          { name: 'Module 8 : GraphQL', link: '/modules/8' },*/
           {
             name: 'Introduction à Git',
             link: '/git',
           },
           { name: 'Bibliographie', link: '/references' },
         ],
-      },
+      },     
       {
         name: `Projets`,
         link: `/project-page`,
@@ -64,6 +64,7 @@ module.exports = {
         link: '',
         protected: true,
         subMenu: [
+          { name: 'Projets web 2022', link: '/public-projects/showcase2022' },
           { name: 'Mes revues', link: '/my-reviews-page' },
           { name: 'Toutes les revues', link: '/review-page' },
           { protected: true },
@@ -75,7 +76,7 @@ module.exports = {
     {
       resolve: `web-projects-source-plugin`,
       options: {
-        projectGroupNames: [], // ["Web2 2020", "Web2 2021"],
+        projectGroupNames: ["Web3 2022"], // ["Web2 2020", "Web2 2021"],
       },
     },
     'gatsby-plugin-react-helmet',

@@ -87,8 +87,7 @@ package-lock.json
 Comme vos cours de DevOps sont donnés sur GitHub, nous vous recommandons de créer un web repo sur GitHub. Pour ce faire, vous pouvez utiliser un compte existant ou en créer un nouveau sur https://github.com/. 
 N'oubliez-pas SVP d'ajouter des accès pour vos deux enseignants. Pour ce faire :
 - cliquez sur **Settings**, puis **Collaborators and teams** ;
-- dans l'onglet **Manage access**, cliquez sur **Add people**, vous trouverez **lleleux** (Laurent Leleux) et **e-baron** (Raphaël Baroni) ;
-- ajoutez aux deux enseignants le rôle **Maintain**.
+- dans l'onglet **Manage access**, cliquez sur **Add people**, vous trouverez **lleleux** (Laurent Leleux) et **e-baron** (Raphaël Baroni).
 
 Pour créer un web repo sous GitHub, vous pouvez visualiser la vidéo "Git & VS Code - Partie 03 : Création d'un web repo sur GitHub à partir d'un local repo" dans l'[Introduction à Git](/git).
 
@@ -131,8 +130,8 @@ Veuillez faire les exercices 1.1 et 1.2 de [Full Stack open - Exercises 1.1. -1.
 
 Le code de votre application doit se trouver dans votre repository local et votre web repository (normalement appelé **web3**) dans le répertoire nommé **/exercises/1.1-1.2**.
 
-⚡ Quand vous créez une application, vous utilisez **Create React App**. Ce générateur d'applications crée d'office un repo local pour votre application. Ainsi, vous allez vous retrouver avec un Git dans le Git : votre nouvelle application ne sera pas traquée par Git.  
-N'oubliez pas d'effacer le répertoire **.git** de votre nouvelle application.
+⚡ Quand vous créez une application, vous utilisez **Create React App**. Il est possible que ce générateur d'applications crée un repo local pour votre application. Ainsi, vous allez vous retrouver avec un Git dans le Git : votre nouvelle application ne sera pas traquée par Git.  
+Si nécessaire, n'oubliez donc pas d'effacer le répertoire **.git** de votre nouvelle application.
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 : basic components**".
 
@@ -162,7 +161,7 @@ Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 
 
 ## <a id="c5"></a> c.5) Refactoring : Chemins absolus dans les imports
 
-Nous vous recommandons d'utiliser des chemins absolus pour les imports. Par exemple, pour importer **A**, nous souhaiterions pouvoir faire : **`import App from 'components/App/App'`**.
+Nous vous recommandons d'utiliser des chemins absolus pour les imports. Par exemple, pour importer **App**, nous souhaiterions pouvoir faire : **`import App from 'components/App/App'`**.
 
 [Create Reac App - Absolute Imports](https://create-react-app.dev/docs/importing-a-component/#absolute-imports) [[R.4]](/references/#r4) indique la marche à suivre :
 - Ajoutez un fichier **jsconfig.json** à la racine de votre projet s'il n'existe pas déjà ;
@@ -178,15 +177,15 @@ Nous vous recommandons d'utiliser des chemins absolus pour les imports. Par exem
 
 Veuillez mettre à jour votre Exercice 1.1-1.2 avec des "absolute imports" des composants.
 
-Votre app générée par **Create React App** doit savoir que les chemins absolus s'expriment à partir du dossier `src/`. Redémarrez votre application pour que le changement de configuration soit pris en compte.
+Votre app générée par **Create React App** doit savoir que les chemins absolus s'expriment à partir du dossier **`src/`**. Redémarrez votre application pour que le changement de configuration soit pris en compte.
 
 Ensuite, pour que ça aille vite, nous vous recommandons d'utiliser l'autocompletion, par exemple :
-- Effacez dans votre composant **App** l'import du Header (`import Header from "../Header/Header";` ) ;
+- Effacez dans votre composant **App** l'import du **Header** (**`import Header from "../Header/Header";`**) ;
 - Veuillez lancer l'autocompletion sur l'élément **Header** : mettez votre curseur après le **r** de **header** puis tapez sur **CTRL ESPACE**
 
 <ScrollableImage name="autocompletion.png" minWidth="570px" maxWidth="570px" />
 
-- Il ne vous reste plus qu'à cliquer sur **Header** dans la liste proposée par l'autocompletion et l'import se fait automatiquement avec un chemin absolu : `import Header from "components/Header/Header";`.
+- Il ne vous reste plus qu'à cliquer sur **Header** dans la liste proposée par l'autocompletion et l'import se fait automatiquement avec un chemin absolu : **`import Header from "components/Header/Header";`**.
 - Faites de même pour tous vos imports ; )
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 : refactor - absolute imports**".
@@ -195,8 +194,8 @@ Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 
 ### c.6.1) Styler vos composants à l'aide de CSS
 Avec **React Create App**, on peut très facilement associer des stylesheets CSS à des composants afin de les formater. Il suffit d'importer les stylesheets souhaitées.
 
-Toujours à l'Exercice 1.1-1.2, veuillez reprendre le fichier **index.css** généré par **React Create App** qui impose quelques règles CSS valides pour toute l'**App**.  
-Si vous l'avez supprimé, vous pouvez l'ajouter en tant que **/src/index.css** : 
+Toujours à l'Exercice 1.1-1.2, veuillez reprendre le fichier **`index.css`** généré par **React Create App** qui impose quelques règles CSS valides pour toute l'**App**.  
+Si vous l'avez supprimé, vous pouvez l'ajouter en tant que **`/src/index.css`** : 
 ``` css
 body {
   margin: 0;
@@ -215,9 +214,9 @@ code {
 
 Faites un changement de style pour vous assurer de l'impact de ce fichier, observez le résultat. Vous pourriez changer la couleur du background par exemple, ajouter une marge...
 
-Attention à ne pas oublier l'import du fichier CSS dans **index.js** (`import './index.css';`).
+Attention à ne pas oublier l'import du fichier CSS dans **`index.js`** (**`import './index.css';`**).
 
-Ajoutez un fichier **App.css** dans le dossier du composant **App** avec des règles valables pour ce composant uniquement. Importez ce fichier dans le composant et observez ce qui se passe.
+Ajoutez un fichier **`App.css`** dans le dossier du composant **App** avec des règles valables pour ce composant uniquement. Importez ce fichier dans le composant et observez ce qui se passe.
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 : CSS style**".
 
@@ -234,7 +233,7 @@ Pour plus d'infos : [Create React App - Adding Images, Fonts and Fils](https://c
   
 </AuthenticatedBlock>
 
-Veuillez ajouter un fichier image dans le dossier du composant **Header**. Utilisez la valeur importée dans un attribut **src** d'un element `<img>`. Comme image, vous pouvez télécharger [le logo de la haute école](https://moodle.vinci.be/pluginfile.php/1/core_admin/logo/0x150/1612973627/LOGO%20HE%20VINCI.png) par exemple.
+Veuillez ajouter un fichier image dans le dossier du composant **Header**. Utilisez la valeur importée dans un attribut **src** d'un element **`<img>`**. Comme image, vous pouvez télécharger [le logo de la haute école](https://moodle.vinci.be/pluginfile.php/1/core_admin/logo/0x150/1612973627/LOGO%20HE%20VINCI.png) par exemple.
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 : import image**".
 
@@ -258,6 +257,6 @@ Attention de choisir la formule gratuite lorsque vous suivrez une procédure d'i
 N'hésitez pas à consulter la [documentation d'App Service](https://docs.microsoft.com/en-us/azure/app-service/) et de jeter un oeil aux formules tarifaires : [App Service pricing](https://azure.microsoft.com/en-us/pricing/details/app-service/linux/).
 
 # <a id="e"></a> e) 🍬 Solution des exercices
-Une solution pour les exercices de ce module se trouvent ici : [module1](https://gitlab.vinci.be/6i3-web3/2022-2023/module1.git).
+Une solution pour les exercices de ce module se trouvent ici : [module1](https://gitlab.vinci.be/6i3-web3/2023-2024/module1.git).
 
 Vous devez avoir un compte Vinci pour pouvoir y accéder.

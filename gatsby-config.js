@@ -64,7 +64,7 @@ module.exports = {
         link: '',
         protected: true,
         subMenu: [
-          { name: 'Projets web 2022', link: '/public-projects/showcase2022' },
+          // { name: 'Projets web 2022', link: '/public-projects/showcase2022' },
           { name: 'Mes revues', link: '/my-reviews-page' },
           { name: 'Toutes les revues', link: '/review-page' },
           { protected: true },

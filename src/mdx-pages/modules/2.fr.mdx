@@ -26,10 +26,10 @@ Ce module vous offre principalement la découverte de la gestion des événement
 
 ## <a id="a1"></a>a.1) Depuis le cours en ligne
 
-* Dans votre dossier `/exercises` de votre repo local, lancez la commande : `npx create-react-app module2`
+* Dans votre dossier `/exercises` de votre repo local, lancez la commande : `npx create-react-app module2` ou `npm create vite@latest module2 -- --template react` si vous utilisez vite.
 * Supprimez tout le contenu du dossier `src/`.
 * Comme pour la semaine précédente, n'oubliez pas de supprimer le dossier `.git`.
-* Copiez le fichier `jsconfig.json` et `src/index.js` depuis le dossier de l'exercice du module précédent.
+* Copiez le fichier `jsconfig.json` et `src/index.js` (ou `jsconfig.json`, `src/main.js` et `src/index.css` si vous utilisez vite) depuis le dossier de l'exercice du module précédent.
 * Introduisez les composants **App**, **Display**, et **Button** en copiant le contenu du cours en ligne. N'oubliez pas que chacun d'entre eux doit être dans un dossier qui porte le même nom que le composant : `src/components/[componentName]/[componentName].jsx`.
 * Vérifiez que les 3 boutons fonctionnent correctement : **increase**, **decrease**, **reset**.
 
@@ -96,6 +96,8 @@ Et pourquoi ne pas faire notre propre **useState**, mais qui écrit dans le loca
 Ecrivez un fichier **src/hooks/useLocalStorage.js** (notez l'extension **.js** et pas **.jsx**).  
 Ce fichier doit déclarer et exporter une fonction **`useLocalStorage(key, initialValue)`**.  
 Cette fonction utilisera en son coeur la fonction **useState** et comme elle, renverra une valeur et un setter. En plus de cela , elle stockera la valeur actuelle dans le localStorage à l'indice de la clef donnée et chargera la valeur stockée initialement. Si la clef n'existe pas dans le localStorage, cette fonction initialisera la clef avec la valeur passée en second paramètre.
+
+Attention ! N'oubliez pas de créer "l'alias" pour le dossier hooks dans le fichier `vite.config.js` et le "path" dans le fichier `jsconfig.json`.
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**module2 : custom hook**".
 

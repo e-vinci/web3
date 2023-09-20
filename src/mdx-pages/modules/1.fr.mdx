@@ -130,9 +130,6 @@ Veuillez faire les exercices 1.1 et 1.2 de [Full Stack open - Exercises 1.1. -1.
 
 Le code de votre application doit se trouver dans votre repository local et votre web repository (normalement appelé **web3**) dans le répertoire nommé **/exercises/1.1-1.2**.
 
-⚡ Quand vous créez une application, vous utilisez **Create React App**. Il est possible que ce générateur d'applications crée un repo local pour votre application. Ainsi, vous allez vous retrouver avec un Git dans le Git : votre nouvelle application ne sera pas traquée par Git.  
-Si nécessaire, n'oubliez donc pas d'effacer le répertoire **.git** de votre nouvelle application.
-
 Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 : basic components**".
 
 ## <a id="c3"></a> c.3) React hot loader
@@ -163,21 +160,39 @@ Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 
 
 Nous vous recommandons d'utiliser des chemins absolus pour les imports. Par exemple, pour importer **App**, nous souhaiterions pouvoir faire : **`import App from 'components/App/App'`**.
 
-[Create Reac App - Absolute Imports](https://create-react-app.dev/docs/importing-a-component/#absolute-imports) [[R.4]](/references/#r4) indique la marche à suivre :
-- Ajoutez un fichier **jsconfig.json** à la racine de votre projet s'il n'existe pas déjà ;
-- Complétez ce fichier avec :
+Voici la marche à suivre :
+- Pour que VS Code complète automatiquement (Intellisense) les imports de vos modules : Ajoutez un fichier **`jsconfig.json`** à la racine de votre projet et complétez ce fichier avec :
 ``` json
 {
   "compilerOptions": {
-    "baseUrl": "src"
+    "baseUrl": ".",
+    "paths": {
+      "components/*": [
+        "./src/components/*"
+      ]
+    },
   },
-  "include": ["src"]
 }
+```
+- Pour que Vite retrouve vos modules, veuillez ajouter dans **`vite.config.js`** : 
+``` js {7-11}
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      components: '/src/components',
+    },
+  },
+});
 ```
 
 Veuillez mettre à jour votre Exercice 1.1-1.2 avec des "absolute imports" des composants.
 
-Votre app générée par **Create React App** doit savoir que les chemins absolus s'expriment à partir du dossier **`src/`**. Redémarrez votre application pour que le changement de configuration soit pris en compte.
+Votre app générée par **Vite** doit savoir que les chemins absolus s'expriment à partir du dossier **`src/`**. Redémarrez votre application pour que le changement de configuration soit pris en compte.
 
 Ensuite, pour que ça aille vite, nous vous recommandons d'utiliser l'autocompletion, par exemple :
 - Effacez dans votre composant **App** l'import du **Header** (**`import Header from "../Header/Header";`**) ;
@@ -192,9 +207,9 @@ Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 
 
 ## <a id="c6"></a> c.6) Import d'assets au sein de vos scripts & styling
 ### c.6.1) Styler vos composants à l'aide de CSS
-Avec **React Create App**, on peut très facilement associer des stylesheets CSS à des composants afin de les formater. Il suffit d'importer les stylesheets souhaitées.
+Avec **Vite**, on peut très facilement associer des stylesheets CSS à des composants afin de les formater. Il suffit d'importer les stylesheets souhaitées.
 
-Toujours à l'Exercice 1.1-1.2, veuillez reprendre le fichier **`index.css`** généré par **React Create App** qui impose quelques règles CSS valides pour toute l'**App**.  
+Toujours à l'Exercice 1.1-1.2, veuillez reprendre le fichier **`index.css`** généré par **Vite** qui impose quelques règles CSS valides pour toute l'**App**.  
 Si vous l'avez supprimé, vous pouvez l'ajouter en tant que **`/src/index.css`** : 
 ``` css
 body {
@@ -221,11 +236,10 @@ Ajoutez un fichier **`App.css`** dans le dossier du composant **App** avec des r
 Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 : CSS style**".
 
 ### c.6.2) Import d'images
-Avec **React Create App**, on importe très facilement une image.
+Avec **Vite**, on importe très facilement une image.
 
-Il est important de savoir que **React Create App** utilise un module bundler, Webpack, pour gérer de manière moderne les dépendances et les assets de l'application. On ne sait pas où Webpack, lors du build, va mettre les images, ni sous quels noms, et c'est OK ainsi.
+Il est important de savoir que **Vite** fait office de module bundler, pour gérer de manière moderne les dépendances et les assets de l'application. On ne sait pas où Vite, lors du build, va mettre les images, ni sous quels noms, et c'est OK ainsi.
 Ainsi, dans nos scripts, nous devons récupérer le chemin d'une image via un import.  
-Pour plus d'infos : [Create React App - Adding Images, Fonts and Fils](https://create-react-app.dev/docs/adding-images-fonts-and-files/) [[R.4]](/references/#r4).
 
 <AuthenticatedBlock>
 

@@ -37,8 +37,8 @@ module.exports = {
             name: 'Module 1 : Introduction à React',
             link: '/modules/1',
           },
-          /* { name: 'Module 2 : React state', link: '/modules/2' },
-          {
+          { name: 'Module 2 : React state', link: '/modules/2' },
+          /* {
             name: 'Module 3 : Complex state & collections',
             link: '/modules/3',
           },

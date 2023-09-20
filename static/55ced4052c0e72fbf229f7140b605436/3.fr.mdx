@@ -29,23 +29,25 @@ Veuillez lire les bonnes pratiques pour gérer un état complexe : [A more compl
 
 
 ## <a id="a2"></a> a.2) Exercice 3.1 : Application React de base
-Veuillez faire les exercices **1.6 à 1.11** repris à la suite de ce que vous venez de lire dans le dossier **/exercises/module3** de votre repo local : [Exercises 1.6.-1.14.](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps#exercises-1-6-1-14) [[R.1]](/references/#r1).
+Veuillez faire les exercices **1.6 à 1.11** repris à la suite de ce que vous venez de lire dans le dossier **`/exercises/module3`** de votre repo local : [Exercises 1.6.-1.14.](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps#exercises-1-6-1-14) [[R.1]](/references/#r1).
 
 Pour démarrer ces exercices, veuillez :
-- Dans votre dossier **/exercises/modules3** de votre repo local, lancer la commande : `npx create-react-app 3.1`
-- Supprimer tout le contenu du dossier **src/**.
-- Ne pas oublier de supprimer le dossier **.git**.
-- Copier le fichier **jsconfig.json** et **src/index.js** depuis le dossier de l'exercice du module précédent.
+- Dans votre dossier **`/exercises/modules3`** de votre repo local, lancer la commande : **`npm create vite@latest 3.1 -- --template react`** ou **`npx create-react-app 3.1`**
+- Supprimer tout le contenu du dossier **`src/`**.
+- Ne pas oublier de supprimer le dossier **`.git`**.
+- Veuillez utiliser : 
+  - soit Vite : Copiez le fichier **`jsconfig.json`**, **`vite.config.js`**, **`src/main.js`** et **`src/index.css`** depuis le dossier de l'exercice du module précédent. 
+  - soit Create React App : Copier le fichier **`jsconfig.json`** et **`src/index.js`** depuis le dossier de l'exercice du module précédent.
 
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**module3 : basics**".
 
 
 ## <a id="a3"></a> a.3) Loading component
-Toujours au sein de **/exercises/module3/3.1**, continuez l'exercice en :
-- créant un composant **Loading** qui va afficher un message de chargement.
-- ajoutant un état **loading** dans le composant qui va passer de **true** à **false** automatiquement grâce à un **setTimeout** après 3 secondes.
-- affichant le composant de chargement au lieu du feedback & des statistiques dans le cas où la variable **loading** est à **true**.
+Toujours au sein de **`/exercises/module3/3.1`**, continuez l'exercice en :
+- créant un composant **`Loading`** qui va afficher un message de chargement.
+- ajoutant un état **`loading`** dans le composant qui va passer de **`true`** à **`false`** automatiquement grâce à un **`setTimeout`** après 3 secondes.
+- affichant le composant de chargement au lieu du feedback & des statistiques dans le cas où la variable **`loading`** est à **`true`**.
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**module3 : loading**".
 
@@ -55,9 +57,9 @@ Veuillez lire les bonnes pratiques concernant le rendu de collections : [Renderi
 
 
 ## <a id="b2"></a>b.2) Exercice 3.2 : rendu d'une collection
-Veuillez faire l'exercice 2.1 repris à la suite de ce que vous venez de lire dans le dossier **/exercises/module3** de votre repo local : [Exercise 2.1.](https://fullstackopen.com/en/part2/rendering_a_collection_modules#exercises-2-1-2-5)[[R.1]](/references/#r1).
+Veuillez faire l'exercice 2.1 repris à la suite de ce que vous venez de lire dans le dossier **`/exercises/module3`** de votre repo local : [Exercise 2.1.](https://fullstackopen.com/en/part2/rendering_a_collection_modules#exercises-2-1-2-5)[[R.1]](/references/#r1).
 
-Pour initialiser cet exercice, nous vous recommandons de créer manuellement le répertoire **/exercises/module3/3.2** et d'y copier / coller le contenu du répertoire **/exercises/module1/1.1-1.2**.
+Pour initialiser cet exercice, nous vous recommandons de créer manuellement le répertoire **`/exercises/module3/3.2`** et d'y copier / coller le contenu du répertoire **`/exercises/module1/1.1-1.2`**.
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**module3 : collection**".
 
@@ -65,23 +67,23 @@ Veuillez faire un **commit** de votre code avec le message suivant : "**module3 
 
 Vous pourriez faire les exercices 1.12 à 1.14 de la séance lue précédemment : [Exercises 1.6.-1.14.](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps#exercises-1-6-1-14) [[R.1]](/references/#r1).
 
-Dans ce cas, faites ces exercices au sein de votre repo local dans le dossier **/exercises/module3/3.3**. 
+Dans ce cas, faites ces exercices au sein de votre repo local dans le dossier **`/exercises/module3/3.3`**. 
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**module3 : anecdotes**".
 
 # <a id="d"></a> d) Résumé
 
 - Un état complexe peut être stocké sous forme d'un objet JS, mais souvent, il est plus pratique de décomposer l'état en plus petites parties.
-- Ne jamais modifier l'état sans passer par la méthode **setXXX** retournée pas le **useState()**.  
-Soyez particulièrement attentifs pour des objets ou tableaux qui peuvent être modifiés facilement (**push**, **pop**...). Utilisez plutôt des méthodes qui ne changent pas l'objet initial (**concat**...).
-- Les hooks (**useState** par exemple) ne peuvent jamais être appelés dans une boucle, une expression conditionnelle... Appelez-les toujours à la "racine" de la fonction du composant, de sorte à ce que l'ordre d'appel soit prédictible.
+- Ne jamais modifier l'état sans passer par la méthode **`setXXX`** retournée pas le **`useState()`**.  
+Soyez particulièrement attentifs pour des objets ou tableaux qui peuvent être modifiés facilement (**`push`**, **`pop`**...). Utilisez plutôt des méthodes qui ne changent pas l'objet initial (**`concat`**...).
+- Les hooks (**`useState`** par exemple) ne peuvent jamais être appelés dans une boucle, une expression conditionnelle... Appelez-les toujours à la "racine" de la fonction du composant, de sorte à ce que l'ordre d'appel soit prédictible.
 - Un event handler doit être une fonction, et pas un appel. Cependant on peut mettre dans **`onClick={....}`** un appel de fonction qui renvoie une fonction.
 - Ne jamais définir un composant dans un autre composant. React traitera ce composant comme un nouveau à chaque rendu, ce qui casse l'optimisation des rendus de React.
-- Sur un array, on peut utilise **map** pour "render" chaque élément, **filter** pour filtrer... Et ce, directement dans le JSX ci-nécessaire.
-- L'attribut **key** est indispensable pour chaque élément d'une liste.
-- L'attribut **key** doit être unique et ne pas changer. Dès lors, la position dans la liste (index) n'est pas une bonne solution.
+- Sur un array, on peut utilise **`map`** pour "render" chaque élément, **`filter`** pour filtrer... Et ce, directement dans le JSX ci-nécessaire.
+- L'attribut **`key`** est indispensable pour chaque élément d'une liste.
+- L'attribut **`key`** doit être unique et ne pas changer. Dès lors, la position dans la liste (`index`) n'est pas une bonne solution.
 
 # <a id="e"></a> e) 🍬 Solution des exercices
-Une solution pour les exercices de ce module se trouvent ici : [module3](https://gitlab.vinci.be/6i3-web3/2022-2023/module3.git).
+Une solution pour les exercices de ce module se trouvent ici : [module3](https://gitlab.vinci.be/6i3-web3/2023-2024/module3.git).
 
 Vous devez avoir un compte Vinci pour pouvoir y accéder.

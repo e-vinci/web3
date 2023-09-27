@@ -38,10 +38,11 @@ module.exports = {
             link: '/modules/1',
           },
           { name: 'Module 2 : React state', link: '/modules/2' },
-          /* {
+          {
             name: 'Module 3 : Complex state & collections',
             link: '/modules/3',
           },
+          /*
           { name: 'Module 4 : Forms, useEffect, Axios...', link: '/modules/4' },
           { name: 'Module 5 : React Context', link: '/modules/5' },
           { name: 'Module 6 : API REST avec MongoDB', link: '/modules/6' },

@@ -42,10 +42,10 @@ Pour la disparition de la notification après 5 secondes, vous aurez besoin d'un
 
 ## <a id="a5"></a> a.5) Résumé
 - Le router react permet d'interagir avec la barre d'adresse du navigateur et avec l'historique du bouton back sans réellement envoyer de nouvelles requête au serveur.
-- Le routeur s'utilise habituellement avec un composant **switch** qui s'arrêtera à la première route qui passe le test, sans se composant le routeur peut afficher plusieurs routes.
+- Le routeur s'utilise habituellement avec un composant **`Routes`** qui s'arrêtera à la première route qui passe le test.
 - On ne peut plus utiliser de balise **`<a>`** pour les liens, on a besoin d'une balise **`<Link>`** qui va interagir avec le router.
-- Grâce au hook **useNavigate**, on peut facilement faire une redirection programmatique. On peut aussi utiliser le composant **`<Redirect>`** qui exécutera un redirect s'il est affiché.
-- Grâce au hook **useParam**, on peut facilement accéder aux params passés dans l'url.
+- Grâce au hook **`useNavigate`**, on peut facilement faire une redirection programmatique. On peut aussi utiliser le composant **`<Redirect>`** qui exécutera un redirect s'il est affiché.
+- Grâce au hook **`useParam`**, on peut facilement accéder aux params passés dans l'url.
 - Le **`<Router>`** introduit un contexte qui est utilisé par les différents hooks. On ne peut donc pas utiliser les hooks dans le même composant que celui où on a introduit le **Router** mais uniquement dans des composants plus bas dans l'arbre.
 - Lorsqu'un utilisateur clique sur un lien ou un bouton, il faut décider si l'action va changer la route ou changer le state, on ne fait pas les deux (peupler le state sur base de la route). Les endroits où l'on peut "trouver" des données sont donc : 
   - les props
@@ -72,11 +72,10 @@ C'est sur ce dernier point que nous allons principalement travailler.
 Veuillez créer un nouveau projet dans le répertoire **module7/7.4** de votre repo sur base d'un "copier / coller" du contenu de l'application développée aux exercices précédent.
 
 Commençons par intégrer **Ant Design** dans notre projet, au sein du répertoire associé aux exercices précédents.  
-Pour cela, consultez la documentation officielle [Use in create-react-app](https://ant.design/docs/react/use-with-create-react-app) [[R.9]](/references/#r9). 
+Pour cela, consultez la documentation officielle [Use with Vite](https://ant.design/docs/react/use-with-vite) [[R.9]](/references/#r9). 
 
-Attention, **Ant Design** conseille d'utiliser **yarn** au lieu de **npm**. Inutile ici d'installer **yarn**, **npm** fonctionnera très bien pour nous.  
 Veuillez faire attention à ne pas copier simplement les commandes, mais à bien réfléchir à leur utilité, tout en lisant attentivement la documentation.  
-Par exemple, inutile de faire la première commande **`npx create-react-app antd-demo`** car notre projet existe déjà...
+Par exemple, inutile de faire la première commande **`npm create vite antd-demo`** car notre projet existe déjà...
 
 Ensuite, commençons par changer les "input" de notre composant "**CreateNew**", en utilisant les composants "**Input**" de **Ant Design** : [Input](https://ant.design/components/input/) [[R.9]](/references/#r9).  
 Pour cela, consultez la documentation officielle, en regardant plus en détail les exemples, et notamment le code source associé. Cliquez sur l'icone "**< >**" en dessous d'un exemple pour voir le code source associé à l'exemple. Pour avoir une vue complète des props que vous pouvez passer au composant, consultez la section API à la fin de la page. L'exemple "**Basic usage**" devrait nous suffire dans un premier temps.
@@ -106,6 +105,6 @@ Nous vous conseillons :
 - [List](https://ant.design/components/list/) ou [Table](https://ant.design/components/table/) [[R.9]](/references/#r9) pour la liste des anecdotes.
 
 # <a id="c"></a> c) 🍬 Solution des exercices
-Une solution pour les exercices de ce module se trouvent ici : [module7](https://gitlab.vinci.be/6i3-web3/2022-2023/module7.git).
+Une solution pour les exercices de ce module se trouvent ici : [module7](https://gitlab.vinci.be/6i3-web3/2023-2024/module7.git).
 
 Vous devez avoir un compte Vinci pour pouvoir y accéder.

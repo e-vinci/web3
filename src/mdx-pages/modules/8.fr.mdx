@@ -69,7 +69,7 @@ Ceci nous permettra plus facilement de ré-utiliser des querries qui sont utilis
 - En REST avec express, on écrit une fonction JS qui sera exécutée pour une requête (une fonction par requête). En GraphQL avec Appolo, on écrit plutôt des **resolvers** pour chaque **field** de chaque ressource, et des **mutations**. Ceci nous permet, du côté client de faire des requêtes "personnalisées" en fonction des besoins (on choisit ce qu'on récupère).
 - Les **mutations** ont un nom et un certain nombre de paramètres. Ceci permet une lisibilité de l'API, mais implique également la nécessité de réfléchir à une manière de structurer/nommer les requêtes.
 - Appolo Server nous propose un outil pour parcourir la structure de l'API et construire des requêtes facilement. Son usage est recommandé pour construire nos requêtes utilisées côté serveur.
-- Appolo Server s'occupe en grande partie de la gestion des erreurs, grâce aux **schémas**. Si le client ne restpecte pas le schéma, ou le format des mutations, Appolo est capable de le détecter seul. On ne doit donc s'occuper que de la gestion des erreurs "business".
+- Appolo Server s'occupe en grande partie de la gestion des erreurs, grâce aux **schémas**. Si le client ne respecte pas le schéma, ou le format des mutations, Appolo est capable de le détecter seul. On ne doit donc s'occuper que de la gestion des erreurs "business".
 
 ## <a id="c1"></a> c.1) Appolo Client (front - React)
 

@@ -72,18 +72,14 @@ const useReviewData = () => {
   const updateMyReviewsData = async (userName, projectGroupName) => {
     try {
       const idToken = await getAsyncIdToken(accounts, instance);
-      // if (updateOperationCount === 0) 
-      setIsLoaded(false);
-      // updateOperationCount++;
+      setIsLoaded(false);     
       const myReviews = await callAPI(
         `reviews/users/${userName}/projectgroups/${projectGroupName}`,
         "get",
         idToken,
         undefined
       );
-      setMyReviewsData(myReviews);
-      // updateOperationCount--;
-      // if (updateOperationCount === 0) 
+      setMyReviewsData(myReviews);     
       setIsLoaded(true);
       return myReviews;
     } catch (err) {
@@ -95,21 +91,18 @@ const useReviewData = () => {
   const updateAllReviewsData = async (projectGroupName) => {
     try {
       const idToken = await getAsyncIdToken(accounts, instance);
-      setIsLoaded(false);
-      // if (updateOperationCount === 0) setIsLoaded(false);
-      // updateOperationCount++;
+      setIsLoaded(false);     
       const allReviews = await callAPI(
         `reviews/projectgroups/${projectGroupName}/summary`,
         "get",
         idToken,
         undefined
       );
-      setAllReviewsData(allReviews);
-      // updateOperationCount--;
-      // if (updateOperationCount === 0) 
+      setAllReviewsData(allReviews);  
       setIsLoaded(true);
       return allReviews;
     } catch (err) {
+      setIsLoaded(true);
       console.error("useReviewData:updateAllReviewsData:error:", err);
     }
   };

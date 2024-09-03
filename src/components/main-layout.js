@@ -15,6 +15,7 @@ import { getCurrentLangKey, getLangs, getUrlForLang } from "ptz-i18n";
 import { IntlProvider } from "react-intl";
 import { useLocation } from "@reach/router";
 // Fix huge icon flash: https://github.com/FortAwesome/react-fontawesome/issues/234
+import { NavigationProvider } from "./contexts/navigation-context.js";
 
 config.autoAddCss = false;
 
@@ -76,7 +77,6 @@ const MainLayout = ({
   const langKey = getCurrentLangKey(langs, defaultLangKey, pathname);
   const homeLink = `/${langKey}/`.replace(`/${defaultLangKey}/`, "/");
 
-
   const url = getUrlForLang(homeLink, pathname);
   console.log("url : ", pathname);
 
@@ -93,48 +93,50 @@ const MainLayout = ({
   console.log("langsKey : ", langKey);
 
   return (
-    <IntlProvider locale={langKey} messages={{ langsMenu: langsMenu }}>
-      <div className="master">
-        {/* Dealing with Meta Tags : page title.... 
+    <NavigationProvider>
+      <IntlProvider locale={langKey} messages={{ langsMenu: langsMenu }}>
+        <div className="master">
+          {/* Dealing with Meta Tags : page title.... 
       Use the SEO component*/}
-        {/* <Helmet>{pageTitle && <title>{pageTitle}</title>}</Helmet> */}
-        <SEO
-          title={pageTitle}
-          {...(frontmatter ? { description: frontmatter.description } : {})}
-          language="fr"
-        />
+          {/* <Helmet>{pageTitle && <title>{pageTitle}</title>}</Helmet> */}
+          <SEO
+            title={pageTitle}
+            {...(frontmatter ? { description: frontmatter.description } : {})}
+            language="fr"
+          />
 
-        <Header  
-          siteMetadata = {data.site.siteMetadata}
-          {...(navbarExtraStyles
-            ? { navbarExtraStyles: navbarExtraStyles }
-            : {})}
-          {...(headerImage ? { headerImage: headerImage } : {})}
-        />
+          <Header
+            siteMetadata={data.site.siteMetadata}
+            {...(navbarExtraStyles
+              ? { navbarExtraStyles: navbarExtraStyles }
+              : {})}
+            {...(headerImage ? { headerImage: headerImage } : {})}
+          />
 
-        <main className="main">
-          {featuredImage && (
-            <div>
-              <Section className="pt-3">
-                <SectionHeader className="section__header--left">
-                  {pageTitle}
-                </SectionHeader>
-                <Content className="vh-50">
-                  <Image name={featuredImage} />{" "}
-                </Content>
-              </Section>
-            </div>
-          )}
-          {children}
-        </main>
+          <main className="main">
+            {featuredImage && (
+              <div>
+                <Section className="pt-3">
+                  <SectionHeader className="section__header--left">
+                    {pageTitle}
+                  </SectionHeader>
+                  <Content className="vh-50">
+                    <Image name={featuredImage} />{" "}
+                  </Content>
+                </Section>
+              </div>
+            )}
+            {children}
+          </main>
 
-        <Footer
-          siteMetaData={data.site.siteMetadata}
-          langs={langsMenu}
-        ></Footer>
-        <Scroll showBelow={250} />
-      </div>
-    </IntlProvider>
+          <Footer
+            siteMetaData={data.site.siteMetadata}
+            langs={langsMenu}
+          ></Footer>
+          <Scroll showBelow={250} />
+        </div>
+      </IntlProvider>
+    </NavigationProvider>
   );
 };
 

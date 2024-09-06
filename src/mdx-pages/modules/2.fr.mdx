@@ -5,9 +5,8 @@ description: "React state"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 # Module 2 : React state
-Ce module vous offre principalement la découverte de la gestion des événements en React, ainsi que la gestion des états.
 
-# c) Destructuring et l'état
+Ce module vous offre principalement la découverte de la gestion des événements en React, ainsi que la gestion des états.
 
 <InternalPageMenu>
   <PathViewer>
@@ -198,11 +197,11 @@ const Header = ({ title, version }) => {
   );
 };
 ```
-Ce code contient des répétitions et est moins lisible.
+Ce code ne respecte pas le principe `DRY` (Don't Repeat Yourself), est moins lisible et plus difficile à maintenir.
 
 # <InternalPageTitle> Gestionnaire d'événements </InternalPageTitle>
 
-Un gestionnaire d'événement est une fonction.
+Un gestionnaire d'événement est une fonction dont le but est de répondre à cet événement.
 
 ```tsx highlighting="5"
 const Header = ({ title, version }) => {
@@ -219,10 +218,8 @@ const Header = ({ title, version }) => {
 };
 ```
 
-Nous pouvons définir cette fonction comme "function arrow" (comme fait ci-dessus à côté de `onClick`),
-mais aussi comme fonction anonyme ou fonction nommée.
-
-Lorsqu'une fonction commence à avoir plusieurs instructions, il est recommandé de créer une fonction nommée.  
+Dans le code précédent nous avons utilisé une arrow fonction anonyme et c’est ok lorsqu’il n’y a qu’une seule instruction courte dans la fonction.
+Lorsque la fonction contient plusieurs statements, il est préférable de créer une fonction nommée et la référencer comme handler de l’événement.
 En voici un exemple à reprendre dans votre tutoriel dans le composant `Header` :
 
 ```tsx numbered highlighting="4-7,10"
@@ -245,16 +242,15 @@ const Header = ({ title, version }) => {
 };
 ```
 
-👍 Il est recommandé que vos fonctions de gestion d'événements reçoivent un unique paramètre et portent un nom qui commence par **"handle"** afin de les identifier facilement.
+Une fonction de gestion d'un événement peut recevoir un unique argument (un objet représentant l'événement) et porte un nom qui commence par **`handle`** ou **`on`** afin de l'identifier facilement.
 
-
-⚡️ Attention, un attributs d'événement (`onClick`...) doit **recevoir une fonction** en valeur !  
-Une erreur classique est de lui passer l'**appel d'une fonction**, comme par exemple : 
+⚡️ Attention, un attributs d'événement (`onClick`...) doit recevoir le **nom** de la fonction de gestion de l'événement et **non l'appel à cette fonction** !  
+Ceci est donc incorrect, sauf si `handleClick()` renvoie la fonction de gestion de l'événement (son nom ne devrait alors pas commencer par `handle` pour éviter toute confusion):
 ```tsx
 <header onClick={handleClick()}>
 ```
 
-Ici ça veut dire que dès que le script est appelé, à l'initialisation de l'application, on va automatiquement faire l'appel à `handleClick`, bien qu'il n'y ait pas eu de clic...
+Ici cela veut aussi dire que dès que le script est appelé, à l'initialisation de l'application, on va automatiquement faire l'appel à `handleClick`, bien qu'il n'y ait pas eu de clic...
 
 Allez-y, veuillez tester pour voir ce que cette erreur classique provoque...
 `Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.` 😱.
@@ -300,7 +296,7 @@ Une fois tout fonctionnel, veuillez faire un commit avec le message suivant : **
 
 Pour cet exercice, toujours dans `/exercises/2.1`, dans le composant `ClickCounter`, appelez `localStorage.setItem("count", JSON.stringify(count))` à chaque fois qu'on change le compteur. Dans notre cas ici, c'est juste après l'appel à la méthode `setCount` (dans le gestionnaire d'événements associés à `onClick`, nommé par exemple `handleCount` si vous avez créé une fonction nommée, ou dans une fonction arrow...).
 
-Ensuite, dans le `useState(0)`, au lieu de donner **0** comme valeur initiale au compteur, essayez de lire la valeur du compteur depuis le localStorage `JSON.parse(localStorage.getItem("count"))` et passez la au `useState` comme valeur par défaut. Rafraîchissez votre page après le changement du compteur, et constatez qu'il persiste.
+Ensuite, dans le `useState(0)`, au lieu de donner **0** comme valeur initiale au compteur, essayez de lire la valeur du compteur depuis le localStorage `JSON.parse(localStorage.getItem("count"))` et passez-la au `useState` comme valeur par défaut. Rafraîchissez votre page après le changement du compteur, et constatez qu'il persiste.
 
 Vous remarquerez cependant qu'il y a un souci avec la valeur du compteur qui persiste. Il y a bien une persistance qui est faite, mais la valeur n'est pas correcte... Essayez de réfléchir à la question, éventuellement en lisant la documentation officielle de React sur le hook `useState` : [Using the State Hook](https://reactjs.org/docs/hooks-state.html) [[R.6]](/references/#r6) ou sur le Render des composants : [Rendering Elements](https://reactjs.org/docs/rendering-elements.html) [[R.5]](/references/#r5).
 

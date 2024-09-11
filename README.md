@@ -19,6 +19,14 @@
     npm start
     ```
 
+    En cas d'erreur lors du build, ceci peut aider:
+
+    ```
+    npm install --legacy-peer-deps ajv@latest ajv-keywords@latest @babel/core
+    npm run clean
+    npm start
+    ```
+
 4.  **Open the code and start customizing!**
 
     This site is now running at http://localhost:8000!

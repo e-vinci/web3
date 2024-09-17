@@ -94,19 +94,6 @@ N'oubliez-pas SVP d'ajouter des accès pour vos deux enseignants. Pour ce faire 
 
 Pour créer un web repo sous GitHub, vous pouvez visualiser la vidéo "Git & VS Code - Partie 03 : Création d'un web repo sur GitHub à partir d'un local repo" dans l'[Introduction à Git](/git).
 
-Néanmoins, si vous préférez utiliser Gitlab, veuillez utiliser la plateforme offerte par Vinci :
-- Pour vous logger sur la plateforme Gitlab de Vinci, accédez à https://gitlab.vinci.be/ , puis cliquez sur **Sign in with Azure AD**.
-- Créer un projet sur GitLab portant le nom **web3**.
-- Ajouter comme membre les deux enseignants associés au cours (rôle de "Developer") :
-  - e-Baron (Raphael Baroni)
-  - Laurent Brucher
-  - NB : pour ce faire, dans l'interface web de GitLab : **Settings**, **Members**, **Invite member**, **Choose a role permission : Developer**.
-
-Veuillez soumettre le lien vers votre web repository (qqch du genre https://github.com/votre_username/web3.git ou https://gitlab.vinci.be/votre_username/web3.git) via ce [formulaire](https://forms.office.com/r/GNqNmBRWQ1).     
-Pour trouver le lien vers votre repo :
-- dans GitHub : cliquez sur le bouton **Code** dans votre web repo, et copiez l'info associée à l'onglet **HTTPS**.
-- dans Gitlab : il vous suffit de cliquer sur **Clone** dans votre projet, et de prendre l'info associée à **Clone with HTTPS**. 
-
 NB : Lorsque vous allez ajouter une remote pour vous synchroniser avec votre web repository, nous vous conseillons d'utiliser l'URL associée à **HTTPS**. Si vous souhaitez malgré tout vous connecter en SSH, vous pouvez consulter [cet article pour GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) [[R.2]](/references/#r2) ou [cet article pour GitLab](https://dev.to/sndrx/how-to-set-up-an-ssh-key-and-use-it-in-gitlab--42p1) [[R.3]](/references/#r3).
 
 </AuthenticatedBlock>
@@ -152,7 +139,7 @@ De plus, nous allons créer un dossier par famille de composants.
 A l'Exercice 1.1-1.2, veuillez placer chaque component créé dans son propre dossier : 
 **`src/components/[ComponentName]/[ComponentName].jsx`**
 
-Observez que **index.js** n'a besoin que d'importer **App** et **App** n'a pas besoin d'importer **Part**. Les imports nous permettent d'observer le graphe de dépendances.
+Observez que **main.jsx** n'a besoin que d'importer **App** et **App** n'a pas besoin d'importer **Part**. Les imports nous permettent d'observer le graphe de dépendances.
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**1.1-1.2 : refactor - modules**".
 
@@ -234,7 +221,7 @@ code {
 
 Faites un changement de style pour vous assurer de l'impact de ce fichier, observez le résultat. Vous pourriez changer la couleur du background par exemple, ajouter une marge...
 
-Attention à ne pas oublier l'import du fichier CSS dans **`index.js`** (**`import './index.css';`**).
+Attention à ne pas oublier l'import du fichier CSS dans **`main.jsx`** (**`import './index.css';`**).
 
 Ajoutez un fichier **`App.css`** dans le dossier du composant **App** avec des règles valables pour ce composant uniquement. Importez ce fichier dans le composant et observez ce qui se passe.
 

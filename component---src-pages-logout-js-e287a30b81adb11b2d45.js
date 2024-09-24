@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmyweb3course=self.webpackChunkmyweb3course||[]).push([[873],{8885:function(e,t,c){c.r(t);var u=c(6540),n=c(1262),s=c(8007),a=c(2662);t.default=()=>{const{instance:e}=(0,n.dk)();return(0,u.useEffect)((()=>{e.logoutRedirect(),(0,s.navigate)("/")})),u.createElement(a.A,null,u.createElement("h3",{className:"pl-3"},"Logout"))}}}]);
+//# sourceMappingURL=component---src-pages-logout-js-e287a30b81adb11b2d45.js.map

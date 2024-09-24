@@ -4,46 +4,47 @@ description: "Complex state & Rendering collection"
 ---
 
 # Module 3 : Complex state & collections
+
 Ce module vous offre principalement la gestion d'un état complexe et le rendu de collections.
 
-Voici les sujets traités :
-- a) [Gestion d'un état plus complexe](#a)
-  - a.1) [Bonnes pratiques pour gérer un état complexe](#a1)
-  - a.2) [Exercice 3.1 : Application React de base](#a2)
-  - a.3) [Loading component](#a3)
-- b) [Rendu de collections](#b)
-  - b.1) [Bonnes pratiques pour rendre des collections](#b1)
-  - b.2) [Exercice 3.2 : rendu d'une collection](#b2)
-- c) [🍬 Exercise 3.3 : Plus d'entrainements via des anecdotes](#c)
-- d) [Résumé](#d)
-- e) [Solution des exercices](#e)
+<InternalPageMenu>
+  <PathViewer>
+    <PathViewerItem to="/"> web3course </PathViewerItem>
+    <PathViewerItem to="/modules/3" selected> Module 3 </PathViewerItem>
+  </PathViewer>
+  <InternalPageMenuItem> Gestion d'un état plus complexe </InternalPageMenuItem>
+  <InternalPageMenuItem> Rendu de collections </InternalPageMenuItem>
+  <InternalPageMenuItem> 🍬 Exercise 3.3 : Plus d'entrainements via des anecdotes </InternalPageMenuItem>
+  <InternalPageMenuItem> Résumé </InternalPageMenuItem>
+  <InternalPageMenuItem> Solution des exercices </InternalPageMenuItem>
+</InternalPageMenu>
+
 
 **Voici les lectures indispensables pour suivre ce module :**
 - Gestion d'un état complexe, nouvelle matière : [A more complex state, debugging React apps](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps/) [[R.1]](/references/#r1)
 - Rendu de collections, nouvelle matière : [Rendering a collection, modules](https://fullstackopen.com/en/part2/rendering_a_collection_modules#rendering-collections) [[R.1]](/references/#r1)
 
 
-# <a id="a"></a>a) Gestion d'un état plus complexe
-## <a id="a1"></a>a.1) Bonnes pratiques pour gérer un état complexe
+# <InternalPageTitle> Gestion d'un état plus complexe </InternalPageTitle>
+
+## Bonnes pratiques pour gérer un état complexe
 Veuillez lire les bonnes pratiques pour gérer un état complexe : [A more complex state, debugging React apps](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps/) [[R.1]](/references/#r1).
 
 
-## <a id="a2"></a> a.2) Exercice 3.1 : Application React de base
-Veuillez faire les exercices **1.6 à 1.11** repris à la suite de ce que vous venez de lire dans le dossier **`/exercises/module3`** de votre repo local : [Exercises 1.6.-1.14.](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps#exercises-1-6-1-14) [[R.1]](/references/#r1).
+## Exercice 3.1 : Application React de base
 
-Pour démarrer ces exercices, veuillez :
-- Dans votre dossier **`/exercises/modules3`** de votre repo local, lancer la commande : **`npm create vite@latest 3.1 -- --template react`** ou **`npx create-react-app 3.1`**
+Pour démarrer cet exercice, veuillez :
+- Dans votre dossier **`/exercises/modules3`** de votre repo local, lancer la commande : **`npm create vite@latest 3.1 -- --template react`**
 - Supprimer tout le contenu du dossier **`src/`**.
 - Ne pas oublier de supprimer le dossier **`.git`**.
-- Veuillez utiliser : 
-  - soit Vite : Copiez le fichier **`jsconfig.json`**, **`vite.config.js`**, **`src/main.js`** et **`src/index.css`** depuis le dossier de l'exercice du module précédent. 
-  - soit Create React App : Copier le fichier **`jsconfig.json`** et **`src/index.js`** depuis le dossier de l'exercice du module précédent.
+- Copiez le fichier **`jsconfig.json`**, **`vite.config.js`**, **`src/main.js`** et **`src/index.css`** depuis le dossier de l'exercice du module précédent. 
 
+A partir de ce projet, veuillez ensuite faire les exercices **1.6 à 1.11** de [A more complex state, debugging React apps: Exercises 1.6.-1.14.](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps#exercises-1-6-1-14).
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**module3 : basics**".
 
 
-## <a id="a3"></a> a.3) Loading component
+## Loading component
 Toujours au sein de **`/exercises/module3/3.1`**, continuez l'exercice en :
 - créant un composant **`Loading`** qui va afficher un message de chargement.
 - ajoutant un état **`loading`** dans le composant qui va passer de **`true`** à **`false`** automatiquement grâce à un **`setTimeout`** après 3 secondes.
@@ -51,19 +52,24 @@ Toujours au sein de **`/exercises/module3/3.1`**, continuez l'exercice en :
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**module3 : loading**".
 
-# <a id="b"></a>b) Rendu de collections
-## <a id="b1"></a>b.1) Bonnes pratiques pour rendre des collections
-Veuillez lire les bonnes pratiques concernant le rendu de collections : [Rendering a collection, modules](https://fullstackopen.com/en/part2/rendering_a_collection_modules#rendering-collections) [[R.1]](/references/#r1).
+
+# <InternalPageTitle> Rendu de collections </InternalPageTitle>
+## Bonnes pratiques pour rendre des collections
+Veuillez lire les bonnes pratiques concernant le rendu de collections :
+- [Rendering a collection, modules](https://fullstackopen.com/en/part2/rendering_a_collection_modules#rendering-collections) [[R.1]](/references/#r1).
+- [Key-attribute](https://fullstackopen.com/en/part2/rendering_a_collection_modules#key-attribute)
+- [Map](https://fullstackopen.com/en/part2/rendering_a_collection_modules#map)
+- [Anti-pattern: Array Indexes as Keys](https://fullstackopen.com/en/part2/rendering_a_collection_modules#anti-pattern-array-indexes-as-keys)
 
 
-## <a id="b2"></a>b.2) Exercice 3.2 : rendu d'une collection
+## Exercice 3.2 : rendu d'une collection
 Veuillez faire l'exercice 2.1 repris à la suite de ce que vous venez de lire dans le dossier **`/exercises/module3`** de votre repo local : [Exercise 2.1.](https://fullstackopen.com/en/part2/rendering_a_collection_modules#exercises-2-1-2-5)[[R.1]](/references/#r1).
 
-Pour initialiser cet exercice, nous vous recommandons de créer manuellement le répertoire **`/exercises/module3/3.2`** et d'y copier / coller le contenu du répertoire **`/exercises/module1/1.1-1.2`**.
+Pour initialiser cet exercice, nous vous recommandons de créer manuellement le répertoire **`/exercises/module3/3.2`** et d'y copier / coller le contenu du répertoire **`/exercises/module1/1.1-1.2`**, en évitant de copier les répertoires `.git/` et `node_modules/`.
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**module3 : collection**".
 
-# <a id="c"></a>c) 🍬 Exercise 3.3 : Plus d'entrainements via des anecdotes *(Exercice facultatif, pour les plus motivés)*
+# <InternalPageTitle> 🍬 Exercise 3.3 : Plus d'entrainements via des anecdotes *(Exercice facultatif, pour les plus motivés)* </InternalPageTitle>
 
 Vous pourriez faire les exercices 1.12 à 1.14 de la séance lue précédemment : [Exercises 1.6.-1.14.](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps#exercises-1-6-1-14) [[R.1]](/references/#r1).
 
@@ -71,19 +77,30 @@ Dans ce cas, faites ces exercices au sein de votre repo local dans le dossier **
 
 Veuillez faire un **commit** de votre code avec le message suivant : "**module3 : anecdotes**".
 
-# <a id="d"></a> d) Résumé
+# <InternalPageTitle> Résumé </InternalPageTitle>
+
+### Etats
 
 - Un état complexe peut être stocké sous forme d'un objet JS, mais souvent, il est plus pratique de décomposer l'état en plus petites parties.
 - Ne jamais modifier l'état sans passer par la méthode **`setXXX`** retournée pas le **`useState()`**.  
-Soyez particulièrement attentifs pour des objets ou tableaux qui peuvent être modifiés facilement (**`push`**, **`pop`**...). Utilisez plutôt des méthodes qui ne changent pas l'objet initial (**`concat`**...).
-- Les hooks (**`useState`** par exemple) ne peuvent jamais être appelés dans une boucle, une expression conditionnelle... Appelez-les toujours à la "racine" de la fonction du composant, de sorte à ce que l'ordre d'appel soit prédictible.
-- Un event handler doit être une fonction, et pas un appel. Cependant on peut mettre dans **`onClick={....}`** un appel de fonction qui renvoie une fonction.
+Soyez particulièrement attentifs pour des objets ou arrays: une copie doit toujours être fournie au `setXXX()` plutôt que l'objet/array initial. Donc pas de `push` ou `pop` mais plutôt `slice`, `concat`, etc.
+- N'oubliez pas que la modification de la valeur d'un état (hook) se fait toujours de manière asynchrone!
+Si vous avez besoin de la nouvelle valeur d'un état *dans une fonction qui le modifie*, stockez-la d'abord dans une variable (`const newValue = value+1` par ex.) puis appelez `setValue(newValue)` et ensuite utilisez `newValue` comme vous le désirez.
+- Les hooks (**`useState`** par exemple) ne peuvent jamais être créés dans une boucle, une expression conditionnelle... Créez-les toujours à la "racine" de la fonction du composant, de sorte à ce que l'ordre d'appel soit prédictible.
+
+### Event Handlers
+
+- Un event handler doit être une fonction, et pas une expression renvoyant autre chose qu'une fonction. On peut donc aussi mettre dans **`onClick={....}`** un appel de fonction qui renvoie une fonction.
 - Ne jamais définir un composant dans un autre composant. React traitera ce composant comme un nouveau à chaque rendu, ce qui casse l'optimisation des rendus de React.
+
+### Collections
+
 - Sur un array, on peut utilise **`map`** pour "render" chaque élément, **`filter`** pour filtrer... Et ce, directement dans le JSX ci-nécessaire.
 - L'attribut **`key`** est indispensable pour chaque élément d'une liste.
 - L'attribut **`key`** doit être unique et ne pas changer. Dès lors, la position dans la liste (`index`) n'est pas une bonne solution.
 
-# <a id="e"></a> e) 🍬 Solution des exercices
-Une solution pour les exercices de ce module se trouvent ici : [module3](https://gitlab.vinci.be/6i3-web3/2023-2024/module3.git).
+# <InternalPageTitle> 🍬 Solution des exercices </InternalPageTitle>
 
-Vous devez avoir un compte Vinci pour pouvoir y accéder.
+Une solution pour les exercices de ce module se trouvent ici : [module3](https://github.com/e-vinci/web3-exercises/tree/main/exercises/module3)
+
+N'hésitez pas à utiliser https://download-directory.github.io/ pour télécharger le dossier complet (sans devoir cloner tout le repo **`web3-exercises`**). Vous devez juste indiquer le lien vers le dossier **`module3`** dans le champ **`Download Directory`** : https://github.com/e-vinci/web3-exercises/tree/main/exercises/module3 puis taper sur la touche **`Enter`** de votre clavier.

@@ -33,8 +33,8 @@ Veuillez démarrer l'application.
 
 Nous allons mettre à jour le code.  
 Par exemple, nous pouvons simplifier ce composant `Header` :
-```tsx
-const Header = (props: HeaderProps) => {
+```jsx
+const Header = (props) => {
   return (
     <header>
       <h1 className="animate__animated animate__bounce">{props.title}</h1>
@@ -45,8 +45,8 @@ const Header = (props: HeaderProps) => {
 ```
 
 Une première étape, en utilisant le "destructuring assignment", serait :
-```tsx highlighting="2,5-6"
-const Header = (props: HeaderProps) => {
+```jsx highlighting="2,5-6"
+const Header = (props) => {
   const { title, version } = props;
   return (
     <header>
@@ -58,7 +58,7 @@ const Header = (props: HeaderProps) => {
 ```
 
 Mais nous pouvons faire le destructuring assignment directement dans le paramètre de la fonction `Header` : 
-```tsx highlighting="1,4-5"
+```jsx highlighting="1,4-5"
 const Header = ({ title, version }) => {
   return (
     <header>
@@ -73,7 +73,7 @@ Ainsi, nous avons un code plus concis et plus clair : on sait directement quelle
 👍 Dans la suite de ce cours, nous vous recommandons d'utiliser le destructuring assignment pour passer vos props. Cela rend le code plus lisible, on voit directement les paramètres attendus par la fonction.
 
 En plus de mettre à jour `Header`, veuillez mettre à jour `DrinkMenu` :
-```tsx highlighting="1,4-5"
+```jsx highlighting="1,4-5"
 const DrinkMenu = ({ title, children }) => {
   return (
     <div className="drink-menu">
@@ -85,7 +85,7 @@ const DrinkMenu = ({ title, children }) => {
 ```
 
 Veuillez aussi mettre à jour `DrinkCard` :
-```tsx highlighting="1,4-6"
+```jsx highlighting="1,4-6"
 const DrinkCard = ({ title, image, children }) => {
   return (
     <div className="drink-card">
@@ -127,7 +127,7 @@ Un composant "stateful" est un composant qui a un état, c'est à dire au moins 
 Pour notre tutoriel, nous allons créer la variable d'état `messagePrinted` qui sera un booléen permettant de savoir si l'on affiche ou pas le message caché du `Header`. Nous allons aussi avoir une fonction `setMessagePrinted` pour changer la valeur du booléen.
 
 Mettons à jour le composant `Header` (qui se trouve dans `/src/components/Main/index.tsx`) :
-```tsx numbered highlighting="1,10,13,15"
+```jsx numbered highlighting="1,10,13,15"
 import { useState } from "react";
 import "./Header.css";
 
@@ -153,7 +153,7 @@ D'abord, nous avons importé le hook `useState` de React, qui permet aux composa
 `setMenuPrinted` est une fonction qui permet de mettre à jour l'état `menuPrinted`. Elle est conventionnellement nommée avec `set` suivi du nom de la variable d'état (`MenuPrinted` dans ce cas).
 
 Que fait ce morceau de code ? 
-```tsx
+```jsx
 <header onClick={() => setMenuPrinted(!menuPrinted)}>
 ```
 
@@ -166,7 +166,7 @@ La fonction `setMenuPrinted`, qui permet de changer l'état, va informer React q
 Lorsqu'un composant React subit un re-render, seule la fonction de rendu (c'est-à-dire la fonction qui contient le `return` et qui définit l'interface utilisateur du composant) est réévaluée.
 
 Finalement, lors du rerender, nous allons assurer un rendu conditionnel sur base de la variable d'état :
-```tsx
+```jsx
 {menuPrinted ? `${title}... and rarely do we hate it!` : title}
 ```
 
@@ -174,7 +174,7 @@ Notons que nous avons utilisé ici l'opérateur ternaire :
 `condition ? valeurSiVraie : valeurSiFausse`
 
 Cette opérateur permet d'avoir du code plus concis. Si nous ne l'avions pas utilisé, nous aurions du écrire quelque chose du style :
-```tsx
+```jsx
 const Header = ({ title, version }) => {
   const [menuPrinted, setMenuPrinted] = useState(false);
 
@@ -203,7 +203,7 @@ Ce code ne respecte pas le principe `DRY` (Don't Repeat Yourself), est moins lis
 
 Un gestionnaire d'événement est une fonction dont le but est de répondre à cet événement.
 
-```tsx highlighting="5"
+```jsx highlighting="5"
 const Header = ({ title, version }) => {
   const [menuPrinted, setMenuPrinted] = useState(false);
 
@@ -222,7 +222,7 @@ Dans le code précédent nous avons utilisé une arrow fonction anonyme et c’e
 Lorsque la fonction contient plusieurs statements, il est préférable de créer une fonction nommée et la référencer comme handler de l’événement.
 En voici un exemple à reprendre dans votre tutoriel dans le composant `Header` :
 
-```tsx numbered highlighting="4-7,10"
+```jsx numbered highlighting="4-7,10"
 const Header = ({ title, version }) => {
   const [menuPrinted, setMenuPrinted] = useState(false);
 
@@ -246,7 +246,7 @@ Une fonction de gestion d'un événement peut recevoir un unique argument (un ob
 
 ⚡️ Attention, un attributs d'événement (`onClick`...) doit recevoir le **nom** de la fonction de gestion de l'événement et **non l'appel à cette fonction** !  
 Ceci est donc incorrect, sauf si `handleClick()` renvoie la fonction de gestion de l'événement (son nom ne devrait alors pas commencer par `handle` pour éviter toute confusion):
-```tsx
+```jsx
 <header onClick={handleClick()}>
 ```
 

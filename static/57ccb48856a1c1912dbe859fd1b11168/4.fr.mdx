@@ -1,0 +1,95 @@
+---
+title: "Module 4 : Forms, useEffect, Axios..."
+description: "Module 4 : Gestion des formulaires, useEffect(), Axios..."
+---
+
+# Module 4 : Gestion des formulaires, useEffect(), Axios...
+
+<InternalPageMenu>
+  <PathViewer>
+    <PathViewerItem to="/"> web3course </PathViewerItem>
+    <PathViewerItem to="/modules/4" selected> Module 4 </PathViewerItem>
+  </PathViewer>
+  <InternalPageMenuItem> Création de votre premier formulaire </InternalPageMenuItem>
+  <InternalPageMenuItem> 🍬 Pour s’entraîner un peu plus (pas obligatoire) </InternalPageMenuItem>
+  <InternalPageMenuItem> UseEffect, chargement de données depuis un serveur </InternalPageMenuItem>
+  <InternalPageMenuItem> A retenir jusqu'à présent </InternalPageMenuItem>
+  <InternalPageMenuItem> Insertion avec l'API </InternalPageMenuItem>
+  <InternalPageMenuItem> Module de communication avec l'API </InternalPageMenuItem>
+  <InternalPageMenuItem> 🍬 Pour aller plus loin : suppression et mise à jour avec l'API (pas obligatoire) </InternalPageMenuItem>
+  <InternalPageMenuItem> A retenir </InternalPageMenuItem>
+  <InternalPageMenuItem> Solution des exercices </InternalPageMenuItem>
+</InternalPageMenu>
+
+
+**Voici les lectures qui sont référencées dans ce module :**
+- [Forms](https://fullstackopen.com/en/part2/forms) [[R.1]](/references/#r1)
+- [Getting data from server](https://fullstackopen.com/en/part2/getting_data_from_server) [[R.1]](/references/#r1)
+- [Altering data in server](https://fullstackopen.com/en/part2/altering_data_in_server) [[R.1]](/references/#r1)
+
+# <InternalPageTitle> Création de votre premier formulaire </InternalPageTitle>
+
+Veuillez lire le chapitre sur la gestion des formulaires en React : [Forms](https://fullstackopen.com/en/part2/forms) [[R.1]](/references/#r1)
+
+Pour démarrer cet exercice, veuillez:
+- créer un dossier **`/exercises/modules4`** dans votre repo local
+- depuis **`/exercises/modules4`**, lancer la commande : **`npm create vite@latest 4.1 -- --template react`**.
+- Copiez le fichier **`jsconfig.json`** et **`vite.config.js`** d'un module précédent dans **`/exercises/modules4/4.1`**.
+
+A partir de ce projet, faites les exercices 2.6, 2.7 et 2.8 de la séance lue précédemment : [Exercise 2.6-2.10](https://fullstackopen.com/en/part2/forms#exercises-2-6-2-10) [[R.1]](/references/#r1).
+
+Lisez bien chaque exercice en entier avant de commencer, il y a notamment quelques astuces parfois à la fin des exercices.
+
+N'oubliez pas de respecter les "bonnes pratiques" vues précédemment.
+
+# <InternalPageTitle> 🍬 Pour s’entraîner un peu plus (pas obligatoire) </InternalPageTitle>
+
+Faites les exercices 2.9 et 2.10 de la séance lue précédemment : [Exercise 2.6-2.10](https://fullstackopen.com/en/part2/forms#exercises-2-6-2-10) [[R.1]](/references/#r1).
+
+# <InternalPageTitle> UseEffect, chargement de données depuis un serveur </InternalPageTitle>
+
+Veuillez lire le chapitre sur la gestion des appels à une API REST depuis une application React : [Getting data from server](https://fullstackopen.com/en/part2/getting_data_from_server) [[R.1]](/references/#r1)
+
+Faites l'exercice 2.11 de la séance lue précédemment : [Exercises 2.11.](https://fullstackopen.com/en/part2/getting_data_from_server#exercise-2-11) [[R.1]](/references/#r1).
+
+Vous devrez mettre en place le serveur local comme dans le cours en ligne.
+
+N'hésitez pas à vous inspirer des morceaux de code qui sont dans la théorie. Il y a finalement beaucoup de copier/coller, mais à adapter évidemment.
+
+# <InternalPageTitle> A retenir jusqu'à présent </InternalPageTitle>
+
+- N'hésitez pas à utiliser des **console.log** (log + TAB pour utiliser le snippet VSCode) pour afficher les props à débugger.
+- Dans un formulaire, on peut mettre **onSubmit** sur le "form" pour intercepter l'envoi. Il faut faire **`event.preventDefault()`** pour, entres-autres, éviter le rechargement de la page.
+- On peut mettre un **onChange** sur un input pour récupérer la valeur entrée dans l'input.
+- Nous simulons pour l'instant un serveur web intégré avec "json-server", mais il s'agit bien d'une application distincte de notre application web en React.
+- Axios va nous permettre de faire des requêtes à l'API. Vous pouvez utiliser "fetch" également si vous le souhaitez.
+- **useEffect** permet d'éxécuter du code, notamment après le premier "render" du composant dans lequel il est défini.
+- par défaut, **useEffect** est exécuté après CHAQUE "render" du composant.
+- le 2e argument de **useEffect** permet de "choisir" le moment où il sera exécuté. Mettre "[]" permet de sélectionner, "uniquement après le premier "render".
+
+# <InternalPageTitle> Insertion avec l'API </InternalPageTitle>
+
+Veuillez lire le chapitre sur l'utilisation plus avancée d'une API REST en React : [Altering data in server](https://fullstackopen.com/en/part2/altering_data_in_server) [[R.1]](/references/#r1)
+
+Faites l'exercice 2.12 de la séance lue précédemment : [Exercises 2.12.-2.15.](https://fullstackopen.com/en/part2/altering_data_in_server#exercises-2-12-2-15) [[R.1]](/references/#r1).
+
+# <InternalPageTitle> Module de communication avec l'API </InternalPageTitle>
+
+Faites l'exercice 2.13 de la séance lue précédemment : [Exercises 2.12.-2.15.](https://fullstackopen.com/en/part2/altering_data_in_server#exercises-2-12-2-15) [[R.1]](/references/#r1).
+
+# <InternalPageTitle> 🍬 Pour aller plus loin : suppression et mise à jour avec l'API (pas obligatoire) </InternalPageTitle>
+
+Pour cet exercice, veuillez faire une copie du projet **`/exercises/modules4/4.1.`** vers **`/exercises/modules4/4.2`** et supprimer les répertoires `.git/` et `node_modules/`.
+
+Faites ensuite l'exercice 2.14 et 2.15 de la séance lue précédemment : [Exercises 2.12.-2.15.](https://fullstackopen.com/en/part2/altering_data_in_server#exercises-2-12-2-15) [[R.1]](/references/#r1).
+
+# <InternalPageTitle> A retenir </InternalPageTitle>
+
+- Contrairement à ce qu'on pourrait imaginer, POST permet d'ajouter, PUT de remplacer, PATCH de modifier. N'utilisons pas PATCH pour l'instant, PUT sera utilisé pour remplacer et modifier.
+- **`{ getAll }`** est la notation simplifiée de **`{ getAll: getAll }`**.
+
+# <InternalPageTitle> 🍬 Solution des exercices </InternalPageTitle>
+
+Une solution pour les exercices de ce module se trouvent ici : [module4](https://github.com/e-vinci/web3-exercises/tree/main/exercises/module4)
+
+N'hésitez pas à utiliser https://download-directory.github.io/ pour télécharger le dossier complet (sans devoir cloner tout le repo **`web3-exercises`**). Vous devez juste indiquer le lien vers le dossier **`module4`** dans le champ **`Download Directory`** : https://github.com/e-vinci/web3-exercises/tree/main/exercises/module4 puis taper sur la touche **`Enter`** de votre clavier.

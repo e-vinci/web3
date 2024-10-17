@@ -22,6 +22,10 @@ Ce module vous offre principalement la gestion de React Router et l'utilisation 
   <InternalPageMenuItem> Utilisation d'un OutletContext </InternalPageMenuItem>
   <InternalPageMenuItem> Exercice 7.2 : État avec un router </InternalPageMenuItem>
   <InternalPageMenuItem> Exercice 7.3 : Routes dynamiques </InternalPageMenuItem>
+  <InternalPageMenuItem> Introduction à Ant Design </InternalPageMenuItem>
+  <InternalPageMenuItem> Exercice 7.4 : Intégration de Ant Design dans un projet </InternalPageMenuItem>
+  <InternalPageMenuItem> 🍬 Encore d'autres composants Ant Design </InternalPageMenuItem>
+  <InternalPageMenuItem> 🍬 Solution des exercices </InternalPageMenuItem>
 </InternalPageMenu>
 
 # <InternalPageTitle> Introduction au routing </InternalPageTitle>
@@ -471,7 +475,8 @@ Veuillez créer un nouveau projet nommé `exercises/module7/7.1-2-3` sur base du
 
 Vous allez donc créer la nouvelle application `iMovies` qui s'occupera d'intégrer les 3 pages déjà offertes en mettant en place la navigation.
 
-Vous devez faire en sorte que chaque page possède un même header et un même footer. Vous découvrirez que le router-starter vous offre déjà un composant **`Header`** et un composant **`Footer`**. Utilisez donc les biens ; )
+Vous découvrirez que le router-starter vous offre déjà un composant **`Header`** et un composant **`Footer`**. Utilisez donc les biens ; )  
+Veuillez structurer votre application de manière à ce que le header et le footer soient affichés sur toutes les pages, mais que ceux-ci ne soient pas répétés dans chaque page (comme nous l'avons fait pour la `NavBar` dans le tutoriel).
 
 A vous d'intégrer le menu de navigation là où il vous semble approprié.
 
@@ -604,7 +609,9 @@ Si nécessaire, vous pouvez trouver le code associé à ce tutoriel ici : [route
 
 # <InternalPageTitle> Exercice 7.2 : État avec un router </InternalPageTitle>
 
-Veuillez continuer votre exercice précédent dans le projet existant et nommé `exercises/module7/7.1-2-3` en y intégrant une `AddMoviePage` qui permette d'ajouter un film à la liste des films. Une fois un film ajouté, l'utilisateur est automatiquement redirigé vers la `MovieListPage`.
+Veuillez continuer votre exercice précédent dans le projet existant et nommé `exercises/module7/7.1-2-3` en y intégrant une `AddMoviePage` qui permette d'ajouter un film à la liste des films. Bien sûr, la `Navbar` doit aussi être mise à jour. Une fois un film ajouté, l'utilisateur est automatiquement redirigé vers la `MovieListPage` qui liste les films (et qui ne permet donc plus d'ajouter un film).
+
+Veuillez utiliser un `OutletContext` pour gérer l'état de l'application.
 
 # <InternalPageTitle> Exercice 7.3 : Routes dynamiques </InternalPageTitle>
 
@@ -614,57 +621,65 @@ Nous vous demandons :
 - De mettre à jour la `HomePage` afin qu'elle affiche une liste reprenant uniquement les titres de vos films favoris (sans d'autres infos associées aux films telles que la description...).
 - Il doit être possible de pouvoir cliquer sur le titre d'un de vos films favoris et de naviguer vers une nouvelle `MoviePage` qui affichera toutes les infos de ce film-ci. Pour ce faire, vous devez ajouter un id à vos films, et cette id doit être visible dans l'URL quand les utilisateurs cliquent sur un titre donné dans la `HomePage`.
 
-# <a id="b"></a> b) Ant Design
-## <a id="b1"></a>b.1) Introduction à Ant Design
+💭 Que pensez-vous de cette gestion de l'état par rapport à **React Context** ?
+
+Nous avons vu que **React Router** nous offre une solution pour gérer l'état de l'application sans devoir utiliser **React Context**. Cela est une solution élégante pour des applications de taille moyenne, pour gérer un état partagé par plusieurs pages. 
+
+Pour des applications bien plus complexes, il est possible que **React Context** soit plus adapté.
+
+# <InternalPageTitle> Introduction à Ant Design </InternalPageTitle>
 
 Nous allons à présent intégrer une bibliothèque de composants React qui va nous rendre un certain nombre de services pour la conception, ainsi que la création de notre interface utilisateur. Il en existe plusieurs, mais nous avons choisi ici de vous proposer : **Ant Design**.
 
 Dans un premier temps, "déambulez" sur le site internet https://ant.design/ [[R.9]](/references/#r9) pour vous faire une idée des "services" rendus par ce module (~5-10min). Vous remarquerez que **Ant Design** semble proposer plusieurs choses :
-
 - Un ensemble de "patterns", et "principes" à respecter pour la création d'interfaces graphiques efficaces : [Introduction] (https://ant.design/docs/spec/introduce) [[R.9]](/references/#r9).
 - Un ensemble d'outils pour vous aider dans la création d'interfaces (application de prototypage, des templates de sites web...).
 - Un ensemble de composants "prêts à l'emploi", pour la création d'interfaces graphiques : [Components Overview](https://ant.design/components/overview/) [[R.9]](/references/#r9).
 
 C'est sur ce dernier point que nous allons principalement travailler. 
 
-## <a id="b2"></a> b.2) Intégration de Ant Design dans un projet
+# <InternalPageTitle> Exercice 7.4 : Intégration de Ant Design dans un projet </InternalPageTitle>
 
-Veuillez créer un nouveau projet dans le répertoire **module7/7.4** de votre repo sur base d'un "copier / coller" du contenu de l'application développée aux exercices précédent.
+Veuillez créer un nouveau projet dans le répertoire **`/exercises/module7/7.4`** de votre repo sur base d'un "copier / coller" du contenu de l'application développée aux exercices précédents (`/exercises/module7/7.1-2-3`).
 
-Commençons par intégrer **Ant Design** dans notre projet, au sein du répertoire associé aux exercices précédents.  
+Commençons par intégrer **Ant Design** dans notre projet.
 Pour cela, consultez la documentation officielle [Use with Vite](https://ant.design/docs/react/use-with-vite) [[R.9]](/references/#r9). 
 
 Veuillez faire attention à ne pas copier simplement les commandes, mais à bien réfléchir à leur utilité, tout en lisant attentivement la documentation.  
 Par exemple, inutile de faire la première commande **`npm create vite antd-demo`** car notre projet existe déjà...
 
-Ensuite, commençons par changer les "input" de notre composant "**CreateNew**", en utilisant les composants "**Input**" de **Ant Design** : [Input](https://ant.design/components/input/) [[R.9]](/references/#r9).  
-Pour cela, consultez la documentation officielle, en regardant plus en détail les exemples, et notamment le code source associé. Cliquez sur l'icone "**< >**" en dessous d'un exemple pour voir le code source associé à l'exemple. Pour avoir une vue complète des props que vous pouvez passer au composant, consultez la section API à la fin de la page. L'exemple "**Basic usage**" devrait nous suffire dans un premier temps.
+## Ant Design Inputs & Buttons
 
-Faisons de même pour le bouton, en utilisant le composant "**Button**" de **Ant Design** : [Button](https://ant.design/components/button/) [[R.9]](/references/#r9).
+Ensuite, commençons par changer les "inputs" de notre composant **`AddPizzaPage`**, en utilisant les composants "**Input**" de **Ant Design** : [Input](https://ant.design/components/input/) [[R.9]](/references/#r9).  
+Pour cela, consultez la documentation officielle, en regardant plus en détail les exemples, et notamment le code source associé. Cliquez sur l’icône "**`< >`**" en dessous d'un exemple pour voir le code source associé à l'exemple. Pour avoir une vue complète des props que vous pouvez passer au composant, consultez la section API à la fin de la page. L'exemple "**Basic usage**" devrait nous suffire dans un premier temps.
+
+Faisons de même pour le bouton, en utilisant le composant "**`Button`**" de **Ant Design** : [Button](https://ant.design/components/button/) [[R.9]](/references/#r9).
 
 Si vous le souhaitez, n'hésitez pas à ajouter des petites icônes dans les boutons, des préfixes sur les inputs... pour vous rendre compte de la simplicité.
 
-## <a id="b3"></a> b.3) Ant Design Forms
+## Ant Design Forms
 
-Nous avons maintenant utilisé nos premiers composants "externes" proposés par **Ant Design**. Nous allons maintenant remplacer notre balise "**form**" par le formulaire **Ant Design** qui va nous rendre beaucoup de services.
+Nous avons maintenant utilisé nos premiers composants "externes" proposés par **Ant Design**. Nous allons maintenant remplacer notre balise **`form`* par le formulaire **Ant Design** qui va nous rendre beaucoup de services.
 
 Consultons la documentation officielle du composant [Form](https://ant.design/components/form/) [[R.9]](/references/#r9), et plus particulièrement le "**Basic Usage**", et adaptons notre code pour en faire usage. Nous constaterons que ce composant nous rend plusieurs services :
-- Validation des champs : veuillez faire en sorte que tous les champs soient requis pour l'ajout d'une anectdote.
-- Gestion de l'état du formulaire intégré : nous ne devons plus utiliser des "**useState()**" avec des "**onChange()**" pour contrôler le formulaire.
+- Validation des champs : veuillez faire en sorte que tous les champs soient requis pour l'ajout d'une anecdote.
+- Gestion de l'état du formulaire intégré : nous ne devons plus utiliser des **`useState()`** avec des **`onChange()`** pour contrôler le formulaire.
 - Gestion plus simple du submit du formulaire.
 - Gestion du "**layout**" du formulaire, avec alignement des labels...
 
 N'hésitez pas à consulter les autres options possibles sur les formulaires, il y en a pour tous les cas d'utilisation...
 
-## <a id="b4"></a> b.4) 🍬 Encore d'autres composants (optionnel)
+# <InternalPageTitle> 🍬 Encore d'autres composants Ant Design </InternalPageTitle>
+
 N'hésitez pas à continuer la modification de votre application en utilisant d'autres composants. 
 
 Nous vous conseillons :
 - [Layout](https://ant.design/components/layout/) [[R.9]](/references/#r9) : pour le layout de votre projet, avec un menu, un footer...
 - [Message](https://ant.design/components/message/) ou [Alert](https://ant.design/components/alert/) [[R.9]](/references/#r9) pour les notifications.
-- [List](https://ant.design/components/list/) ou [Table](https://ant.design/components/table/) [[R.9]](/references/#r9) pour la liste des anecdotes.
+- [List](https://ant.design/components/list/) ou [Table](https://ant.design/components/table/) [[R.9]](/references/#r9) pour la liste des films.
 
-# <a id="c"></a> c) 🍬 Solution des exercices
-Une solution pour les exercices de ce module se trouvent ici : [module7](https://gitlab.vinci.be/6i3-web3/2023-2024/module7.git).
+# <InternalPageTitle> 🍬 Solution des exercices </InternalPageTitle>
 
-Vous devez avoir un compte Vinci pour pouvoir y accéder.
+Une solution pour les exercices de ce module se trouvent ici : [module7](https://github.com/e-vinci/web3-exercises/tree/main/exercises/module7)
+
+N'hésitez pas à utiliser https://download-directory.github.io/ pour télécharger le dossier complet (sans devoir cloner tout le repo **`web3-exercises`**). Vous devez juste indiquer le lien vers le dossier **`module7`** dans le champ **`Download Directory`** : https://github.com/e-vinci/web3-exercises/tree/main/exercises/module7 puis taper sur la touche **`Enter`** de votre clavier.

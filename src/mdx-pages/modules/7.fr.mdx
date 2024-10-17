@@ -1,110 +1,687 @@
 ---
-title: "Module 7 : React router & Ant Design"
-description: "React router & Ant Design"
+title: "Module 7 : React router & UI library"
+description: "React router & UI library"
 ---
 
 # Module 7 : React router & Ant Design
 Ce module vous offre principalement la gestion de React Router et l'utilisation d'Ant Design.
 
-Voici les sujets traités :
-- a) [React router](#a)
-  - a.1) [Introduction au router de React](#a1)
-  - a.2) [Root path & formulaire de création](#a2)
-  - a.3) [Show path avec un paramètre dans l'url](#a3)
-  - a.4) [Redirect & Notification](#a4)
-  - a.5) [Résumé](#a5)
-- b) [Ant Design](#b)
-  - b.1) [Introduction à Ant Design](#b1)
-  - b.2) [Intégration de Ant Design dans un projet](#b2)
-  - b.3) [Ant Design Forms](#b3)
-  - b.4) [🍬 Encore d'autres composants (optionnel)](#b4)
-- c) [Solution des exercices](#c)
+<InternalPageMenu>
+  <PathViewer>
+    <PathViewerItem to="/"> web3course </PathViewerItem>
+    <PathViewerItem to="/modules/7" selected> Module 7 </PathViewerItem>
+  </PathViewer>
+  <InternalPageMenuItem> Introduction au routing </InternalPageMenuItem>
+  <InternalPageMenuItem> Navigation basique entre pages </InternalPageMenuItem>
+  <InternalPageMenuItem> Mise en place de React Router </InternalPageMenuItem>
+  <InternalPageMenuItem> Utilisation de useNavigation </InternalPageMenuItem>
+  <InternalPageMenuItem> Nested routes </InternalPageMenuItem>
+  <InternalPageMenuItem> URL dynamiques </InternalPageMenuItem>
+  <InternalPageMenuItem> Exercice 7.1 : React Router de base </InternalPageMenuItem>
+  <InternalPageMenuItem> Comment gérer l'état avec React Router ? </InternalPageMenuItem>
+  <InternalPageMenuItem> Utilisation d'un OutletContext </InternalPageMenuItem>
+  <InternalPageMenuItem> Exercice 7.2 : État avec un router </InternalPageMenuItem>
+  <InternalPageMenuItem> Exercice 7.3 : Routes dynamiques </InternalPageMenuItem>
+  <InternalPageMenuItem> Introduction à Ant Design </InternalPageMenuItem>
+  <InternalPageMenuItem> Exercice 7.4 : Intégration de Ant Design dans un projet </InternalPageMenuItem>
+  <InternalPageMenuItem> 🍬 Encore d'autres composants Ant Design </InternalPageMenuItem>
+  <InternalPageMenuItem> 🍬 Solution des exercices </InternalPageMenuItem>
+</InternalPageMenu>
 
-**Voici les lectures qui sont référencées dans ce module :**
-- [React-router](https://fullstackopen.com/en/part7/react_router) [[R.1]](/references/#r1)
+# <InternalPageTitle> Introduction au routing </InternalPageTitle>
 
-# <a id="a"></a> a) React router
-## <a id="a1"></a> a.1) Introduction au router de React
-Veuillez découvrir le router offert par React en lisant [React-router](https://fullstackopen.com/en/part7/react_router) [[R.1]](/references/#r1).
+Lorsqu'on parle d'une IHM, nous souhaitons généralement afficher différents écrans en réagissant aux actions des utilisateurs.
 
-## <a id="a2"></a> a.2) Root path & formulaire de création
-Dans le répertoire **module7/7.1-7.3** de votre repo, veuillez faire l'exercice **7.1** se trouvant à la suite des explications sur le router : [Exercises 7.1.-7.3.](https://fullstackopen.com/en/part7/react_router#exercises-7-1-7-3) [[R.1]](/references/#r1).
+Le routage (ou routing en anglais) est ce qui rend possible l'affichage de différents écrans.
 
-Pour réaliser cet exercice vous devrez cloner le repository git mentionné (hébergé sur github et pas sur gitlab) et ne pas oublier de supprimer le dossier **.git** (et ne garder donc que le working tree).
+Dans les applications "old school" de type **Multi-Page-Application** (**MPA**), pour changer de page, il faudrait :
+- Faire un clic sur un élément qui permet de faire une requête HTTP au serveur pour demander un page.
+- Le browser fait la requête HTTP de type GET au serveur.
+- L'application serveur (le backend) s'occupe du rendu de l'HTML et le renvoie au browser (le client).
+- Le browser affiche cette page.
 
-## <a id="a3"></a> a.3) Show path avec un paramètre dans l'url
-Toujours dans le répertoire **module7/7.1-7.3** de votre repo, veuillez faire l'exercice **7.2** se trouvant à la suite des explications sur le router : [Exercises 7.1.-7.3.](https://fullstackopen.com/en/part7/react_router#exercises-7-1-7-3) [[R.1]](/references/#r1).
+Dans les applications que nous développons dans ce cours, l'architecture est complètement différente. Nous développons des **Single-Page-Applications** (**SPA**), pour changer de page :
+- Il faut cliquer sur un élément de la page permettant la navigation.
+- Le JS exécuté dans le browser s'occupe de créer l'illusion que l'on change de page en faisant lui-même le rendu de la nouvelle page.
+- Si des données sont nécessaires pour afficher la page, le JS exécuté dans le browser s'occupera de faire un "fetch" de celles-ci au format JSON (RESTful API) et générera dynamiquement l'HTML nécessaire.
 
-## <a id="a4"></a> a.4) Redirect & Notification
-Toujours dans le répertoire **module7/7.1-7.3** de votre repo, veuillez faire l'exercice **7.3** se trouvant à la suite des explications sur le router : [Exercises 7.1.-7.3.](https://fullstackopen.com/en/part7/react_router#exercises-7-1-7-3) [[R.1]](/references/#r1).
+Ainsi, dans une **SPA**, une seule page est chargée la toute première fois que l'on accède au serveur : c'est `index.html` et tous les assets associés (scripts JS, les images, CSS, sons...). Par la suite, on va utiliser un router (qui se trouvera dans un script JS) qui s'occupera de faire du "**Client Side Rendering**" (rendu côté client de l'HTML).  
 
-Pour la disparition de la notification après 5 secondes, vous aurez besoin d'un state **notification**,  de **setTimeout**, et de **useEffect**. Le state **notification** fait déjà partie du code de base fourni.
+Dans nos applications `Vite + React`, c'est le code transpilé du JSX vers le JS qui s'occupera :
+- d'accéder à un container présent dans la représentation mémoire des éléments HTML de la page (par exemple la `div#root`).
+- de mettre à jour la représentation mémoire de ce container avec les éléments HTML attendu pour la page demandé.  
 
-## <a id="a5"></a> a.5) Résumé
-- Le router react permet d'interagir avec la barre d'adresse du navigateur et avec l'historique du bouton back sans réellement envoyer de nouvelles requête au serveur.
-- Le routeur s'utilise habituellement avec un composant **`Routes`** qui s'arrêtera à la première route qui passe le test.
-- On ne peut plus utiliser de balise **`<a>`** pour les liens, on a besoin d'une balise **`<Link>`** qui va interagir avec le router.
-- Grâce au hook **`useNavigate`**, on peut facilement faire une redirection programmatique. On peut aussi utiliser le composant **`<Redirect>`** qui exécutera un redirect s'il est affiché.
-- Grâce au hook **`useParam`**, on peut facilement accéder aux params passés dans l'url.
-- Le **`<Router>`** introduit un contexte qui est utilisé par les différents hooks. On ne peut donc pas utiliser les hooks dans le même composant que celui où on a introduit le **Router** mais uniquement dans des composants plus bas dans l'arbre.
-- Lorsqu'un utilisateur clique sur un lien ou un bouton, il faut décider si l'action va changer la route ou changer le state, on ne fait pas les deux (peupler le state sur base de la route). Les endroits où l'on peut "trouver" des données sont donc : 
-  - les props
-  - le state
-  - les contextes
-  - les params de l'url
-  - d'autres sources comme le localStorage ou les API qui devront d'abord transiter par une des options précédentes.
+Ensuite, le browser n'aura plus qu'à redessiner la page sur base de la nouvelle représentation mémoire des éléments HTML de la page.
 
-# <a id="b"></a> b) Ant Design
-## <a id="b1"></a>b.1) Introduction à Ant Design
+Notons que dans une MPA, on parle de "Server Side Rendering", car c'est le backend qui est responsable de la génération de l'HTML ; cela se fait souvent à l'aide d'un moteur de templating pour générer des views (par exemple via `Handlebars` qui permet de générer des views dans une application `Node.js`).
+
+# <InternalPageTitle> Navigation basique entre pages </InternalPageTitle>
+
+A notre stade actuel de connaissances, nous pourrions très facilement organiser la navigation entre plusieurs page, simplement à l'aide d'une variable d'état et des gestionnaires de clics.
+
+Pour ce tutoriel, nous allons partir d'une base de code minimaliste. Veuillez donc créer un nouveau projet `Vite + React` nommé `routing`.  
+Vous ne vous souvenez plus comment faire ? Voici la commande :
+
+```bash
+npm create vite@latest routing -- --template react
+```
+
+Veuillez remplacer le code de `App` :
+```jsx
+import { useState } from "react";
+
+const HomePage = () => <div>Home Page</div>;
+const AboutPage = () => <div>About Page</div>;
+const ContactPage = () => <div>Contact Page</div>;
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState("Home");
+
+  const navigateTo = (page) => {
+    setCurrentPage(page);
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "Home":
+        return <HomePage />;
+      case "About":
+        return <AboutPage />;
+      case "Contact":
+        return <ContactPage />;
+      default:
+        return <HomePage />;
+    }
+  };
+
+  return (
+    <div>
+      <nav>
+        <button onClick={() => navigateTo("Home")}>Home</button>
+        <button onClick={() => navigateTo("About")}>About</button>
+        <button onClick={() => navigateTo("Contact")}>Contact</button>
+      </nav>
+      {renderPage()}
+    </div>
+  );
+};
+
+export default App;
+export { HomePage, AboutPage, ContactPage };
+```
+
+Nous avons donc ici défini 3 composants React qui représentent 3 pages, et une fonction qui permet, lors d'un clic, d'afficher la page associée au bouton.
+
+Veuillez exécuter l'application.
+
+Tout fonctionne bien !
+
+💭 Mais qu'est-ce qui nous manque ?
+
+Voici ce qui fait défaut :
+- Si nous faisons un refresh de la page, nous perdons la page en cours. Par exemple, si nous sommes sur `ContactPage`, nous serons redirigé vers `HomePage`.
+- Nous n'avons pas d'historique des pages visitées, nous ne pouvons pas revenir en arrière, ni en avant dans le temps.
+- Nous n'avons pas une URL spécifique pour chaque écran.
+
+Nous allons donc mettre en place en routeur afin de bénéficier de ces fonctions manquantes.
+
+# <InternalPageTitle> Mise en place de React Router </InternalPageTitle>
+
+## Introduction
+`React Router` est une librairie qui fournit une belle solution pour gérer la navigation dans une application React.
+
+Sa documentation est disponible ici : https://reactrouter.com/en/main
+
+## Installation de la librairie
+
+Dans un premier temps, il faut donc installer la librairie : 
+```sh
+npm i react-router-dom
+```
+
+## Mise en place de routes basiques
+
+Dans un premier temps, nous allons voir comment créer la configuration la plus simple d'un router. Veuillez mettre à jour `/src/main.jsx` :
+```jsx numbered highlighting="5,7-20,24"
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { AboutPage, ContactPage, HomePage } from "./App.jsx";
+import "./index.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/about",
+    element: <AboutPage />,
+  },
+  {
+    path: "/contact",
+    element: <ContactPage />,
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <RouterProvider router={router}/>  
+  </React.StrictMode>
+);
+```
+
+Ici, nous avons donc `createBrowserRouter` qui crée une configuration pour nos 3 routes, et chaque route va afficher une page.
+
+Ensuite, nous utilisons le `RouterProvider` pour fournir la configuration du routeur à l'ensemble de l'application et pour permettre aux composants de l'application d'accéder au contexte du router.
+
+Pour cette première utilisation du router, nous n'allons pas tenter d'optimiser la navigation. Nous allons donc intégrer à chaque page une `NavBar`.  
+Chaque élément de navigation va utiliser `<Link>` comme composant pour faire le lien avec les routes que nous avons configurées.
+
+Veuillez mettre à jour le composant `App` :
+```jsx numbered highlighting="1,5-7"
+import { Link } from "react-router-dom";
+
+const NavBar = () => (
+  <nav>
+    <Link to="/">Home</Link>
+    <Link to="/about">About</Link>
+    <Link to="/contact">Contact</Link>
+  </nav>
+);
+
+const HomePage = () => (
+  <div>
+    <NavBar />
+    <p>Home Page</p>
+  </div>
+);
+const AboutPage = () => (
+  <div>
+    <NavBar />
+    <p>About Page</p>
+  </div>
+);
+const ContactPage = () => (
+  <div>
+    <NavBar />
+    <p>Contact Page</p>
+  </div>
+);
+
+const App = () => {
+  return <div></div>;
+};
+
+export default App;
+export { HomePage, AboutPage, ContactPage };
+```
+
+Veuillez lancer votre application et vérifier que tout fonctionne. Lorsque vous cliquez sur un lien, le router détecte qu'il y a eu un changement d'état, et `element` dans la configuration du router est rappelé pour la route associée, amenant au render du composant.
+
+# <InternalPageTitle> Utilisation de useNavigation </InternalPageTitle>
+
+Si l'on souhaite se rapprocher du design initial, nous pouvons utiliser le hook `useNavigation` qui offre une fonction pour naviguer vers une nouvelle route.
+
+Veuillez mettre `App` à jour :
+```jsx numbered highlighting="1,7-9"
+import { useNavigate } from "react-router-dom";
+
+const NavBar = () => {
+  const navigate = useNavigate();
+  return (
+    <nav>
+      <button onClick={() => navigate("/")}>Home</button>
+      <button onClick={() => navigate("/about")}>About</button>
+      <button onClick={() => navigate("/contact")}> Contact</button>
+    </nav>
+  );
+};
+
+const HomePage = () => (
+  <div>
+    <NavBar />
+    <p>Home Page</p>
+  </div>
+);
+const AboutPage = () => (
+  <div>
+    <NavBar />
+    <p>About Page</p>
+  </div>
+);
+const ContactPage = () => (
+  <div>
+    <NavBar />
+    <p>Contact Page</p>
+  </div>
+);
+
+const App = () => {
+  return <div></div>;
+};
+
+export default App;
+export { HomePage, AboutPage, ContactPage };
+```
+
+Voila, nous avons un design qui ressemble au design initial.  
+N'hésitez pas à tester le router : 
+- Faites un reload quand vous êtes dans la `ContactPage` pour voir que vous y restez bien.
+- Naviguez sur plusieurs pages, puis utiliser les fonctionnalités "Back" and "Forward" pour voyager dans l'historique de votre Browser.
+- Vérifiez bien que l'URL dans le browser correspond bien à la page demandée.
+
+💭 Est-ce qu'il n'y a pas quelque chose qui vous dérange dans la solution actuelle du layout de nos pages ?
+
+Actuellement, nous intégrons une `NavBar` dans chaque page. Cela signifie qu'à chaque navigation d'une page à une autre, c'est l'entièreté de la page qui doit être rendue, y compris les éléments de la `Navbar`, qui pourtant ne changent pas !
+
+Il serait intéressant de pouvoir définir un layout de tout ce qui devrait être rendu qu'une seule fois dans notre page, comme par exemple une `Navbar`.
+
+Pour ce faire, nous allons voir les "nested routes".
+
+# <InternalPageTitle> Nested routes </InternalPageTitle>
+
+Il est possible de définir une route parent, ça serait la route "racine" ici, pour afficher le squelette de nos pages.
+
+Ensuite, nous afficherons des routes "enfants" au sein de la route "parent". Pour indiquer où les routes "enfants" devront s'afficher chez le "parent", nous utiliserons un `<Outlet>`.
+
+Voici comment définir la route `/` pour le squelette de l'application qui se trouvera dans `App`, puis les 3 routes "enfants" pour les 3 pages (veuillez mettre à jour le router au sein de `main.jsx`) :
+```jsx numbered highlighting="3-18"
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "",
+        element: <HomePage />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
+      {
+        path: "contact",
+        element: <ContactPage />,
+      },
+    ],
+  },
+]);
+```
+
+Il ne nous reste plus qu'à mettre à jour `App` pour intégrer le `Outlet` et pour enlever l'appel de chaque page à la `NavBar` : 
+```jsx numbered highlighting="1,15-17,21-22"
+import { Outlet, useNavigate } from "react-router-dom";
+
+const NavBar = () => {
+  const navigate = useNavigate();
+
+  return (
+    <nav>
+      <button onClick={() => navigate("/")}>Home</button>
+      <button onClick={() => navigate("/about")}>About</button>
+      <button onClick={() => navigate("/contact")}> Contact</button>
+    </nav>
+  );
+};
+
+const HomePage = () => <p>Home Page</p>;
+const AboutPage = () => <p>About Page</p>;
+const ContactPage = () => <p>Contact Page</p>;
+
+const App = () => (
+  <div>
+    <NavBar />
+    <Outlet />
+  </div>
+);
+
+export default App;
+export { HomePage, AboutPage, ContactPage };
+```
+
+Nous avons là un code bien propre, et une navigation parfaitement fonctionnelle !  
+Il est à noter que le code serait encore plus simple si nous utilisions le composant `Link` de la librairie (il suffirait de le styler pour qu'il ressemble à un bouton).
+
+# <InternalPageTitle> URL dynamiques </InternalPageTitle>
+
+Parfois, il est intéressant qu'une même composant soit appelé sur toute une famille de routes. 
+
+Par exemple, dans le composant `AboutPage`, nous souhaitons afficher une liste d'utilisateurs.  Lorsque nous cliquons sur une utilisatrice ou un utilisateur, nous souhaitons faire appel à un nouveau composant `UserPage` qui permettra d'afficher sa page associée avec comme url : `/users/:userId`.
+
+Veuillez mettre à jour le composant `App` pour créer la `UserPage` et mettre à jour `AboutPage` : 
+
+```jsx numbered highlighting="19-24,29-48,50-65"
+import { Link, Outlet, useMatch, useNavigate } from "react-router-dom";
+
+const NavBar = () => {
+  const navigate = useNavigate();
+
+  return (
+    <nav>
+      <button onClick={() => navigate("/")}>Home</button>
+      <button onClick={() => navigate("/about")}>About</button>
+      <button onClick={() => navigate("/contact")}> Contact</button>
+    </nav>
+  );
+};
+
+const HomePage = () => <p>Home Page</p>;
+const AboutPage = () => (
+  <div>
+    <h1>About Page</h1>
+    <h2>Authors:</h2>
+    {users.map((user) => (
+      <Link key={user.id} to={`/users/${user.id}`} style={{ display: "block" }}>
+        {user.name}
+      </Link>
+    ))}
+  </div>
+);
+const ContactPage = () => <p>Contact Page</p>;
+
+const users = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john.doe@example.com",
+    phone: "123-456-7890",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    email: "jane.smith@example.com",
+    phone: "234-567-8901",
+  },
+  {
+    id: 3,
+    name: "James Brown",
+    email: "james.brown@example.com",
+    phone: "345-678-9012",
+  },
+];
+
+const UserPage = () => {
+  const match = useMatch("/users/:userId");
+  const userId = match?.params.userId;
+  if (!userId) return <p>User not found</p>;
+
+  const user = users.find((user) => user.id.toString() === userId);
+  if (!user) return <p>User not found</p>;
+
+  return (
+    <div>
+      <h2>{user.name}</h2>
+      <p>Email: {user.email}</p>
+      <p>Phone: {user.phone}</p>
+    </div>
+  );
+};
+
+const App = () => (
+  <div>
+    <NavBar />
+    <Outlet />
+  </div>
+);
+
+export default App;
+export { HomePage, AboutPage, ContactPage, UserPage };
+```
+
+Le composant `AboutPage` contient des `Link` qui pointent vers des URL qui sont `/users/1` pour le premier user, `/users/2` pour le user qui a l'id `2`...
+
+Pour récupérer cette id dans la page des utilisateurs (le composant `UserPage`), nous utilisons le hook `useMatch("/users/:userId")` pour indiquer le segment dynamique de l'URL par une variable qui sera accessible via `match.params.userId`.
+
+Pour que tout cela fonctionne, il ne reste plus qu'à configurer le router pour cette route dynamique. Veuillez mettre à jour la configuration du router dans `/src/main.jsx` : 
+```jsx numbered highlighting="18-21"
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "",
+        element: <HomePage />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
+      {
+        path: "contact",
+        element: <ContactPage />,
+      },
+      {
+        path: "users/:userId",
+        element: <UserPage />,
+      }
+    ],
+  },
+]);
+```
+
+Veuillez vérifier que tout fonctionne bien, que vous pouvez afficher la page de `James Brown`.
+
+💭 Il est à noter que si nous n'avions pas voulu créer une nouvelle page mais plutôt afficher le détail d'un utilisateur dans le composant `AboutPage`, nous aurions pour créer une route "enfant" de `/about` (en utilisant un `Outlet` dans `AboutPage`).
+
+Si nécessaire, vous pouvez trouver le code associé à ce tutoriel ici : [router-starter](https://github.com/e-vinci/ts-demos/tree/main/front/routing).
+
+# <InternalPageTitle> Exercice 7.1 : React Router de base </InternalPageTitle>
+
+Nous avons créé pour vous une application contenant 3 pages. Malheureusement, nous avons oublié de mettre en place la navigation entre ces pages... 😉
+
+Veuillez créer un nouveau projet nommé `exercises/module7/7.1-2-3` sur base du starter donné ici : [router-starter](https://github.com/e-vinci/web3-exercises/tree/main/tutorials/router-starter).
+
+Vous allez donc créer la nouvelle application `iMovies` qui s'occupera d'intégrer les 3 pages déjà offertes en mettant en place la navigation.
+
+Vous découvrirez que le router-starter vous offre déjà un composant **`Header`** et un composant **`Footer`**. Utilisez donc les biens ; )  
+Veuillez structurer votre application de manière à ce que le header et le footer soient affichés sur toutes les pages, mais que ceux-ci ne soient pas répétés dans chaque page (comme nous l'avons fait pour la `NavBar` dans le tutoriel).
+
+A vous d'intégrer le menu de navigation là où il vous semble approprié.
+
+
+# <InternalPageTitle> Comment gérer l'état avec React Router ? </InternalPageTitle>
+
+Il est possible que vous ayez remarqué, dans le code du router du tutoriel précédent, qu'il semble compliqué, voire impossible, de faire passer des variables d'états & des fonctions pour mettre à jour cet état, entre routes...
+
+Pour la pizzeria, l'IHM que nous avons développée s'est terminée avec le code du tutoriel `ui-library`. Néanmoins, pour la suite du cours, nous ne souhaitons pas vous imposer d'utiliser des composants de `Material UI`. Dès lors, nous avons restructuré le code pour avoir quelque chose de propre, qui contient :
+- que du CSS sans composants `MUI`;
+- deux pages : `HomePage` & `AddPizzaPage` ; 
+- un router et une `NavBar` pour assurer la navigation.
+Cette nouvelle version de l'App se trouve dans le projet `routing-starter`.
+
+Pour ce nouveau tutoriel, veuillez créer un nouveau projet `router-state` sur base d'un copier/coller du projet [router-state-starter](https://github.com/e-vinci/web3-exercises/tree/main/tutorials/router-state-starter). Attention, il est normal que votre projet ne s'exécute pas car il manque la gestion de l'état.  
+N'hésitez pas à utiliser ce site pour télécharger le code du dossier router-starter : https://download-directory.github.io/
+
+Veuillez vous assurer que vous comprenez le code associé au routage des pages : `main.jsx`, `App` et `HomePage` et `AddPizzaPage` sont à bien analyser.
+
+Pour gérer l'état entre siblings (deux pages ici, l'équivalent de deux routes), nous avons appris précédemment qu'il fallait :
+- déclarer l'état et des fonctions pour mettre à jour cet état au niveau du parent ;
+- passer cet état & fonctions aux enfants (les pages ici) qui vont devoir l'utiliser.
+
+Or ici, la relation "parent/enfant" est compliquée, car :
+- il y a un composant `<App>` qui contient tout le squelette de l'application, pour les 2 pages de l'application ;
+- il y a un composant `<Outlet>` qui s'occupe d'appeler les composants "enfants" (les pages) en fonction de la route.
+
+Ainsi, il n'est pas vraiment possible de classiquement faire un "drill" des variables d'état et des fonctions. On ne peut pas passer les variables d'état, ainsi que les fonctions pour mettre à jour cet état, de `App` vers `HomePage` et `AddMoviePage`.
+
+Il existe plusieurs façon de gérer de manière élégante l'état de l'application. Nous avons vu il y a quelques semaines **React Context**. Ici, nous allons voir ce que **React Router** met à notre disposition sans devoir utiliser une nouvelle librairie comme **React Context**.
+
+# <InternalPageTitle> Utilisation d'un OutletContext </InternalPageTitle>
+
+Dans une route "parent", nous allons définir un contexte à l'aide du composant `Outlet`. Ce contexte peut être n'importe quelle donnée ou fonction que nous souhaitons partager avec les routes "enfants".
+
+Dans une route "enfant", nous pouvons accéder au contexte en utilisant le hook `useOutletContext`.
+
+Commençons par mettre à jour `App` en y ajoutant la définition et le passage du contexte aux routes "enfants" :
+```jsx numbered highlighting="18-26,37"
+const App = () => {
+  const [actionToBePerformed, setActionToBePerformed] = useState(false);
+  const [pizzas, setPizzas] = useState(defaultPizzas);
+
+  const addPizza = (newPizza) => {
+    const pizzaAdded = { ...newPizza, id: nextPizzaId(pizzas) };
+    setPizzas([...pizzas, pizzaAdded]);
+  };
+
+  const handleHeaderClick = () => {
+    setActionToBePerformed(true);
+  };
+
+  const clearActionToBePerformed = () => {
+    setActionToBePerformed(false);
+  };
+
+  const fullPizzaContext = {
+    addPizza,
+    pizzas,
+    setPizzas,
+    actionToBePerformed,
+    setActionToBePerformed,
+    clearActionToBePerformed,
+    drinks,
+  };
+
+  return (
+    <div className="page">
+      <Header
+        title="We love Pizza"
+        version={0 + 1}
+        handleHeaderClick={handleHeaderClick}
+      />
+      <main>
+        <NavBar />
+        <Outlet context={fullPizzaContext} />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+```
+
+Maintenant, nous souhaitons mettre à jour `HomePage` pour récupérer, via le hook `useOutletContext`, le `PizzeriaContext` : 
+```jsx numbered highlighting="2-7"
+const HomePage = () => {
+  const {
+    actionToBePerformed,
+    clearActionToBePerformed,
+    pizzas,
+    drinks,
+  } = useOutletContext();
+
+  return (
+    <>
+      <h1>Ma Pizzeria</h1>
+      <p>
+        Parce que nous aimons le JS/TS, vous pouvez cliquer sur le header pour
+        démarrer / stopper la musique ; )
+      </p>
+      <AudioPlayer
+        sound={sound}
+        actionToBePerformed={actionToBePerformed}
+        clearActionToBePerformed={clearActionToBePerformed}
+      />
+
+      <PizzaMenu pizzas={pizzas} />
+
+      <DrinkMenu title="Nos boissons" drinks={drinks} />
+    </>
+  );
+};
+```
+
+N'oubliez pas dans la **`HomePage`** d'importer **`useOutletContext`** : 
+```jsx
+import { useOutletContext } from "react-router-dom";
+```
+
+Puis, nous souhaitons aussi mettre à jour `AddMoviePage` pour récupérer la fonction `addPizza` du contexte : 
+```tsx
+const AddPizzaPage = () => {
+  const { addPizza } = useOutletContext();
+```
+
+N'oubliez pas de faire l'import de `useOutletContext` et du type `PizzeriaContext`.
+Une fois les changements effectués, vous devriez avoir une application pleinement fonctionnelle, avec un routing moderne et une gestion élégante de l'état.
+
+Si nécessaire, vous pouvez trouver le code associé à ce tutoriel ici : [router-state](https://github.com/e-vinci/web3-exercises/tree/main/tutorials/router-state).
+
+# <InternalPageTitle> Exercice 7.2 : État avec un router </InternalPageTitle>
+
+Veuillez continuer votre exercice précédent dans le projet existant et nommé `exercises/module7/7.1-2-3` en y intégrant une `AddMoviePage` qui permette d'ajouter un film à la liste des films. Bien sûr, la `Navbar` doit aussi être mise à jour. Une fois un film ajouté, l'utilisateur est automatiquement redirigé vers la `MovieListPage` qui liste les films (et qui ne permet donc plus d'ajouter un film).
+
+Veuillez utiliser un `OutletContext` pour gérer l'état de l'application.
+
+# <InternalPageTitle> Exercice 7.3 : Routes dynamiques </InternalPageTitle>
+
+Veuillez continuer l'exercice précédent dans le projet existant et nommé `exercises/module7/7.1-2-3`.
+
+Nous vous demandons : 
+- De mettre à jour la `HomePage` afin qu'elle affiche une liste reprenant uniquement les titres de vos films favoris (sans d'autres infos associées aux films telles que la description...).
+- Il doit être possible de pouvoir cliquer sur le titre d'un de vos films favoris et de naviguer vers une nouvelle `MoviePage` qui affichera toutes les infos de ce film-ci. Pour ce faire, vous devez ajouter un id à vos films, et cette id doit être visible dans l'URL quand les utilisateurs cliquent sur un titre donné dans la `HomePage`.
+
+💭 Que pensez-vous de cette gestion de l'état par rapport à **React Context** ?
+
+Nous avons vu que **React Router** nous offre une solution pour gérer l'état de l'application sans devoir utiliser **React Context**. Cela est une solution élégante pour des applications de taille moyenne, pour gérer un état partagé par plusieurs pages. 
+
+Pour des applications bien plus complexes, il est possible que **React Context** soit plus adapté.
+
+# <InternalPageTitle> Introduction à Ant Design </InternalPageTitle>
 
 Nous allons à présent intégrer une bibliothèque de composants React qui va nous rendre un certain nombre de services pour la conception, ainsi que la création de notre interface utilisateur. Il en existe plusieurs, mais nous avons choisi ici de vous proposer : **Ant Design**.
 
 Dans un premier temps, "déambulez" sur le site internet https://ant.design/ [[R.9]](/references/#r9) pour vous faire une idée des "services" rendus par ce module (~5-10min). Vous remarquerez que **Ant Design** semble proposer plusieurs choses :
-
 - Un ensemble de "patterns", et "principes" à respecter pour la création d'interfaces graphiques efficaces : [Introduction] (https://ant.design/docs/spec/introduce) [[R.9]](/references/#r9).
 - Un ensemble d'outils pour vous aider dans la création d'interfaces (application de prototypage, des templates de sites web...).
 - Un ensemble de composants "prêts à l'emploi", pour la création d'interfaces graphiques : [Components Overview](https://ant.design/components/overview/) [[R.9]](/references/#r9).
 
 C'est sur ce dernier point que nous allons principalement travailler. 
 
-## <a id="b2"></a> b.2) Intégration de Ant Design dans un projet
+# <InternalPageTitle> Exercice 7.4 : Intégration de Ant Design dans un projet </InternalPageTitle>
 
-Veuillez créer un nouveau projet dans le répertoire **module7/7.4** de votre repo sur base d'un "copier / coller" du contenu de l'application développée aux exercices précédent.
+Veuillez créer un nouveau projet dans le répertoire **`/exercises/module7/7.4`** de votre repo sur base d'un "copier / coller" du contenu de l'application développée aux exercices précédents (`/exercises/module7/7.1-2-3`).
 
-Commençons par intégrer **Ant Design** dans notre projet, au sein du répertoire associé aux exercices précédents.  
+Commençons par intégrer **Ant Design** dans notre projet.
 Pour cela, consultez la documentation officielle [Use with Vite](https://ant.design/docs/react/use-with-vite) [[R.9]](/references/#r9). 
 
 Veuillez faire attention à ne pas copier simplement les commandes, mais à bien réfléchir à leur utilité, tout en lisant attentivement la documentation.  
 Par exemple, inutile de faire la première commande **`npm create vite antd-demo`** car notre projet existe déjà...
 
-Ensuite, commençons par changer les "input" de notre composant "**CreateNew**", en utilisant les composants "**Input**" de **Ant Design** : [Input](https://ant.design/components/input/) [[R.9]](/references/#r9).  
-Pour cela, consultez la documentation officielle, en regardant plus en détail les exemples, et notamment le code source associé. Cliquez sur l'icone "**< >**" en dessous d'un exemple pour voir le code source associé à l'exemple. Pour avoir une vue complète des props que vous pouvez passer au composant, consultez la section API à la fin de la page. L'exemple "**Basic usage**" devrait nous suffire dans un premier temps.
+## Ant Design Inputs & Buttons
 
-Faisons de même pour le bouton, en utilisant le composant "**Button**" de **Ant Design** : [Button](https://ant.design/components/button/) [[R.9]](/references/#r9).
+Ensuite, commençons par changer les "inputs" de notre composant **`AddMovieForm`**, en utilisant les composants "**Input**" de **Ant Design** : [Input](https://ant.design/components/input/) [[R.9]](/references/#r9).  
+Pour cela, consultez la documentation officielle, en regardant plus en détail les exemples, et notamment le code source associé. Cliquez sur l’icône "**`< >`**" en dessous d'un exemple pour voir le code source associé à l'exemple. Pour avoir une vue complète des props que vous pouvez passer au composant, consultez la section API à la fin de la page. L'exemple "**Basic usage**" devrait nous suffire dans un premier temps.
+
+Faisons de même pour le bouton, en utilisant le composant "**`Button`**" de **Ant Design** : [Button](https://ant.design/components/button/) [[R.9]](/references/#r9).
 
 Si vous le souhaitez, n'hésitez pas à ajouter des petites icônes dans les boutons, des préfixes sur les inputs... pour vous rendre compte de la simplicité.
 
-## <a id="b3"></a> b.3) Ant Design Forms
+## Ant Design Forms
 
-Nous avons maintenant utilisé nos premiers composants "externes" proposés par **Ant Design**. Nous allons maintenant remplacer notre balise "**form**" par le formulaire **Ant Design** qui va nous rendre beaucoup de services.
+Nous avons maintenant utilisé nos premiers composants "externes" proposés par **Ant Design**. Nous allons maintenant remplacer notre balise **`form`* par le formulaire **Ant Design** qui va nous rendre beaucoup de services.
 
 Consultons la documentation officielle du composant [Form](https://ant.design/components/form/) [[R.9]](/references/#r9), et plus particulièrement le "**Basic Usage**", et adaptons notre code pour en faire usage. Nous constaterons que ce composant nous rend plusieurs services :
-- Validation des champs : veuillez faire en sorte que tous les champs soient requis pour l'ajout d'une anectdote.
-- Gestion de l'état du formulaire intégré : nous ne devons plus utiliser des "**useState()**" avec des "**onChange()**" pour contrôler le formulaire.
+- Validation des champs : veuillez faire en sorte que tous les champs soient requis pour l'ajout d'une anecdote.
+- Gestion de l'état du formulaire intégré : nous ne devons plus utiliser des **`useState()`** avec des **`onChange()`** pour contrôler le formulaire.
 - Gestion plus simple du submit du formulaire.
 - Gestion du "**layout**" du formulaire, avec alignement des labels...
 
 N'hésitez pas à consulter les autres options possibles sur les formulaires, il y en a pour tous les cas d'utilisation...
 
-## <a id="b4"></a> b.4) 🍬 Encore d'autres composants (optionnel)
+Cet exercice se termine une fois que vous avez intégré les composants **`Input`**, **`InputNumber`**, **`Button`** et **`Form`** de **Ant Design** dans votre application, et que vous utilisez l'état intégré du formulaire pour ajouter un film à la liste des films.
+
+# <InternalPageTitle> 🍬 Encore d'autres composants Ant Design </InternalPageTitle>
+
 N'hésitez pas à continuer la modification de votre application en utilisant d'autres composants. 
 
 Nous vous conseillons :
 - [Layout](https://ant.design/components/layout/) [[R.9]](/references/#r9) : pour le layout de votre projet, avec un menu, un footer...
 - [Message](https://ant.design/components/message/) ou [Alert](https://ant.design/components/alert/) [[R.9]](/references/#r9) pour les notifications.
-- [List](https://ant.design/components/list/) ou [Table](https://ant.design/components/table/) [[R.9]](/references/#r9) pour la liste des anecdotes.
+- [List](https://ant.design/components/list/) ou [Table](https://ant.design/components/table/) [[R.9]](/references/#r9) pour la liste des films.
 
-# <a id="c"></a> c) 🍬 Solution des exercices
-Une solution pour les exercices de ce module se trouvent ici : [module7](https://gitlab.vinci.be/6i3-web3/2023-2024/module7.git).
+# <InternalPageTitle> 🍬 Solution des exercices </InternalPageTitle>
 
-Vous devez avoir un compte Vinci pour pouvoir y accéder.
+Une solution pour les exercices de ce module se trouvent ici : [module7](https://github.com/e-vinci/web3-exercises/tree/main/exercises/module7)
+
+N'hésitez pas à utiliser https://download-directory.github.io/ pour télécharger le dossier complet (sans devoir cloner tout le repo **`web3-exercises`**). Vous devez juste indiquer le lien vers le dossier **`module7`** dans le champ **`Download Directory`** : https://github.com/e-vinci/web3-exercises/tree/main/exercises/module7 puis taper sur la touche **`Enter`** de votre clavier.

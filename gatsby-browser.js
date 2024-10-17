@@ -1,6 +1,6 @@
-import React from 'react';
-import wrapWithProvider from './src/utils/auths/wrap-with-provider';
-import { siteMetadata, plugins } from './gatsby-config';
+import React from "react";
+import wrapWithProvider from "./src/utils/auths/wrap-with-provider";
+import { siteMetadata, plugins } from "./gatsby-config";
 
 const { options: i18nPluginOptions } = plugins.find(
   (plugin) => plugin.resolve === `gatsby-plugin-i18n`
@@ -14,7 +14,7 @@ export const onServiceWorkerUpdateReady = () => {
 
 export const onClientEntry = () => {
   if (i18nPluginOptions.prefixDefault) {
-    if (window.location.pathname === '/') {
+    if (window.location.pathname === "/") {
       window.location.pathname = siteMetadata.languages.defaultLangKey;
     }
   }

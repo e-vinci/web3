@@ -74,7 +74,7 @@ Faites les exercices 3.17 et 3.18 de la séance lue précédemment ([Saving data
 
 * MongoDB est une base de donnée NoSQL qui permet de stocker des objets JSON (BSON en réalité) dans les collections. Aucune vérification de schéma n'est effectuée par la DB, mais on peut faire des vérifications de schéma côté applicatif, ici avec Mongoose.
 * Mongoose va nous connecter à la DB, et nous proposer de créer des Modèles, sur base de Schémas. Ces modèles sont des fonctions "constructeur", ce qui nous donne des objets JS qui ont des méthodes spécifiques, notamment une méthode "**save**" qui permet d'ajouter l'objet créé en DB.
-* On n'est pas obligés d'utiliser Mongoose et toutes les facilités associées. Il existe une driver Node.js officiel "de base" qui permet de faire toutes les opérations nécessaires sur la DB. Il ne fournit par contre pas les systèmes de schéma, de modèle... Lorsque ces éléments ne vous sont pas utiles, préférez le driver par défaut.
+* On n'est pas obligés d'utiliser Mongoose et toutes les facilités associées. Il existe un driver Node.js officiel "de base" qui permet de faire toutes les opérations nécessaires sur la DB. Il ne fournit par contre pas les systèmes de schéma, de modèle... Lorsque ces éléments ne vous sont pas utiles, préférez le driver par défaut.
 * **ON NE MET JAMAIS LES INFORMATIONS DE CONNEXION A LA DB DANS SON CODE !!!** Ces informations sensibles (elles contiennent notamment le mot de passe) doivent être extraites dans des variables d'environnement, ou de manière plus simple, dans des fichiers ".env" qui ne sont pas versionnés.
 * Le code qui nous permet de nous connecter à la DB, les schémas, les modèles...  doivent être mis dans un module séparé.
 

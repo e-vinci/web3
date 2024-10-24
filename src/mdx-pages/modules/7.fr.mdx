@@ -14,7 +14,7 @@ Ce module vous offre principalement la gestion de React Router et l'utilisation 
   <InternalPageMenuItem> Introduction au routing </InternalPageMenuItem>
   <InternalPageMenuItem> Navigation basique entre pages </InternalPageMenuItem>
   <InternalPageMenuItem> Mise en place de React Router </InternalPageMenuItem>
-  <InternalPageMenuItem> Utilisation de useNavigation </InternalPageMenuItem>
+  <InternalPageMenuItem> Utilisation de useNavigate </InternalPageMenuItem>
   <InternalPageMenuItem> Nested routes </InternalPageMenuItem>
   <InternalPageMenuItem> URL dynamiques </InternalPageMenuItem>
   <InternalPageMenuItem> Exercice 7.1 : React Router de base </InternalPageMenuItem>
@@ -34,18 +34,14 @@ Lorsqu'on parle d'une IHM, nous souhaitons généralement afficher différents �
 
 Le routage (ou routing en anglais) est ce qui rend possible l'affichage de différents écrans.
 
-Dans les applications "old school" de type **Multi-Page-Application** (**MPA**), pour changer de page, il faudrait :
-- Faire un clic sur un élément qui permet de faire une requête HTTP au serveur pour demander un page.
-- Le browser fait la requête HTTP de type GET au serveur.
-- L'application serveur (le backend) s'occupe du rendu de l'HTML et le renvoie au browser (le client).
-- Le browser affiche cette page.
+Dans les applications "old school" de type Multi-Page-Application (MPA), chaque clic de la souris génère une requête HTTP GET vers le serveur qui renvoie l'entièreté de la page HTML, même si seulement une petite partie doit être modifiée. Par exemple, un clic pour afficher ou cacher un élément de la page va initier une requête HTTP GET vers le serveur qui renverra une nouvelle page entière, avec l'élément maintenant affiché ou caché.
 
-Dans les applications que nous développons dans ce cours, l'architecture est complètement différente. Nous développons des **Single-Page-Applications** (**SPA**), pour changer de page :
-- Il faut cliquer sur un élément de la page permettant la navigation.
-- Le JS exécuté dans le browser s'occupe de créer l'illusion que l'on change de page en faisant lui-même le rendu de la nouvelle page.
-- Si des données sont nécessaires pour afficher la page, le JS exécuté dans le browser s'occupera de faire un "fetch" de celles-ci au format JSON (RESTful API) et générera dynamiquement l'HTML nécessaire.
+Dans les applications que nous développons dans ce cours, l'architecture est complètement différente. Nous développons des Single-Page-Applications (SPA) où seulement des parties de page sont modifiées en réponse à une action de l'utilisateur. Donc on charge une page principale lors du premier accès à l'application et ensuite seulement des parties de cette page se voient modifiées en fonction des actions de l'utilisateur (d'où le nom Single Page App).
 
-Ainsi, dans une **SPA**, une seule page est chargée la toute première fois que l'on accède au serveur : c'est `index.html` et tous les assets associés (scripts JS, les images, CSS, sons...). Par la suite, on va utiliser un router (qui se trouvera dans un script JS) qui s'occupera de faire du "**Client Side Rendering**" (rendu côté client de l'HTML).  
+Le routage est le principe d'associer une URL à une modification de page (en SPA) ou à une navigation vers une autre page (en MPA).
+
+Ainsi, dans une SPA, une seule page est chargée la toute première fois que l'on accède au serveur : c'est **`index.html`** et tous les assets associés (scripts JS, les images, CSS, sons...).
+Ensuite, les différentes parties de l'application qui peuvent être affichées sont associées à une URL qui sera décrite dans la configuration du router de l'application React. L'affichage de ces parties (composants) se fera via une navigation par hyperlink, typiquement via un **`<a>`**. Le browser se charge alors de modifier le DOM (càd le rendu de toute la page web) généralement en remplaçant des éléments du DOM par le composant React associé à la nouvelle route.
 
 Dans nos applications `Vite + React`, c'est le code transpilé du JSX vers le JS qui s'occupera :
 - d'accéder à un container présent dans la représentation mémoire des éléments HTML de la page (par exemple la `div#root`).
@@ -57,7 +53,7 @@ Notons que dans une MPA, on parle de "Server Side Rendering", car c'est le backe
 
 # <InternalPageTitle> Navigation basique entre pages </InternalPageTitle>
 
-A notre stade actuel de connaissances, nous pourrions très facilement organiser la navigation entre plusieurs page, simplement à l'aide d'une variable d'état et des gestionnaires de clics.
+A notre stade actuel de connaissances, nous pourrions très facilement organiser la navigation entre plusieurs pages, simplement à l'aide d'une variable d'état et des gestionnaires de clics.
 
 Pour ce tutoriel, nous allons partir d'une base de code minimaliste. Veuillez donc créer un nouveau projet `Vite + React` nommé `routing`.  
 Vous ne vous souvenez plus comment faire ? Voici la commande :
@@ -107,7 +103,6 @@ const App = () => {
 };
 
 export default App;
-export { HomePage, AboutPage, ContactPage };
 ```
 
 Nous avons donc ici défini 3 composants React qui représentent 3 pages, et une fonction qui permet, lors d'un clic, d'afficher la page associée au bouton.
@@ -219,9 +214,9 @@ export { HomePage, AboutPage, ContactPage };
 
 Veuillez lancer votre application et vérifier que tout fonctionne. Lorsque vous cliquez sur un lien, le router détecte qu'il y a eu un changement d'état, et `element` dans la configuration du router est rappelé pour la route associée, amenant au render du composant.
 
-# <InternalPageTitle> Utilisation de useNavigation </InternalPageTitle>
+# <InternalPageTitle> Utilisation de useNavigate </InternalPageTitle>
 
-Si l'on souhaite se rapprocher du design initial, nous pouvons utiliser le hook `useNavigation` qui offre une fonction pour naviguer vers une nouvelle route.
+Si l'on souhaite se rapprocher du design initial, nous pouvons utiliser le hook `useNavigate` qui offre une fonction pour naviguer vers une nouvelle route.
 
 Veuillez mettre `App` à jour :
 ```jsx numbered highlighting="1,7-9"
@@ -345,7 +340,7 @@ Il est à noter que le code serait encore plus simple si nous utilisions le comp
 
 # <InternalPageTitle> URL dynamiques </InternalPageTitle>
 
-Parfois, il est intéressant qu'une même composant soit appelé sur toute une famille de routes. 
+Parfois, il est intéressant qu'un même composant soit appelé sur toute une famille de routes. 
 
 Par exemple, dans le composant `AboutPage`, nous souhaitons afficher une liste d'utilisateurs.  Lorsque nous cliquons sur une utilisatrice ou un utilisateur, nous souhaitons faire appel à un nouveau composant `UserPage` qui permettra d'afficher sa page associée avec comme url : `/users/:userId`.
 
@@ -465,7 +460,7 @@ Veuillez vérifier que tout fonctionne bien, que vous pouvez afficher la page de
 
 💭 Il est à noter que si nous n'avions pas voulu créer une nouvelle page mais plutôt afficher le détail d'un utilisateur dans le composant `AboutPage`, nous aurions pour créer une route "enfant" de `/about` (en utilisant un `Outlet` dans `AboutPage`).
 
-Si nécessaire, vous pouvez trouver le code associé à ce tutoriel ici : [router-starter](https://github.com/e-vinci/ts-demos/tree/main/front/routing).
+Si nécessaire, vous pouvez trouver le code associé à ce tutoriel ici : [router](https://github.com/e-vinci/ts-demos/tree/main/front/router).
 
 # <InternalPageTitle> Exercice 7.1 : React Router de base </InternalPageTitle>
 
@@ -485,12 +480,7 @@ A vous d'intégrer le menu de navigation là où il vous semble approprié.
 
 Il est possible que vous ayez remarqué, dans le code du router du tutoriel précédent, qu'il semble compliqué, voire impossible, de faire passer des variables d'états & des fonctions pour mettre à jour cet état, entre routes...
 
-Pour la pizzeria, l'IHM que nous avons développée s'est terminée avec le code du tutoriel `ui-library`. Néanmoins, pour la suite du cours, nous ne souhaitons pas vous imposer d'utiliser des composants de `Material UI`. Dès lors, nous avons restructuré le code pour avoir quelque chose de propre, qui contient :
-- que du CSS sans composants `MUI`;
-- deux pages : `HomePage` & `AddPizzaPage` ; 
-- un router et une `NavBar` pour assurer la navigation.
-Cette nouvelle version de l'App se trouve dans le projet `routing-starter`.
-
+Pour un site permettant de gérer une pizzeria, nous avons mis en place un router pour vous. Ce router est composé de 3 pages : `HomePage`, `AddPizzaPage` et `AddDrinkPage`. Nous avons aussi mis en place un `NavBar` pour la navigation.  
 Pour ce nouveau tutoriel, veuillez créer un nouveau projet `router-state` sur base d'un copier/coller du projet [router-state-starter](https://github.com/e-vinci/web3-exercises/tree/main/tutorials/router-state-starter). Attention, il est normal que votre projet ne s'exécute pas car il manque la gestion de l'état.  
 N'hésitez pas à utiliser ce site pour télécharger le code du dossier router-starter : https://download-directory.github.io/
 
@@ -659,7 +649,7 @@ Si vous le souhaitez, n'hésitez pas à ajouter des petites icônes dans les bou
 
 ## Ant Design Forms
 
-Nous avons maintenant utilisé nos premiers composants "externes" proposés par **Ant Design**. Nous allons maintenant remplacer notre balise **`form`* par le formulaire **Ant Design** qui va nous rendre beaucoup de services.
+Nous avons maintenant utilisé nos premiers composants "externes" proposés par **Ant Design**. Nous allons maintenant remplacer notre balise **`form`** par le formulaire **Ant Design** qui va nous rendre beaucoup de services.
 
 Consultons la documentation officielle du composant [Form](https://ant.design/components/form/) [[R.9]](/references/#r9), et plus particulièrement le "**Basic Usage**", et adaptons notre code pour en faire usage. Nous constaterons que ce composant nous rend plusieurs services :
 - Validation des champs : veuillez faire en sorte que tous les champs soient requis pour l'ajout d'une anecdote.

@@ -1,0 +1,102 @@
+---
+title: "Module 8 : GraphQL"
+description: "Module 8 : GraphQL"
+---
+
+# Module 8 : GraphQL
+
+<InternalPageMenu>
+  <PathViewer>
+    <PathViewerItem to="/"> web3course </PathViewerItem>
+    <PathViewerItem to="/modules/8" selected> Module 8 </PathViewerItem>
+  </PathViewer>
+  <InternalPageMenuItem> Serveur GraphQL </InternalPageMenuItem>
+  <InternalPageMenuItem> Client GraphQL avec React </InternalPageMenuItem>
+  <InternalPageMenuItem> Résumé </InternalPageMenuItem>
+  <InternalPageMenuItem> 🍬 Pour s’entraîner un peu plus (optionnel) </InternalPageMenuItem>
+  <InternalPageMenuItem> 🍬 Et si vous en voulez encore... (optionnel) </InternalPageMenuItem>
+  <InternalPageMenuItem> Solution des exercices </InternalPageMenuItem>
+</InternalPageMenu>
+
+
+**Voici les lectures qui sont référencées dans ce module :**
+- [GraphQL-server](https://fullstackopen.com/en/part8/graph_ql_server) [[R.1]](/references/#r1)
+- [React and GraphQL](https://fullstackopen.com/en/part8/react_and_graph_ql) [[R.1]](/references/#r1)
+
+# <InternalPageTitle> Serveur GraphQL </InternalPageTitle>
+
+Veuillez lire le chapitre sur GraphQL et la création d'un serveur avec Appolo server : [GraphQL-server](https://fullstackopen.com/en/part8/graph_ql_server) [[R.1]](/references/#r1)
+
+Créez un dossier `/exercises/module8/library-backend` dans votre repo local. C'est dans ce dossier que vous ferez tous les exercices de cette première partie.
+
+Faites les exercices 8.1 à 8.7 en n'oubliant pas de commencer avec le fichier de base donné dans l'introduction des exercices (`library-backend.js`) : [Exercises 8.1-8.7](https://fullstackopen.com/en/part8/graph_ql_server#exercises-8-1-8-7) [[R.1]](/references/#r1).
+
+Pour vous simplifier la vie lors du développement, nous allons installer un petit outil qui va redémarrer automatiquement notre server Node.js dès qu'on fait une modification dans notre code : [Nodemon](https://nodemon.io/). Dans votre projet, écrivez la commande `npm install --save-dev nodemon`. Et dans votre `package.json`, ajoutez/modifiez le script start pour qu'il ressemble à ceci : `"start": "nodemon library-backend.js",`
+
+Maintenant, lancez votre projet avec la commande : `npm start`, et observez que l'application est relancée automatiquement dès qu'un changement est effectué dans le code.
+
+# <InternalPageTitle> Client GraphQL avec React </InternalPageTitle>
+
+Veuillez lire le chapitre sur l'intégration d'un client GraphQL dans une application React : [React and GraphQL](https://fullstackopen.com/en/part8/react_and_graph_ql) [[R.1]](/references/#r1)
+
+Créez un dossier `/exercises/module8/library-frontend` dans votre repo local.
+
+Faites les exercices 8.8 à 8.11 en n'oubliant pas de partir du projet de base donné dans l'introduction des exercices : [Exercises 8.8-8.12](https://fullstackopen.com/en/part8/react_and_graph_ql#exercises-8-8-8-12) [[R.1]](/references/#r1).
+
+Nous vous invitons à extraire les queries GraphQL dans un fichier à part. Celui-ci pourrait ressembler à :
+
+```js
+import { gql } from '@apollo/client'
+
+const ALL_PERSONS = gql`
+  query {
+    allPersons {
+      name
+      phone
+      id
+    }
+  }
+`
+
+export { ALL_PERSONS }
+```
+
+Ceci nous permettra plus facilement de ré-utiliser des queries qui sont utilisées à plusieurs endroits.
+
+# <InternalPageTitle> Résumé </InternalPageTitle>
+
+- La philosophie de GraphQL est fort différente du REST:
+
+  * En REST, on défini une API pour chaque resource et on y accède via les différents verbes HTTP (GET=lire, POST=créer, PUT=modifier, etc.). Sauf si l'on paramétrise ces APIs, on reçoit en général la resource en entier (même ce dont on n'a pas besoin). Si l'on veut accéder à des éléments imbriqués il faut faire plusieurs appels aux différentes APIs.
+  * En GraphQL, on a une API unique accédée par un POST et on y indique la ou les opérations souhaitées ainsi que les résultats désirés. C'est donc plus efficace en terme d'appels d'APIs et aussi beaucoup plus flexible en terme d'indication des opérations et des résultats souhaités.
+
+- Lorsqu'on fait une query GraphQL, par défaut on ne reçoit rien, il faut explicitement demander ce qu'on veut recevoir.
+
+## Appolo Server (back - Node.js)
+
+- En REST avec express, on écrit une fonction JS qui sera exécutée pour une requête (une fonction par requête). En GraphQL avec Appolo, on écrit plutôt des **resolvers** pour chaque **field** de chaque ressource, et des **mutations**. Ceci nous permet, du côté client de faire des requêtes "personnalisées" en fonction des besoins (on choisit ce qu'on récupère).
+- Les **mutations** ont un nom et un certain nombre de paramètres. Ceci permet une lisibilité de l'API, mais implique également la nécessité de réfléchir à une manière de structurer/nommer les requêtes.
+- Appolo Server nous propose un outil pour parcourir la structure de l'API et construire des requêtes facilement. Son usage est recommandé pour construire nos requêtes utilisées côté serveur.
+- Appolo Server s'occupe en grande partie de la gestion des erreurs, grâce aux **schémas**. Si le client ne respecte pas le schéma, ou le format des mutations, Appolo est capable de le détecter seul. On ne doit donc s'occuper que de la gestion des erreurs "business".
+
+## Appolo Client (front - React)
+
+- Appolo Client met à disposition un hook **`useQuery()`** qui permet d'exécuter une query à la première exécution du hook, et d'en récupérer le résultat (état de chargement, données...).
+- Un mécanisme de **cache** permet de partager le résultat des requêtes dans toute l'application, et donc d'éviter de refaire des requêtes inutiles.
+- Lors d'une **mutation**, on peut définir une requête à exécuter pour mettre à jour le cache, et donc rafraichir les composants qui en dépendent.
+- Attention, la mise à jour du cache est locale au client. Si plusieurs machines accèdent à l'application, et l'une d'elle fait une mutation, les autres ne seront pas au courant. Pour palier à cela (pour autant que ce soit nécessaire) on peut définir un "**pollInterval**" pour une query, ce qui va l'exécuter à intervalle régulier, et donc mettre à jour le cache si les données ont changé sur le serveur.
+- L'état d'une application web est souvent composé d'éléments récupérés depuis le serveur. Appolo client s'occupant de cela, on ne doit plus utiliser **useState()** pour le stocker.
+
+# <InternalPageTitle> 🍬 Pour s’entraîner un peu plus (optionnel) </InternalPageTitle>
+
+Faites l'exercice 8.12 [Exercises 8.8-8.12](https://fullstackopen.com/en/part8/react_and_graph_ql#exercises-8-8-8-12) [[R.1]](/references/#r1).
+
+# <InternalPageTitle> 🍬 Et si vous en voulez encore... (optionnel) </InternalPageTitle>
+
+N'hésitez pas à lire la fiche suivante et faire des exercices : [Database and user administration](https://fullstackopen.com/en/part8/database_and_user_administration) [[R.1]](/references/#r1).
+
+# <InternalPageTitle> Solution des exercices </InternalPageTitle>
+
+Une solution pour les exercices de ce module se trouvent ici : [module8](https://github.com/e-vinci/web3-exercises/tree/main/exercises/module8).
+
+N'hésitez pas à utiliser https://download-directory.github.io/ pour télécharger le dossier complet (sans devoir cloner tout le repo **`web3-exercises`**). Vous devez juste indiquer le lien vers le dossier **`module8`** dans le champ **`Download Directory`** : https://github.com/e-vinci/web3-exercises/tree/main/exercises/module8 puis taper sur la touche **`Enter`** de votre clavier.
